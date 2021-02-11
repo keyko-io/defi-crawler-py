@@ -15,7 +15,11 @@ This library provides an API that could be imported in a python environment and 
 
 ## How to use this library?
 
-TBD
+## Installation instructions
+`pip install -r requirements.txt`
+
+## Load data
+Edit the main.py file and set up the timestamp from which to extract data then run `python main.py`
 
 
 ---
