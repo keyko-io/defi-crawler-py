@@ -38,4 +38,41 @@ class Querys:
                         }}
                     }}
                 """,
+        "MAKER": """
+                {{
+                vaults(
+                    first:1000
+                    orderBy: openedAt
+                    orderDirection:desc
+                        where: {{
+                            openedAt_gt: {}
+                        }}
+                ){{
+                    owner{{
+                        address
+                    }}
+                    debt
+                    openedAt
+                }}
+                }}
+        """,
+        "CREAM": """
+            {{
+            borrowEvents(
+                first:1000
+                orderBy:blockTime
+                orderDirection:desc
+                where: {{
+                blockTime_gt:{}
+                }}
+            ){{
+                id
+                amount
+                accountBorrows
+                borrower
+                underlyingSymbol
+                blockTime
+            }}
+            }}
+    """
     }
