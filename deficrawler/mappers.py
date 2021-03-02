@@ -1,5 +1,5 @@
 import json
-from borrow import Borrow
+from deficrawler.borrow import Borrow
 
 
 class Mappers:

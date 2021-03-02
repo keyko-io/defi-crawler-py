@@ -1,8 +1,8 @@
-from querys import Querys
-from constants import Constants
+from deficrawler.querys import Querys
+from deficrawler.constants import Constants
 import requests
 import json
-from mappers import Mappers
+from deficrawler.mappers import Mappers
 
 
 class Borrows:
