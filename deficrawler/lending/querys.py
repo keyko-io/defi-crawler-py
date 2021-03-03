@@ -7,6 +7,7 @@ class Querys:
                             orderDirection: asc
                             where: {{
                             timestamp_gt: {}
+                            timestamp_lte: {}
                             }}
                         ){{
                         user{{
@@ -27,6 +28,7 @@ class Querys:
                                 orderDirection:asc
                                 where: {{
                                 blockTime_gt: {}
+                                blockTime_lte: {}
                                 }}
                             ){{
                             id
@@ -46,6 +48,7 @@ class Querys:
                     orderDirection:desc
                         where: {{
                             openedAt_gt: {}
+                            openedAt_lte: {}
                         }}
                 ){{
                     owner{{
@@ -64,6 +67,7 @@ class Querys:
                 orderDirection:desc
                 where: {{
                 blockTime_gt:{}
+                blockTime_lte:{}
                 }}
             ){{
                 id
