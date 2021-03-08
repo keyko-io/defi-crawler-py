@@ -6,6 +6,13 @@ class Constants:
         "CREAM": "borrowEvents"
     }
 
+    PATH_LIQUIDATIONS = {
+        "AAVE": "liquidationCalls",
+        "COMPOUND": "liquidationEvents",
+        "MAKER": "vaults",
+        "CREAM": "liquidationEvents"
+    }
+
     ENDPOINT = {
         "AAVE": "https://api.thegraph.com/subgraphs/name/aave/protocol-v2",
         "COMPOUND": "https://api.thegraph.com/subgraphs/name/graphprotocol/compound-v2",

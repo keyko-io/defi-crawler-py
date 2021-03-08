@@ -1,5 +1,5 @@
 from deficrawler.lending.querys import Querys
-from deficrawler.lending.mappers import Mappers
+from deficrawler.lending.mappers.borrows import Mappers
 from deficrawler.constants import Constants
 
 import requests

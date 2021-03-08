@@ -1,6 +1,6 @@
 from deficrawler.lending.querys import Querys
 from deficrawler.constants import Constants
-from deficrawler.lending.mappers import Mappers
+from deficrawler.lending.mappers.borrows import Mappers
 from deficrawler.api_calls import get_data_from
 
 from datetime import date, datetime
