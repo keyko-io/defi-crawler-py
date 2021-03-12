@@ -6,6 +6,13 @@ class Constants:
         "CREAM": "borrowEvents"
     }
 
+    PATH_DEPOSITS = {
+        "AAVE": "deposits",
+        "COMPOUND": "mintEvents",
+        "MAKER": "vaults",
+        "CREAM": "mintEvents"
+    }
+
     PATH_LIQUIDATIONS = {
         "AAVE": "liquidationCalls",
         "COMPOUND": "liquidationEvents",

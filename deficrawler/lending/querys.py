@@ -169,3 +169,65 @@ class Querys:
             }}
     """
     }
+
+    DEPOSITS_FROM_TIMESTAMP = {
+        "AAVE": """
+                    {{
+                        deposits(
+                            first:1000
+                            orderBy:timestamp
+                            orderDirection:asc
+                        where: {{
+                            timestamp_gt: {}
+                            timestamp_lte: {}
+                            }}
+                    ){{
+                        user{{
+                            id
+                        }}
+                        amount
+                        timestamp
+                        reserve{{
+                        symbol
+                        }}
+                    }}
+                    }}
+                """,
+
+        "COMPOUND": """ 
+                    {{
+                    mintEvents(
+                        first:1000
+                        orderBy:blockTime
+                        orderDirection: asc
+                        where: {{
+                        blockTime_gt: {}
+                        blockTime_lte: {}
+                        }}
+                    ){{
+                        underlyingAmount
+                        to
+                        cTokenSymbol
+                        blockTime
+                    }}
+                    }}
+        """,
+        "CREAM": """ 
+                    {{
+                    mintEvents(
+                        first:1000
+                        orderBy:blockTime
+                        orderDirection: asc
+                        where: {{
+                        blockTime_gt: {}
+                        blockTime_lte: {}
+                        }}
+                    ){{
+                        underlyingAmount
+                        to
+                        cTokenSymbol
+                        blockTime
+                    }}
+                    }}
+        """
+    }
