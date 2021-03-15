@@ -231,3 +231,65 @@ class Querys:
                     }}
         """
     }
+
+    REPAYS_FROM_TIMESTAMP = {
+        "AAVE": """
+                    {{
+                        repays(
+                            first:1000
+                            orderBy:timestamp
+                            orderDirection:asc
+                        where: {{
+                            timestamp_gt: {}
+                            timestamp_lte: {}
+                            }}
+                    ){{
+                        user{{
+                            id
+                        }}
+                        amount
+                        timestamp
+                        reserve{{
+                           symbol
+                        }}
+                    }}
+                    }}
+                """,
+
+        "COMPOUND": """ 
+                    {{
+                    repayEvents(
+                        first:1000
+                        orderBy:blockTime
+                        orderDirection: asc
+                        where: {{
+                        blockTime_gt: {}
+                        blockTime_lte: {}
+                        }}
+                    ){{
+                        payer
+                        underlyingSymbol
+                        amount
+                        blockTime
+                    }}
+                    }}
+        """,
+        "CREAM": """ 
+                    {{
+                    repayEvents(
+                        first:1000
+                        orderBy:blockTime
+                        orderDirection: asc
+                        where: {{
+                        blockTime_gt: {}
+                        blockTime_lte: {}
+                        }}
+                    ){{
+                        payer
+                        underlyingSymbol
+                        amount
+                        blockTime
+                    }}
+                    }}
+        """
+    }

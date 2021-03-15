@@ -1,9 +1,12 @@
 from deficrawler.lending.querys import Querys
 from deficrawler.constants import Constants
-from deficrawler.lending.mappers.borrows import Mappers
+from deficrawler.lending.mappers.repays import Mappers
+from deficrawler.api_calls import get_data_from
+
 
 import requests
 import json
+from datetime import date, datetime
 
 
 class Repays:
@@ -14,7 +17,7 @@ class Repays:
         self.timestamp = Constants.TIMESTAMP[protocol]
         self.endpoint = Constants.ENDPOINT[protocol]
 
-    def get_repays_from(self, timestamp=0):
+    def get_repays_from(self, from_date, to_date):
         from_timestamp = timestamp = int(
             datetime.strptime(from_date, '%d/%m/%Y').strftime("%s"))
 
