@@ -28,7 +28,11 @@ class Constants:
     }
 
     PATH_SWAPS = {
-        "UNISWAP": "swaps"
+        "UNISWAP": "swaps",
+        "BALANCER": "swaps",
+        "BANCOR": "swaps",
+        "SUSHISWAP": "swaps",
+        "KYBER": "fullTrades"
     }
 
     ENDPOINT = {
@@ -37,6 +41,10 @@ class Constants:
         "MAKER": "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
         "CREAM": "https://api.thegraph.com/subgraphs/name/creamfinancedev/cream-lending-v2",
         "UNISWAP": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2",
+        "BALANCER": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer",
+        "BANCOR": "https://api.thegraph.com/subgraphs/name/blocklytics/bancor",
+        "SUSHISWAP": "https://api.thegraph.com/subgraphs/name/croco-finance/sushiswap",
+        "KYBER": "https://api.thegraph.com/subgraphs/name/protofire/kyber"
     }
 
     TIMESTAMP = {
@@ -44,5 +52,9 @@ class Constants:
         "COMPOUND": "blockTime",
         "MAKER": "openedAt",
         "CREAM": "blockTime",
-        "UNISWAP": "timestamp"
+        "UNISWAP": "timestamp",
+        "BALANCER": "timestamp",
+        "BANCOR": "timestamp",
+        "SUSHISWAP": "timestamp",
+        "KYBER": "createdAtBlockTimestamp"
     }
