@@ -35,6 +35,18 @@ class Constants:
         "KYBER": "fullTrades"
     }
 
+    PATH_USERS_ORDER = {
+        "AAVE": "id"
+    }
+
+    PATH_USERS = {
+        "AAVE": "users"
+    }
+
+    PATH_POSITIONS = {
+        "AAVE": "userReserves"
+    }
+
     ENDPOINT = {
         "AAVE": "https://api.thegraph.com/subgraphs/name/aave/protocol-v2",
         "COMPOUND": "https://api.thegraph.com/subgraphs/name/graphprotocol/compound-v2",

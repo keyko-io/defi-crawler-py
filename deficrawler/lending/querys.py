@@ -293,3 +293,45 @@ class Querys:
                     }}
         """
     }
+
+    USERS = {
+        "AAVE": """
+                {{
+                users(
+                    first: 1000
+                    orderBy: id
+                    orderDirection: asc
+                    where: {{
+                    id_gt: "{}"
+                    }}
+                ){{
+                    id
+                    borrowedReservesCount
+                    liquidationCallHistory{{
+                        id
+                    }}
+                }}
+            }}
+        """
+    }
+
+    USERS_POSITIONS = {
+        "AAVE": """
+                {{
+                userReserves(
+                 where: {{
+                    user:"{}"
+                }}
+            ){{
+                user{{
+                    id
+                }}
+                reserve{{
+                    symbol
+                }}
+                currentTotalDebt
+                currentATokenBalance
+            }}
+            }}
+        """
+    }
