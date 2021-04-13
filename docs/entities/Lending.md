@@ -38,7 +38,7 @@ Principal Token | Token payed on liquidation to repay debt | Decimal
 Collateral Token | Token received by liquidator on liquidation | String
 Principal Amount | Amount of principal payed on liquidation | Timestamp
 Collateral Amount | Amount of collateral recevided by liquidator | Decimal
-Liquidator | Address of the liquitador | String
+Liquidator | Address of the liquidator | String
 Timestamp | Timestamp of liquidation | Timestamp
 
 ## User
@@ -56,4 +56,4 @@ Field | Description | Type
 User | User | String
 Symbol | Symbol of the token in the user portfolio | String
 Debt amount | Amount of debt tokens | Decimal
-Collateral amount | Amount of debt tokens | Decimal
+Collateral amount | Amount of collateral tokens | Decimal
