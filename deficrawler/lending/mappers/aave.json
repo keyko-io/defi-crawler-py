@@ -1,4 +1,5 @@
 {
+  "endpoint":"https://api.thegraph.com/subgraphs/name/aave/protocol-v2",
   "borrow": {
     "attributes": {
       "user": [
