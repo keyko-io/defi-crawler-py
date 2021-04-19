@@ -1,0 +1,29 @@
+{
+  "borrow": {
+    "attributes": {
+      "user": [
+        "user",
+        "id"
+      ],
+      "token": [
+        "reserve",
+        "symbol"
+      ],
+      "amount": [
+        "amount"
+      ],
+      "timestamp": [
+        "timestamp"
+      ]
+    },
+    "query": {
+      "name": "borrows",
+      "extra-fields": [],
+      "params": {
+        "first": 1000,
+        "orderBy": "timestamp",
+        "orderDirection": "asc"
+      }
+    }
+  }
+}
