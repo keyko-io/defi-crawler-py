@@ -1,4 +1,5 @@
 {
+  "endpoint": "https://api.thegraph.com/subgraphs/name/creamfinancedev/cream-lending-v2",
   "borrow": {
     "attributes": {
       "user": [
@@ -24,6 +25,84 @@
         "first": 1000,
         "orderBy": "blockTime",
         "orderDirection": "asc"
+      }
+    }
+  },
+  "deposit": {
+    "attributes": {
+      "user": [
+        "to"
+      ],
+      "token": [
+        "cTokenSymbol"
+      ],
+      "amount": [
+        "underlyingAmount"
+      ],
+      "timestamp": [
+        "blockTime"
+      ]
+    },
+    "query": {
+      "name": "mintEvents",
+      "extra-fields": [],
+      "params": {
+        "orderBy": "blockTime"
+      }
+    }
+  },
+  "liquidation": {
+    "attributes": {
+      "user": [
+        "from"
+      ],
+      "token_principal": [
+        "underlyingSymbol"
+      ],
+      "token_collateral": [
+        "cTokenSymbol"
+      ],
+      "amount_principal": [
+        "underlyingRepayAmount"
+      ],
+      "amount_collateral": [
+        "amount"
+      ],
+      "liquidator": [
+        "to"
+      ],
+      "timestamp": [
+        "blockTime"
+      ]
+    },
+    "query": {
+      "name": "liquidationEvents",
+      "extra-fields": [],
+      "params": {
+        "orderBy": "blockTime"
+      }
+    }
+  },
+  "repay": {
+    "attributes": {
+      "user": [
+        "payer"
+      ],
+      "token": [
+        "underlyingSymbol"
+      ],
+      "amount": [
+        "amount"
+      ],
+      "timestamp": [
+        "blockTime"
+      ]
+    },
+    "query": {
+      "name": "repayEvents",
+      "extra-fields": [],
+      "params": {
+        "orderBy": "blockTime"
       }
     }
   }

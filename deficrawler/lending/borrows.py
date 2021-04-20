@@ -12,7 +12,7 @@ import json
 class Borrows:
     def __init__(self, protocol):
         self.protocol = protocol
-        self.query_from_timestamp = Querys.BORROWS_FROM_TIMESTAMP
+        self.query_from_timestamp = Querys.QUERY_FROM_TIMESTAMP
         self.path = Constants.PATH_BORROWS[protocol]
         self.timestamp = Constants.TIMESTAMP[protocol]
         self.endpoint = Constants.ENDPOINT[protocol]
