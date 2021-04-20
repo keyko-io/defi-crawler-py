@@ -1,86 +1,18 @@
 class Querys:
-    BORROWS_FROM_TIMESTAMP = {
-        "AAVE": """{{
-                    borrows(
+    BORROWS_FROM_TIMESTAMP = """{{
+                {event_name}(
                             first: 1000
-                            orderBy:timestamp
+                            orderBy: {order_by}
                             orderDirection: asc
                             where: {{
-                            timestamp_gt: {}
-                            timestamp_lte: {}
+                            {order_by}_gt: {from_timestamp}
+                            {order_by}_lte: {to_timestamp}
                             }}
                         ){{
-                        user{{
-                         id
-                        }}
-                        reserve{{
-                          symbol
-                        }}
-                        amount
-                        timestamp
+                        {attributes}
                     }}
                     }}
-                """,
-        "COMPOUND": """{{
-                        borrowEvents(
-                                first: 1000
-                                orderBy: blockTime
-                                orderDirection:asc
-                                where: {{
-                                blockTime_gt: {}
-                                blockTime_lte: {}
-                                }}
-                            ){{
-                            id
-                            amount
-                            accountBorrows
-                            borrower
-                            underlyingSymbol
-                            blockTime
-                        }}
-                    }}
-                """,
-        "MAKER": """
-                {{
-                vaults(
-                    first:1000
-                    orderBy: openedAt
-                    orderDirection:desc
-                        where: {{
-                            openedAt_gt: {}
-                            openedAt_lte: {}
-                        }}
-                ){{
-                    owner{{
-                        address
-                    }}
-                    debt
-                    openedAt
-                }}
-                }}
-        """,
-        "CREAM": """
-            {{
-            borrowEvents(
-                first:1000
-                orderBy:blockTime
-                orderDirection:desc
-                where: {{
-                blockTime_gt:{}
-                blockTime_lte:{}
-                }}
-            ){{
-                id
-                amount
-                accountBorrows
-                borrower
-                underlyingSymbol
-                blockTime
-            }}
-            }}
-    """
-    }
-
+                """
     LIQUIDATIONS_FROM_TIMESTAMP = {
         "AAVE": """{{
                     liquidationCalls(

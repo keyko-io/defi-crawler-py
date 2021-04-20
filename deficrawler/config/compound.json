@@ -1,0 +1,29 @@
+{
+  "endpoint": "https://api.thegraph.com/subgraphs/name/graphprotocol/compound-v2",
+  "borrow": {
+    "attributes": {
+      "user": [
+        "borrower"
+      ],
+      "token": [
+        "underlyingSymbol"
+      ],
+      "amount": [
+        "amount"
+      ],
+      "timestamp": [
+        "blockTime"
+      ]
+    },
+    "query": {
+      "name": "borrowEvents",
+      "extra-fields": [
+        "id",
+        "accountBorrows"
+      ],
+      "params": {
+        "orderBy": "blockTime"
+      }
+    }
+  }
+}

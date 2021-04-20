@@ -1,6 +1,6 @@
 from deficrawler.lending.borrow import Borrow
-import pkgutil
 
+import pkgutil
 import json
 import dict_digger
 
@@ -11,7 +11,7 @@ class Mappers:
     def map_borrow(json_data, protocol):
         list_borrows = []
 
-        data = pkgutil.get_data(__name__, protocol.lower() + ".json")
+        data = pkgutil.get_data('deficrawler.config', protocol.lower() + ".json")
         map_file = json.loads(data.decode())
 
         for ele in json_data:

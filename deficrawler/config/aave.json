@@ -1,9 +1,9 @@
 {
-  "endpoint":"https://api.thegraph.com/subgraphs/name/aave/protocol-v2",
+  "endpoint": "https://api.thegraph.com/subgraphs/name/aave/protocol-v2",
   "borrow": {
     "attributes": {
       "user": [
-        "user",
+        "user", 
         "id"
       ],
       "token": [
@@ -21,9 +21,7 @@
       "name": "borrows",
       "extra-fields": [],
       "params": {
-        "first": 1000,
-        "orderBy": "timestamp",
-        "orderDirection": "asc"
+        "orderBy": "timestamp"
       }
     }
   }

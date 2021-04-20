@@ -1,0 +1,24 @@
+{
+  "borrow": {
+    "attributes": {
+      "user": [
+        "owner",
+        "address"
+      ],
+      "token": {},
+      "amount": [
+        "debt"
+      ],
+      "timestamp": [
+        "openedAt"
+      ]
+    },
+    "query": {
+      "name": "vaults",
+      "extra-fields": {},
+      "params": {
+        "orderBy": "openedAt",
+      }
+    }
+  }
+}
