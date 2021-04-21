@@ -1,0 +1,64 @@
+{
+  "endpoint": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2",
+  "swap": {
+    "attributes": {
+      "user": [
+        "sender"
+      ],
+      "tx_id": [
+        "transaction",
+        "id"
+      ],
+      "from_token": [
+        [
+          "pair",
+          "token0",
+          "symbol"
+        ],
+        [
+          "pair",
+          "token1",
+          "symbol"
+        ]
+      ],
+      "to_token": [
+        [
+          "pair",
+          "token0",
+          "symbol"
+        ],
+        [
+          "pair",
+          "token1",
+          "symbol"
+        ]
+      ],
+      "from_token_amount": [
+        [
+          "amount0In"
+        ],
+        [
+          "amount1In"
+        ]
+      ],
+      "to_token_amount": [
+        [
+          "amount0Out"
+        ],
+        [
+          "amount1Out"
+        ]
+      ],
+      "timestamp": [
+        "timestamp"
+      ]
+    },
+    "query": {
+      "name": "swaps",
+      "extra-fields": [],
+      "params": {
+        "orderBy": "timestamp"
+      }
+    }
+  }
+}

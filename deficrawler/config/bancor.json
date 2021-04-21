@@ -1,0 +1,39 @@
+{
+  "endpoint": "https://api.thegraph.com/subgraphs/name/blocklytics/bancor",
+  "swap": {
+    "attributes": {
+      "user": [
+        "trader",
+        "id"
+      ],
+      "tx_id": [
+        "transaction",
+        "id"
+      ],
+      "from_token": [
+          "fromToken",
+          "symbol"
+      ],
+      "to_token": [
+          "toToken",
+          "symbol"
+      ],
+      "from_token_amount": [
+          "amountPurchased"
+      ],
+      "to_token_amount": [
+          "amountReturned"
+      ],
+      "timestamp": [
+        "timestamp"
+      ]
+    },
+    "query": {
+      "name": "swaps",
+      "extra-fields": [],
+      "params": {
+        "orderBy": "timestamp"
+      }
+    }
+  }
+}

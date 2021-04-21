@@ -1,0 +1,38 @@
+{
+  "endpoint": "https://api.thegraph.com/subgraphs/name/protofire/kyber",
+  "swap": {
+    "attributes": {
+      "user": [
+        "trader",
+        "id"
+      ],
+      "tx_id": [
+        "id"
+      ],
+      "from_token": [
+          "src",
+          "symbol"
+      ],
+      "to_token": [
+          "desr",
+          "symbol"
+      ],
+      "from_token_amount": [
+          "rawSrcAmount"
+      ],
+      "to_token_amount": [
+          "rawDestAmount"
+      ],
+      "timestamp": [
+        "createdAtBlockTimestamp"
+      ]
+    },
+    "query": {
+      "name": "fullTrades",
+      "extra-fields": [],
+      "params": {
+        "orderBy": "createdAtBlockTimestamp"
+      }
+    }
+  }
+}

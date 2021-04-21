@@ -1,0 +1,36 @@
+{
+  "endpoint": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer",
+  "swap": {
+    "attributes": {
+      "user": [
+        "userAddress",
+        "id"
+      ],
+      "tx_id": [
+        "id"
+      ],
+      "from_token": [
+          "tokenInSym"
+      ],
+      "to_token": [
+          "tokenOutSym"
+      ],
+      "from_token_amount": [
+          "tokenAmountIn"
+      ],
+      "to_token_amount": [
+          "tokenAmountOut"
+      ],
+      "timestamp": [
+        "timestamp"
+      ]
+    },
+    "query": {
+      "name": "swaps",
+      "extra-fields": [],
+      "params": {
+        "orderBy": "timestamp"
+      }
+    }
+  }
+}
