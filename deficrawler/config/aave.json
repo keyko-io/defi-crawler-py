@@ -1,0 +1,158 @@
+{
+  "endpoint": "https://api.thegraph.com/subgraphs/name/aave/protocol-v2",
+  "borrow": {
+    "attributes": {
+      "user": [
+        "user", 
+        "id"
+      ],
+      "token": [
+        "reserve",
+        "symbol"
+      ],
+      "amount": [
+        "amount"
+      ],
+      "timestamp": [
+        "timestamp"
+      ]
+    },
+    "query": {
+      "name": "borrows",
+      "extra-fields": [],
+      "params": {
+        "orderBy": "timestamp"
+      }
+    }
+  },
+  "deposit": {
+    "attributes": {
+      "user": [
+        "user", 
+        "id"
+      ],
+      "token": [
+        "reserve",
+        "symbol"
+      ],
+      "amount": [
+        "amount"
+      ],
+      "timestamp": [
+        "timestamp"
+      ]
+    },
+    "query": {
+      "name": "deposits",
+      "extra-fields": [],
+      "params": {
+        "orderBy": "timestamp"
+      }
+    }
+  },
+  "liquidation": {
+    "attributes": {
+      "user": [
+        "user",
+        "id"
+      ],
+      "token_principal": [
+        "principalReserve",
+        "symbol"
+      ],
+      "token_collateral": [
+        "collateralReserve",
+        "symbol"
+      ],
+      "amount_principal": [
+        "principalAmount"
+      ],
+      "amount_collateral": [
+        "collateralAmount"
+      ],
+      "liquidator": [
+        "liquidator"
+      ],
+      "timestamp": [
+        "timestamp"
+      ]
+    },
+    "query": {
+      "name": "liquidationCalls",
+      "extra-fields": [],
+      "params": {
+        "orderBy": "timestamp"
+      }
+    }
+  },
+  "repay": {
+    "attributes": {
+      "user": [
+        "user", 
+        "id"
+      ],
+      "token": [
+        "reserve",
+        "symbol"
+      ],
+      "amount": [
+        "amount"
+      ],
+      "timestamp": [
+        "timestamp"
+      ]
+    },
+    "query": {
+      "name": "repays",
+      "extra-fields": [],
+      "params": {
+        "orderBy": "timestamp"
+      }
+    }
+  },
+  "user": {
+    "attributes": {
+      "user_id": [
+        "id"
+      ],
+      "active_loans": [
+        "borrowedReservesCount"
+      ],
+      "liquidations_count": [
+        "id"
+      ]
+    },
+    "query": {
+      "name": "users",
+      "extra-fields": [],
+      "params": {
+        "orderBy": "id"
+      }
+    }
+  },
+  "user_position": {
+    "attributes": {
+      "user_id": [
+        "user",
+        "id"
+      ],
+      "symbol": [
+        "reserve",
+        "symbol"
+      ],
+      "debt_amount": [
+        "currentTotalDebt"
+      ],
+      "collateral_amount": [
+        "currentATokenBalance"
+      ]
+    },
+    "query": {
+      "name": "userReserves",
+      "extra-fields": [],
+      "params": {
+        "user": "user"
+      }
+    }
+  }
+}

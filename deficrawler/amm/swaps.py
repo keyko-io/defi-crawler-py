@@ -9,7 +9,7 @@ from datetime import date, datetime
 class Swaps:
     def __init__(self, protocol):
         self.protocol = protocol
-        self.query_from_timestamp = Querys.SWAPS_FROM_TIMESTAMP[protocol]
+        self.query_from_timestamp = Querys.QUERY_FROM_TIMESTAMP
         self.path = Constants.PATH_SWAPS[protocol]
         self.timestamp = Constants.TIMESTAMP[protocol]
         self.endpoint = Constants.ENDPOINT[protocol]
@@ -23,11 +23,10 @@ class Swaps:
 
         swaps_json = get_data_from(
             query_input=self.query_from_timestamp,
-            endpoint=self.endpoint,
             from_timestamp=from_timestamp,
             to_timestamp=to_timestamp,
-            path=self.path,
-            timestamp_name=self.timestamp
+            event="swap",
+            protocol=self.protocol
         )
 
         return Mappers.map_swaps(swaps_json, self.protocol)
