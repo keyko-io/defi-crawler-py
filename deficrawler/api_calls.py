@@ -6,37 +6,34 @@ import pkgutil
 
 
 
-def get_data_from(query_input, event, from_timestamp, to_timestamp, protocol):
+def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_file, protocol):
     are_data = True
     json_records = []
     iteration_timestamp = from_timestamp
 
-    protocol_file = pkgutil.get_data('deficrawler.config', protocol.lower() + ".json")
-    map_file = json.loads(protocol_file.decode())
-
-    event_name = map_file[event]['query']['name']
-    order_by = map_file[event]['query']['params']['orderBy']
-    attributes = get_attributes(event, map_file)
+    entity_name = mappings_file['entities'][entity]['query']['name']
+    order_by = mappings_file['entities'][entity]['query']['params']['orderBy']
+    attributes = get_attributes(entity, mappings_file)
 
     while are_data:
         query = query_input.format(
-            event_name=event_name,
+            entity_name=entity_name,
             order_by=order_by,
             from_timestamp=iteration_timestamp,
             to_timestamp=to_timestamp,
             attributes=attributes
         )
 
-        response = requests.post(map_file['endpoint'], json={'query': query})
+        response = requests.post(mappings_file['protocol']['endpoint'], json={'query': query})
         json_data = json.loads(response.text)
         if 'errors' in json_data:
             are_data = False
         else:
-            response_lenght = len(json_data['data'][event_name])
+            response_lenght = len(json_data['data'][entity_name])
             if (response_lenght > 0):
                 json_data = json.loads(response.text)
-                list_data = json_data['data'][event_name]
-                iteration_timestamp = json_data['data'][event_name][response_lenght - 1][order_by]
+                list_data = json_data['data'][entity_name]
+                iteration_timestamp = json_data['data'][entity_name][response_lenght - 1][order_by]
 
                 json_records = [*json_records, *list_data]
             else:

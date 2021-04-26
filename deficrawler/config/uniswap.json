@@ -1,63 +1,128 @@
 {
-  "endpoint": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2",
-  "swap": {
-    "attributes": {
-      "user": [
-        "sender"
-      ],
-      "tx_id": [
-        "transaction",
-        "id"
-      ],
-      "from_token": [
-        [
-          "pair",
-          "token0",
-          "symbol"
+  "protocol": {
+    "name": "Uniswap",
+    "type": "Descentralized Exchange",
+    "version": 2,
+    "chain": "Ethereum",
+    "endpoint": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2"
+  },
+  "entities": {
+    "swap": {
+      "attributes": {
+        "user": [
+          "sender"
         ],
-        [
-          "pair",
-          "token1",
-          "symbol"
-        ]
-      ],
-      "to_token": [
-        [
-          "pair",
-          "token0",
-          "symbol"
+        "tx_id": [
+          "transaction",
+          "id"
         ],
-        [
-          "pair",
-          "token1",
-          "symbol"
-        ]
-      ],
-      "from_token_amount": [
-        [
-          "amount0In"
+        "from_token": [
+          [
+            "pair",
+            "token0",
+            "symbol"
+          ],
+          [
+            "pair",
+            "token1",
+            "symbol"
+          ]
         ],
-        [
-          "amount1In"
-        ]
-      ],
-      "to_token_amount": [
-        [
-          "amount0Out"
+        "to_token": [
+          [
+            "pair",
+            "token0",
+            "symbol"
+          ],
+          [
+            "pair",
+            "token1",
+            "symbol"
+          ]
         ],
-        [
-          "amount1Out"
+        "from_token_amount": [
+          [
+            "amount0In"
+          ],
+          [
+            "amount1In"
+          ]
+        ],
+        "to_token_amount": [
+          [
+            "amount0Out"
+          ],
+          [
+            "amount1Out"
+          ]
+        ],
+        "timestamp": [
+          "timestamp"
         ]
-      ],
-      "timestamp": [
-        "timestamp"
-      ]
-    },
-    "query": {
-      "name": "swaps",
-      "extra-fields": [],
-      "params": {
-        "orderBy": "timestamp"
+      },
+      "query": {
+        "name": "swaps",
+        "fields": {
+          "user": [
+            "sender"
+          ],
+          "tx_id": [
+            "transaction",
+            "id"
+          ],
+          "from_token": [
+            [
+              "pair",
+              "token0",
+              "symbol"
+            ],
+            [
+              "pair",
+              "token1",
+              "symbol"
+            ]
+          ],
+          "to_token": [
+            [
+              "pair",
+              "token0",
+              "symbol"
+            ],
+            [
+              "pair",
+              "token1",
+              "symbol"
+            ]
+          ],
+          "from_token_amount": [
+            [
+              "amount0In"
+            ],
+            [
+              "amount1In"
+            ]
+          ],
+          "to_token_amount": [
+            [
+              "amount0Out"
+            ],
+            [
+              "amount1Out"
+            ]
+          ],
+          "timestamp": [
+            "timestamp"
+          ]
+        },
+        "params": {
+          "orderBy": "timestamp"
+        }
+      },
+      "transformations": {
+        "from_token": "from_token",
+        "to_token": "to_token",
+        "from_token_amount": "from_token_amount",
+        "to_token_amount": "to_token_amount"
       }
     }
   }

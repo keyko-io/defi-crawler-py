@@ -1,9 +1,9 @@
 import dict_digger
 
 
-def get_attributes(event, map_file):
+def get_attributes(entity, map_file):
     list_attr = ''
-    attributes = map_file[event]['attributes']
+    attributes = map_file['entities'][entity]['query']['fields']
     for attribute, value in attributes.items():
         list_attr += format_attribute(value) + " "
     return list_attr
