@@ -1,39 +1,74 @@
 {
-  "endpoint": "https://api.thegraph.com/subgraphs/name/blocklytics/bancor",
-  "swap": {
-    "attributes": {
-      "user": [
-        "trader",
-        "id"
-      ],
-      "tx_id": [
-        "transaction",
-        "id"
-      ],
-      "from_token": [
+  "protocol": {
+    "name": "Bancor",
+    "type": "Bancor",
+    "version": 1,
+    "chain": "Ethereum",
+    "endpoint": "https://api.thegraph.com/subgraphs/name/blocklytics/bancor"
+  },
+  "entities": {
+    "swap": {
+      "attributes": {
+        "user": [
+          "trader",
+          "id"
+        ],
+        "tx_id": [
+          "transaction",
+          "id"
+        ],
+        "from_token": [
           "fromToken",
           "symbol"
-      ],
-      "to_token": [
+        ],
+        "to_token": [
           "toToken",
           "symbol"
-      ],
-      "from_token_amount": [
+        ],
+        "from_token_amount": [
           "amountPurchased"
-      ],
-      "to_token_amount": [
+        ],
+        "to_token_amount": [
           "amountReturned"
-      ],
-      "timestamp": [
-        "timestamp"
-      ]
-    },
-    "query": {
-      "name": "swaps",
-      "extra-fields": [],
-      "params": {
-        "orderBy": "timestamp"
-      }
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "name": "swaps",
+        "fields": {
+          "user": [
+            "trader",
+            "id"
+          ],
+          "tx_id": [
+            "transaction",
+            "id"
+          ],
+          "from_token": [
+            "fromToken",
+            "symbol"
+          ],
+          "to_token": [
+            "toToken",
+            "symbol"
+          ],
+          "from_token_amount": [
+            "amountPurchased"
+          ],
+          "to_token_amount": [
+            "amountReturned"
+          ],
+          "timestamp": [
+            "timestamp"
+          ]
+        },
+        "params": {
+          "orderBy": "timestamp"
+        }
+      },
+      "transformations": []
     }
   }
 }

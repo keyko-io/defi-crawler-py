@@ -17,8 +17,9 @@
       "name": "vaults",
       "extra-fields": {},
       "params": {
-        "orderBy": "openedAt",
+        "orderBy": "openedAt"
       }
-    }
+    },
+    "transformations": []
   }
 }

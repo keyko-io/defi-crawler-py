@@ -1,6 +1,6 @@
 class Querys:
     QUERY_FROM_TIMESTAMP = """{{
-                {event_name}(
+                {entity_name}(
                             first: 1000
                             orderBy: {order_by}
                             orderDirection: asc
