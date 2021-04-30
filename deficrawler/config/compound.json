@@ -179,20 +179,35 @@
           "id"
         ],
         "active_loans": [
-          "borrowedReservesCount"
+          "tokens",
+          "totalUnderlyingBorrowed"
         ],
         "liquidations_count": [
-          "id"
+          "countLiquidated"
         ]
       },
       "query": {
-        "name": "users",
-        "extra-fields": [],
+        "name": "accounts",
+        "fields": {
+          "user_id": [
+            "id"
+          ],
+          "active_loans": [
+            "tokens",
+            "totalUnderlyingBorrowed"
+          ],
+          "liquidations_count": [
+            "countLiquidated"
+          ]
+        },
         "params": {
-          "orderBy": "id"
+          "orderBy": "id",
+          "initial_value": "0"
         }
       },
-      "transformations": []
+      "transformations": {
+        "active_loans": "array_length"
+      }
     },
     "user_position": {
       "attributes": {

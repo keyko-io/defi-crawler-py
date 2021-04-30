@@ -1,12 +1,18 @@
-import dict_digger
-
-
 def get_attributes(entity, map_file):
     list_attr = ''
     attributes = map_file['entities'][entity]['query']['fields']
     for attribute, value in attributes.items():
         list_attr += format_attribute(value) + " "
     return list_attr
+
+
+def get_filters(params, filter_dict):
+    filters = ''
+
+    for filter_name, filter_value in filter_dict.items():
+        filters += params[filter_name] + ":\"" + filter_value + "\"\n"
+
+    return filters
 
 
 def format_element(list_elements):
@@ -33,51 +39,3 @@ def format_attribute(list_fields):
     else:
         str_list_attr += format_element(list_fields)
     return str_list_attr
-
-
-def get_token_symbol(ele, map_file, path_symbol, path_amount):
-
-    tokens_symbols = map_file['swap']['attributes'][path_symbol]
-
-    if not(isinstance(tokens_symbols[0], list)):
-        return tokens_symbols[0]
-
-    tokens_amounts = [
-        dict_digger.dig(
-            ele,
-            *map_file['swap']['attributes'][path_amount][0]),
-        dict_digger.dig(
-            ele,
-            *map_file['swap']['attributes'][path_amount][1])
-    ]
-
-    index = 0
-    if(float(tokens_amounts[1]) > 0):
-        index = 1
-
-    return dict_digger.dig(
-        ele,
-        *map_file['swap']['attributes'][path_symbol][index])
-
-
-def get_token_amount(ele, map_file, path_amount):
-
-    tokens_amounts = map_file['swap']['attributes'][path_amount]
-
-    if not(isinstance(tokens_amounts[0], list)):
-        return tokens_amounts[0]
-
-    tokens_amounts = [
-        dict_digger.dig(
-            ele,
-            *map_file['swap']['attributes'][path_amount][0]),
-        dict_digger.dig(
-            ele,
-            *map_file['swap']['attributes'][path_amount][1])
-    ]
-
-    index = 0
-    if(float(tokens_amounts[1]) > 0):
-        index = 1
-
-    return tokens_amounts[index]

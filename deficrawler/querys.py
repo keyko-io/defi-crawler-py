@@ -5,8 +5,8 @@ class Querys:
                             orderBy: {order_by}
                             orderDirection: asc
                             where: {{
-                            {order_by}_gt: {from_timestamp}
-                            {order_by}_lte: {to_timestamp}
+                                {order_by}_gt: {from_timestamp}
+                                {order_by}_lte: {to_timestamp}
                             }}
                         ){{
                         {attributes}
@@ -14,44 +14,28 @@ class Querys:
                     }}
                 """
 
-    USERS = {
-        "AAVE": """
-                {{
-                users(
+    QUERY_ALL_ELEMENTS = """ {{
+            {entity_name}(
                     first: 1000
-                    orderBy: id
+                    orderBy: {order_by}
                     orderDirection: asc
                     where: {{
-                    id_gt: "{}"
+                        {order_by}_gt:"{filter_value}"
                     }}
                 ){{
-                    id
-                    borrowedReservesCount
-                    liquidationCallHistory{{
-                        id
-                    }}
+                    {attributes}
                 }}
             }}
         """
-    }
 
-    USERS_POSITIONS = {
-        "AAVE": """
-                {{
-                userReserves(
-                 where: {{
-                    user:"{}"
+    QUERY_ELEMENT_FILTER = """ {{
+            {entity_name}(
+                    first: 1000
+                    where: {{
+                        {filters}
+                    }}
+                ){{
+                    {attributes}
                 }}
-            ){{
-                user{{
-                    id
-                }}
-                reserve{{
-                    symbol
-                }}
-                currentTotalDebt
-                currentATokenBalance
-            }}
             }}
         """
-    }
