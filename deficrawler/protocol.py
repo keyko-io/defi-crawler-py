@@ -15,11 +15,14 @@ class Protocol:
         self.query_filter = Querys.QUERY_ELEMENT_FILTER
         config_file = pkgutil.get_data(
             'deficrawler.config',
-            protocol.lower() + ".json"
+            protocol.lower() + "-" + str(version) + ".json"
         )
 
         self.mappings_file = json.loads(config_file.decode())
-
+        self.chain = chain
+        self.version = version
+        self.endpoint = self.mappings_file['protocol']['endpoint'][chain.lower(
+        )]
 
     def get_data_from_date_range(self, from_date, to_date, entity):
 
@@ -38,10 +41,13 @@ class Protocol:
                                   to_timestamp=to_timestamp,
                                   entity=entity,
                                   mappings_file=self.mappings_file,
-                                  protocol=self.protocol)
+                                  protocol=self.protocol,
+                                  endpoint=self.endpoint)
 
         return Mappers.map_data(json_data=json_data,
                                 protocol=self.protocol,
+                                chain=self.chain,
+                                version=self.version,
                                 entity=entity,
                                 attributes=attributes,
                                 transformations=transformations,
@@ -56,10 +62,13 @@ class Protocol:
         json_data = get_data_parameter(query_input=self.query_all_elements,
                                        entity='user',
                                        mappings_file=self.mappings_file,
-                                       protocol=self.protocol)
+                                       protocol=self.protocol,
+                                       endpoint=self.endpoint)
 
         return Mappers.map_data(json_data=json_data,
                                 protocol=self.protocol,
+                                chain=self.chain,
+                                version=self.version,
                                 entity='user',
                                 attributes=attributes,
                                 transformations=transformations,
@@ -75,10 +84,13 @@ class Protocol:
                                       entity='user_position',
                                       mappings_file=self.mappings_file,
                                       protocol=self.protocol,
+                                      endpoint=self.endpoint,
                                       filters={"user": user})
 
         return Mappers.map_data(json_data=json_data,
                                 protocol=self.protocol,
+                                chain=self.chain,
+                                version=self.version,
                                 entity='user_position',
                                 attributes=attributes,
                                 transformations=transformations,

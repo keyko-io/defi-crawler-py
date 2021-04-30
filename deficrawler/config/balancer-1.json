@@ -4,7 +4,9 @@
     "type": "Balancer",
     "version": 1,
     "chain": "Ethereum",
-    "endpoint": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer"
+    "endpoint": {
+      "ethereum": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer"
+    }
   },
   "entities": {
     "swap": {
@@ -35,28 +37,28 @@
       "query": {
         "name": "swaps",
         "fields": {
-            "user": [
-              "userAddress",
-              "id"
-            ],
-            "tx_id": [
-              "id"
-            ],
-            "from_token": [
-              "tokenInSym"
-            ],
-            "to_token": [
-              "tokenOutSym"
-            ],
-            "from_token_amount": [
-              "tokenAmountIn"
-            ],
-            "to_token_amount": [
-              "tokenAmountOut"
-            ],
-            "timestamp": [
-              "timestamp"
-            ]
+          "user": [
+            "userAddress",
+            "id"
+          ],
+          "tx_id": [
+            "id"
+          ],
+          "from_token": [
+            "tokenInSym"
+          ],
+          "to_token": [
+            "tokenOutSym"
+          ],
+          "from_token_amount": [
+            "tokenAmountIn"
+          ],
+          "to_token_amount": [
+            "tokenAmountOut"
+          ],
+          "timestamp": [
+            "timestamp"
+          ]
         },
         "params": {
           "orderBy": "timestamp"

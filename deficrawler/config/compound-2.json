@@ -1,96 +1,84 @@
 {
   "protocol": {
-    "name": "AAVE",
+    "name": "Compound",
     "type": "Lending",
     "version": 2,
     "chain": "Ethereum",
-    "endpoint": "https://api.thegraph.com/subgraphs/name/aave/protocol-v2"
+    "endpoint": {
+      "ethereum": "https://api.thegraph.com/subgraphs/name/graphprotocol/compound-v2"
+    }
   },
   "entities": {
     "borrow": {
       "attributes": {
         "user": [
-          "user",
-          "id"
+          "borrower"
         ],
         "token": [
-          "reserve",
-          "symbol"
+          "underlyingSymbol"
         ],
         "amount": [
           "amount"
         ],
         "timestamp": [
-          "timestamp"
+          "blockTime"
         ]
       },
       "query": {
         "fields": {
           "user": [
-            "user",
-            "id"
+            "borrower"
           ],
           "token": [
-            "reserve",
-            "symbol"
+            "underlyingSymbol"
           ],
           "amount": [
             "amount"
           ],
           "timestamp": [
-            "timestamp"
-          ],
-          "decimals": [
-            "reserve",
-            "decimals"
+            "blockTime"
           ]
         },
-        "name": "borrows",
+        "name": "borrowEvents",
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "blockTime"
         }
       },
-      "transformations": {
-        "amount": "decimals"
-      }
+      "transformations": {}
     },
     "deposit": {
       "attributes": {
         "user": [
-          "user",
-          "id"
+          "to"
         ],
         "token": [
-          "reserve",
-          "symbol"
+          "cTokenSymbol"
         ],
         "amount": [
-          "amount"
+          "underlyingAmount"
         ],
         "timestamp": [
-          "timestamp"
+          "blockTime"
         ]
       },
       "query": {
+        "name": "mintEvents",
         "fields": {
           "user": [
-            "user",
-            "id"
+            "to"
           ],
           "token": [
-            "reserve",
-            "symbol"
+            "cTokenSymbol"
           ],
           "amount": [
-            "amount"
+            "underlyingAmount"
           ],
           "timestamp": [
-            "timestamp"
+            "blockTime"
           ]
         },
-        "name": "deposits",
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "blockTime"
         }
       },
       "transformations": {}
@@ -98,60 +86,54 @@
     "liquidation": {
       "attributes": {
         "user": [
-          "user",
-          "id"
+          "from"
         ],
         "token_principal": [
-          "principalReserve",
-          "symbol"
+          "underlyingSymbol"
         ],
         "token_collateral": [
-          "collateralReserve",
-          "symbol"
+          "cTokenSymbol"
         ],
         "amount_principal": [
-          "principalAmount"
+          "underlyingRepayAmount"
         ],
         "amount_collateral": [
-          "collateralAmount"
+          "amount"
         ],
         "liquidator": [
-          "liquidator"
+          "to"
         ],
         "timestamp": [
-          "timestamp"
+          "blockTime"
         ]
       },
       "query": {
         "fields": {
           "user": [
-            "user",
-            "id"
+            "from"
           ],
           "token_principal": [
-            "principalReserve",
-            "symbol"
+            "underlyingSymbol"
           ],
           "token_collateral": [
-            "collateralReserve",
-            "symbol"
+            "cTokenSymbol"
           ],
           "amount_principal": [
-            "principalAmount"
+            "underlyingRepayAmount"
           ],
           "amount_collateral": [
-            "collateralAmount"
+            "amount"
           ],
           "liquidator": [
-            "liquidator"
+            "to"
           ],
           "timestamp": [
-            "timestamp"
+            "blockTime"
           ]
         },
-        "name": "liquidationCalls",
+        "name": "liquidationEvents",
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "blockTime"
         }
       },
       "transformations": []
@@ -159,40 +141,36 @@
     "repay": {
       "attributes": {
         "user": [
-          "user",
-          "id"
+          "payer"
         ],
         "token": [
-          "reserve",
-          "symbol"
+          "underlyingSymbol"
         ],
         "amount": [
           "amount"
         ],
         "timestamp": [
-          "timestamp"
+          "blockTime"
         ]
       },
       "query": {
-        "name": "repays",
+        "name": "repayEvents",
         "fields": {
           "user": [
-            "user",
-            "id"
+            "payer"
           ],
           "token": [
-            "reserve",
-            "symbol"
+            "underlyingSymbol"
           ],
           "amount": [
             "amount"
           ],
           "timestamp": [
-            "timestamp"
+            "blockTime"
           ]
         },
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "blockTime"
         }
       },
       "transformations": []
@@ -203,24 +181,25 @@
           "id"
         ],
         "active_loans": [
-          "borrowedReservesCount"
+          "tokens",
+          "totalUnderlyingBorrowed"
         ],
         "liquidations_count": [
-          "id"
+          "countLiquidated"
         ]
       },
       "query": {
-        "name": "users",
+        "name": "accounts",
         "fields": {
           "user_id": [
             "id"
           ],
           "active_loans": [
-            "borrowedReservesCount"
+            "tokens",
+            "totalUnderlyingBorrowed"
           ],
           "liquidations_count": [
-            "liquidationCallHistory",
-            "id"
+            "countLiquidated"
           ]
         },
         "params": {
@@ -229,7 +208,7 @@
         }
       },
       "transformations": {
-        "liquidations_count": "array_length"
+        "active_loans": "array_length"
       }
     },
     "user_position": {
@@ -251,24 +230,9 @@
       },
       "query": {
         "name": "userReserves",
-        "fields": {
-          "user_id": [
-            "user",
-            "id"
-          ],
-          "symbol": [
-            "reserve",
-            "symbol"
-          ],
-          "debt_amount": [
-            "currentTotalDebt"
-          ],
-          "collateral_amount": [
-            "currentATokenBalance"
-          ]
-        },
+        "extra-fields": [],
         "params": {
-          "user": "user" 
+          "user": "user"
         }
       },
       "transformations": []

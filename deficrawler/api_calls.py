@@ -5,7 +5,7 @@ import json
 import pkgutil
 
 
-def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_file, protocol):
+def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_file, protocol, endpoint):
     are_data = True
     json_records = []
     iteration_timestamp = from_timestamp
@@ -23,8 +23,7 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
             attributes=attributes
         )
 
-        response = requests.post(
-            mappings_file['protocol']['endpoint'], json={'query': query})
+        response = requests.post(endpoint, json={'query': query})
         json_data = json.loads(response.text)
         if 'errors' in json_data:
             are_data = False
@@ -42,7 +41,7 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
     return json_records
 
 
-def get_data_parameter(query_input, entity, mappings_file, protocol):
+def get_data_parameter(query_input, entity, mappings_file, protocol, endpoint):
     are_data = True
     json_records = []
 
@@ -59,8 +58,7 @@ def get_data_parameter(query_input, entity, mappings_file, protocol):
             attributes=attributes
         )
 
-        response = requests.post(
-            mappings_file['protocol']['endpoint'], json={'query': query})
+        response = requests.post(endpoint, json={'query': query})
         json_data = json.loads(response.text)
         if 'errors' in json_data:
             are_data = False
@@ -78,7 +76,7 @@ def get_data_parameter(query_input, entity, mappings_file, protocol):
     return json_records
 
 
-def get_data_filtered(query_input, entity, mappings_file, protocol, filters):
+def get_data_filtered(query_input, entity, mappings_file, protocol, endpoint, filters):
     entity_name = mappings_file['entities'][entity]['query']['name']
     filters_str = get_filters(
         mappings_file['entities'][entity]['query']['params'], filters)
@@ -91,8 +89,7 @@ def get_data_filtered(query_input, entity, mappings_file, protocol, filters):
         attributes=attributes
     )
 
-    response = requests.post(
-        mappings_file['protocol']['endpoint'], json={'query': query})
+    response = requests.post(endpoint, json={'query': query})
     json_data = json.loads(response.text)
     if 'errors' in json_data:
         are_data = False
