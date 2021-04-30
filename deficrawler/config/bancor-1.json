@@ -1,10 +1,12 @@
 {
   "protocol": {
-    "name": "Kyber",
-    "type": "Kyber",
+    "name": "Bancor",
+    "type": "Bancor",
     "version": 1,
     "chain": "Ethereum",
-    "endpoint": "https://api.thegraph.com/subgraphs/name/protofire/kyber"
+    "endpoint": {
+      "ethereum": "https://api.thegraph.com/subgraphs/name/blocklytics/bancor"
+    }
   },
   "entities": {
     "swap": {
@@ -14,59 +16,61 @@
           "id"
         ],
         "tx_id": [
+          "transaction",
           "id"
         ],
         "from_token": [
-          "src",
+          "fromToken",
           "symbol"
         ],
         "to_token": [
-          "desr",
+          "toToken",
           "symbol"
         ],
         "from_token_amount": [
-          "rawSrcAmount"
+          "amountPurchased"
         ],
         "to_token_amount": [
-          "rawDestAmount"
+          "amountReturned"
         ],
         "timestamp": [
-          "createdAtBlockTimestamp"
+          "timestamp"
         ]
       },
       "query": {
-        "name": "fullTrades",
-        "fields":  {
+        "name": "swaps",
+        "fields": {
           "user": [
             "trader",
             "id"
           ],
           "tx_id": [
+            "transaction",
             "id"
           ],
           "from_token": [
-            "src",
+            "fromToken",
             "symbol"
           ],
           "to_token": [
-            "desr",
+            "toToken",
             "symbol"
           ],
           "from_token_amount": [
-            "rawSrcAmount"
+            "amountPurchased"
           ],
           "to_token_amount": [
-            "rawDestAmount"
+            "amountReturned"
           ],
           "timestamp": [
-            "createdAtBlockTimestamp"
+            "timestamp"
           ]
         },
         "params": {
-          "orderBy": "createdAtBlockTimestamp"
+          "orderBy": "timestamp"
         }
       },
-      "transformations": {}
+      "transformations": []
     }
   }
 }

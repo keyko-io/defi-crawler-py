@@ -4,7 +4,7 @@ from deficrawler.transformer import Transformer
 class Mappers:
 
     @staticmethod
-    def map_data(json_data, protocol, entity, attributes, transformations, query_elements):
+    def map_data(json_data, protocol, chain, version, entity, attributes, transformations, query_elements):
         list_elements = []
 
         transformer = Transformer(
@@ -25,6 +25,8 @@ class Mappers:
                     )
                 )
                 element['protocol'] = protocol
+                element['chain'] = chain
+                element['version'] = version
             list_elements.append(element)
 
         return list_elements

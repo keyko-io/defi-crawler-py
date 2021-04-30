@@ -4,7 +4,9 @@
     "type": "Lending",
     "version": 2,
     "chain": "Ethereum",
-    "endpoint": "https://api.thegraph.com/subgraphs/name/creamfinancedev/cream-lending-v2"
+    "endpoint": {
+      "ethereum": "https://api.thegraph.com/subgraphs/name/creamfinancedev/cream-lending-v2"
+    }
   },
   "entities": {
     "borrow": {

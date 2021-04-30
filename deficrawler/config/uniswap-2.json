@@ -1,10 +1,12 @@
 {
   "protocol": {
-    "name": "Sushiswap",
+    "name": "Uniswap",
     "type": "Descentralized Exchange",
     "version": 2,
     "chain": "Ethereum",
-    "endpoint": "https://api.thegraph.com/subgraphs/name/croco-finance/sushiswap"
+    "endpoint": {
+      "ethereum": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2"
+    }
   },
   "entities": {
     "swap": {
