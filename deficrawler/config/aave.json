@@ -51,7 +51,7 @@
         }
       },
       "transformations": {
-        "amountº": "decimals"
+        "amount": "decimals"
       }
     },
     "deposit": {
@@ -93,8 +93,7 @@
           "orderBy": "timestamp"
         }
       },
-      "transformations": {
-      }
+      "transformations": {}
     },
     "liquidation": {
       "attributes": {
@@ -212,12 +211,26 @@
       },
       "query": {
         "name": "users",
-        "extra-fields": [],
+        "fields": {
+          "user_id": [
+            "id"
+          ],
+          "active_loans": [
+            "borrowedReservesCount"
+          ],
+          "liquidations_count": [
+            "liquidationCallHistory",
+            "id"
+          ]
+        },
         "params": {
-          "orderBy": "id"
+          "orderBy": "id",
+          "initial_value": "0"
         }
       },
-      "transformations": []
+      "transformations": {
+        "liquidations_count": "array_length"
+      }
     },
     "user_position": {
       "attributes": {
@@ -238,9 +251,24 @@
       },
       "query": {
         "name": "userReserves",
-        "extra-fields": [],
+        "fields": {
+          "user_id": [
+            "user",
+            "id"
+          ],
+          "symbol": [
+            "reserve",
+            "symbol"
+          ],
+          "debt_amount": [
+            "currentTotalDebt"
+          ],
+          "collateral_amount": [
+            "currentATokenBalance"
+          ]
+        },
         "params": {
-          "user": "user"
+          "user": "user" 
         }
       },
       "transformations": []

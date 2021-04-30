@@ -1,9 +1,8 @@
-from deficrawler.utils import get_attributes
+from deficrawler.utils import get_attributes, get_filters
 
 import requests
 import json
 import pkgutil
-
 
 
 def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_file, protocol):
@@ -24,7 +23,8 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
             attributes=attributes
         )
 
-        response = requests.post(mappings_file['protocol']['endpoint'], json={'query': query})
+        response = requests.post(
+            mappings_file['protocol']['endpoint'], json={'query': query})
         json_data = json.loads(response.text)
         if 'errors' in json_data:
             are_data = False
@@ -42,25 +42,34 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
     return json_records
 
 
-def get_all_data(query_input, endpoint, path, order_by, order_by_name):
+def get_data_parameter(query_input, entity, mappings_file, protocol):
     are_data = True
     json_records = []
-    iteration_order_by = order_by
+
+    entity_name = mappings_file['entities'][entity]['query']['name']
+    order_by = mappings_file['entities'][entity]['query']['params']['orderBy']
+    filter_value = mappings_file['entities'][entity]['query']['params']['initial_value']
+    attributes = get_attributes(entity, mappings_file)
 
     while are_data:
-        query = query_input.format(iteration_order_by)
-        response = requests.post(endpoint, json={'query': query})
+        query = query_input.format(
+            entity_name=entity_name,
+            order_by=order_by,
+            filter_value=filter_value,
+            attributes=attributes
+        )
+
+        response = requests.post(
+            mappings_file['protocol']['endpoint'], json={'query': query})
         json_data = json.loads(response.text)
         if 'errors' in json_data:
             are_data = False
-            print(json_data)
         else:
-            response_lenght = len(json_data['data'][path])
+            response_lenght = len(json_data['data'][entity_name])
             if (response_lenght > 0):
                 json_data = json.loads(response.text)
-                list_data = json_data['data'][path]
-                iteration_order_by = json_data['data'][path][response_lenght -
-                                                             1][order_by_name]
+                list_data = json_data['data'][entity_name]
+                filter_value = json_data['data'][entity_name][response_lenght - 1][order_by]
 
                 json_records = [*json_records, *list_data]
             else:
@@ -69,44 +78,30 @@ def get_all_data(query_input, endpoint, path, order_by, order_by_name):
     return json_records
 
 
-def get_data_parameter(query_input, endpoint, path, parameter):
-    json_records = []
+def get_data_filtered(query_input, entity, mappings_file, protocol, filters):
+    entity_name = mappings_file['entities'][entity]['query']['name']
+    filters_str = get_filters(
+        mappings_file['entities'][entity]['query']['params'], filters)
 
-    query = query_input.format(str(parameter).lower())
-    response = requests.post(endpoint, json={'query': query})
+    attributes = get_attributes(entity, mappings_file)
+
+    query = query_input.format(
+        entity_name=entity_name,
+        filters=filters_str,
+        attributes=attributes
+    )
+
+    response = requests.post(
+        mappings_file['protocol']['endpoint'], json={'query': query})
     json_data = json.loads(response.text)
     if 'errors' in json_data:
-        print(json_data)
+        are_data = False
     else:
-        response_lenght = len(json_data['data'][path])
+        response_lenght = len(json_data['data'][entity_name])
         if (response_lenght > 0):
             json_data = json.loads(response.text)
-            list_data = json_data['data'][path]
+            list_data = json_data['data'][entity_name]
 
-    return list_data
-
-
-def get_data_from2(query_input, endpoint, path, from_timestamp, to_timestamp, timestamp_name):
-    are_data = True
-    json_records = []
-    iteration_timestamp = from_timestamp
-
-    while are_data:
-        query = query_input.format(iteration_timestamp, to_timestamp)
-        response = requests.post(endpoint, json={'query': query})
-        json_data = json.loads(response.text)
-        if 'errors' in json_data:
-            are_data = False
-        else:
-            response_lenght = len(json_data['data'][path])
-            if (response_lenght > 0):
-                json_data = json.loads(response.text)
-                list_data = json_data['data'][path]
-                iteration_timestamp = json_data['data'][path][response_lenght -
-                                                              1][timestamp_name]
-
-                json_records = [*json_records, *list_data]
-            else:
-                are_data = False
+            json_records = [*list_data]
 
     return json_records
