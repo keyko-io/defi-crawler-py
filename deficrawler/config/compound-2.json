@@ -81,7 +81,9 @@
           "orderBy": "blockTime"
         }
       },
-      "transformations": {}
+      "transformations": {
+        "token": "remove_token_prefix"
+      }
     },
     "liquidation": {
       "attributes": {
@@ -136,7 +138,9 @@
           "orderBy": "blockTime"
         }
       },
-      "transformations": []
+      "transformations": {
+        "token_collateral": "remove_token_prefix"
+      }
     },
     "repay": {
       "attributes": {

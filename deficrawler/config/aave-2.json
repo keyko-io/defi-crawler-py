@@ -88,6 +88,10 @@
           ],
           "timestamp": [
             "timestamp"
+          ],
+          "decimals": [
+            "reserve",
+            "decimals"
           ]
         },
         "name": "deposits",
@@ -95,7 +99,9 @@
           "orderBy": "timestamp"
         }
       },
-      "transformations": {}
+      "transformations": {
+        "amount": "decimals"
+      }
     },
     "liquidation": {
       "attributes": {
@@ -149,6 +155,14 @@
           ],
           "timestamp": [
             "timestamp"
+          ],
+          "principal_decimals": [
+            "principalReserve",
+            "decimals"
+          ],
+          "collateral_decimals": [
+            "collateralReserve",
+            "decimals"
           ]
         },
         "name": "liquidationCalls",
@@ -156,7 +170,10 @@
           "orderBy": "timestamp"
         }
       },
-      "transformations": []
+      "transformations": {
+        "amount_principal": "principal_decimals",
+        "amount_collateral":"collateral_decimals"
+      }
     },
     "repay": {
       "attributes": {
@@ -191,13 +208,19 @@
           ],
           "timestamp": [
             "timestamp"
+          ],
+          "decimals": [
+            "reserve",
+            "decimals"
           ]
         },
         "params": {
           "orderBy": "timestamp"
         }
       },
-      "transformations": []
+      "transformations": {
+        "amount": "decimals"
+      }
     },
     "user": {
       "attributes": {
