@@ -36,30 +36,7 @@
       },
       "query": {
         "name": "swaps",
-        "fields": {
-          "user": [
-            "userAddress",
-            "id"
-          ],
-          "tx_id": [
-            "id"
-          ],
-          "from_token": [
-            "tokenInSym"
-          ],
-          "to_token": [
-            "tokenOutSym"
-          ],
-          "from_token_amount": [
-            "tokenAmountIn"
-          ],
-          "to_token_amount": [
-            "tokenAmountOut"
-          ],
-          "timestamp": [
-            "timestamp"
-          ]
-        },
+        "extra_fields": {},
         "params": {
           "orderBy": "timestamp"
         }

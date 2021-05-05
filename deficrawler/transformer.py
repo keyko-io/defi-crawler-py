@@ -28,8 +28,8 @@ class Transformer:
                 element,
                 *protocol_field)
 
-    def transform_decimals(self, common_field, element, protocol_field, query_elements):
-        decimals_field = query_elements['decimals']
+    def transform_decimals_field(self, common_field, element, protocol_field, query_elements, field):
+        decimals_field = query_elements[field]
         dec_value = dict_digger.dig(
             element,
             *decimals_field)
@@ -39,30 +39,15 @@ class Transformer:
             *protocol_field)
 
         return float(protocol_amount) / 10 ** float(dec_value)
+
+    def transform_decimals(self, common_field, element, protocol_field, query_elements):
+        return self.transform_decimals_field(common_field, element, protocol_field, query_elements, 'decimals')
 
     def transform_principal_decimals(self, common_field, element, protocol_field, query_elements):
-        decimals_field = query_elements['principal_decimals']
-        dec_value = dict_digger.dig(
-            element,
-            *decimals_field)
-
-        protocol_amount = dict_digger.dig(
-            element,
-            *protocol_field)
-
-        return float(protocol_amount) / 10 ** float(dec_value)
+        return self.transform_decimals_field(common_field, element, protocol_field, query_elements, 'principal_decimals')
 
     def transform_collateral_decimals(self, common_field, element, protocol_field, query_elements):
-        decimals_field = query_elements['collateral_decimals']
-        dec_value = dict_digger.dig(
-            element,
-            *decimals_field)
-
-        protocol_amount = dict_digger.dig(
-            element,
-            *protocol_field)
-
-        return float(protocol_amount) / 10 ** float(dec_value)
+        return self.transform_decimals_field(common_field, element, protocol_field, query_elements, 'collateral_decimals')
 
     def from_token_selection(self, common_field, element, protocol_field, query_elements):
         amount_0_in = dict_digger.dig(
@@ -110,7 +95,6 @@ class Transformer:
             query_elements[common_field][0])
 
         return len(array_field)
-
 
     def remove_token_prefix(self, common_field, element, protocol_field, query_elements):
         field = dict_digger.dig(

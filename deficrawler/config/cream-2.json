@@ -25,20 +25,7 @@
         ]
       },
       "query": {
-        "fields": {
-          "user": [
-            "borrower"
-          ],
-          "token": [
-            "underlyingSymbol"
-          ],
-          "amount": [
-            "amount"
-          ],
-          "timestamp": [
-            "blockTime"
-          ]
-        },
+        "extra_fields": {},
         "name": "borrowEvents",
         "params": {
           "orderBy": "blockTime"
@@ -63,20 +50,7 @@
       },
       "query": {
         "name": "mintEvents",
-        "fields": {
-          "user": [
-            "to"
-          ],
-          "token": [
-            "cTokenSymbol"
-          ],
-          "amount": [
-            "underlyingAmount"
-          ],
-          "timestamp": [
-            "blockTime"
-          ]
-        },
+        "extra_fields": {},
         "params": {
           "orderBy": "blockTime"
         }
@@ -108,29 +82,7 @@
         ]
       },
       "query": {
-        "fields": {
-          "user": [
-            "from"
-          ],
-          "token_principal": [
-            "underlyingSymbol"
-          ],
-          "token_collateral": [
-            "cTokenSymbol"
-          ],
-          "amount_principal": [
-            "underlyingRepayAmount"
-          ],
-          "amount_collateral": [
-            "amount"
-          ],
-          "liquidator": [
-            "to"
-          ],
-          "timestamp": [
-            "blockTime"
-          ]
-        },
+        "extra_fields": {},
         "name": "liquidationEvents",
         "params": {
           "orderBy": "blockTime"
@@ -155,20 +107,7 @@
       },
       "query": {
         "name": "repayEvents",
-        "fields": {
-          "user": [
-            "payer"
-          ],
-          "token": [
-            "underlyingSymbol"
-          ],
-          "amount": [
-            "amount"
-          ],
-          "timestamp": [
-            "blockTime"
-          ]
-        },
+        "extra_fields": {},
         "params": {
           "orderBy": "blockTime"
         }
@@ -189,7 +128,7 @@
       },
       "query": {
         "name": "users",
-        "extra-fields": [],
+        "extra-fields": {},
         "params": {
           "orderBy": "id"
         }
@@ -215,7 +154,7 @@
       },
       "query": {
         "name": "userReserves",
-        "extra-fields": [],
+        "extra-fields": {},
         "params": {
           "user": "user"
         }
