@@ -39,33 +39,7 @@
       },
       "query": {
         "name": "swaps",
-        "fields": {
-          "user": [
-            "trader",
-            "id"
-          ],
-          "tx_id": [
-            "transaction",
-            "id"
-          ],
-          "from_token": [
-            "fromToken",
-            "symbol"
-          ],
-          "to_token": [
-            "toToken",
-            "symbol"
-          ],
-          "from_token_amount": [
-            "amountPurchased"
-          ],
-          "to_token_amount": [
-            "amountReturned"
-          ],
-          "timestamp": [
-            "timestamp"
-          ]
-        },
+        "extra_fields": {},
         "params": {
           "orderBy": "timestamp"
         }

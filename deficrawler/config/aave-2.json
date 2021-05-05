@@ -27,21 +27,7 @@
         ]
       },
       "query": {
-        "fields": {
-          "user": [
-            "user",
-            "id"
-          ],
-          "token": [
-            "reserve",
-            "symbol"
-          ],
-          "amount": [
-            "amount"
-          ],
-          "timestamp": [
-            "timestamp"
-          ],
+        "extra_fields": {
           "decimals": [
             "reserve",
             "decimals"
@@ -74,21 +60,7 @@
         ]
       },
       "query": {
-        "fields": {
-          "user": [
-            "user",
-            "id"
-          ],
-          "token": [
-            "reserve",
-            "symbol"
-          ],
-          "amount": [
-            "amount"
-          ],
-          "timestamp": [
-            "timestamp"
-          ],
+        "extra_fields": {
           "decimals": [
             "reserve",
             "decimals"
@@ -131,31 +103,7 @@
         ]
       },
       "query": {
-        "fields": {
-          "user": [
-            "user",
-            "id"
-          ],
-          "token_principal": [
-            "principalReserve",
-            "symbol"
-          ],
-          "token_collateral": [
-            "collateralReserve",
-            "symbol"
-          ],
-          "amount_principal": [
-            "principalAmount"
-          ],
-          "amount_collateral": [
-            "collateralAmount"
-          ],
-          "liquidator": [
-            "liquidator"
-          ],
-          "timestamp": [
-            "timestamp"
-          ],
+        "extra_fields": {
           "principal_decimals": [
             "principalReserve",
             "decimals"
@@ -172,7 +120,7 @@
       },
       "transformations": {
         "amount_principal": "principal_decimals",
-        "amount_collateral":"collateral_decimals"
+        "amount_collateral": "collateral_decimals"
       }
     },
     "repay": {
@@ -194,21 +142,7 @@
       },
       "query": {
         "name": "repays",
-        "fields": {
-          "user": [
-            "user",
-            "id"
-          ],
-          "token": [
-            "reserve",
-            "symbol"
-          ],
-          "amount": [
-            "amount"
-          ],
-          "timestamp": [
-            "timestamp"
-          ],
+        "extra_fields": {
           "decimals": [
             "reserve",
             "decimals"
@@ -236,18 +170,7 @@
       },
       "query": {
         "name": "users",
-        "fields": {
-          "user_id": [
-            "id"
-          ],
-          "active_loans": [
-            "borrowedReservesCount"
-          ],
-          "liquidations_count": [
-            "liquidationCallHistory",
-            "id"
-          ]
-        },
+        "extra_fields": {},
         "params": {
           "orderBy": "id",
           "initial_value": "0"
@@ -276,27 +199,13 @@
       },
       "query": {
         "name": "userReserves",
-        "fields": {
-          "user_id": [
-            "user",
-            "id"
-          ],
-          "symbol": [
-            "reserve",
-            "symbol"
-          ],
-          "debt_amount": [
-            "currentTotalDebt"
-          ],
-          "collateral_amount": [
-            "currentATokenBalance"
-          ]
+        "extra_fields": {
         },
         "params": {
           "user": "user"
         }
       },
-      "transformations": []
+      "transformations": {}
     }
   }
 }

@@ -1,6 +1,7 @@
 def get_attributes(entity, map_file):
     list_attr = ''
-    attributes = map_file['entities'][entity]['query']['fields']
+    attributes = map_file['entities'][entity]['query']['extra_fields']
+    attributes.update(map_file['entities'][entity]['attributes'])
     for attribute, value in attributes.items():
         list_attr += format_attribute(value) + " "
     return list_attr

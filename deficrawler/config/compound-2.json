@@ -25,20 +25,7 @@
         ]
       },
       "query": {
-        "fields": {
-          "user": [
-            "borrower"
-          ],
-          "token": [
-            "underlyingSymbol"
-          ],
-          "amount": [
-            "amount"
-          ],
-          "timestamp": [
-            "blockTime"
-          ]
-        },
+        "extra_fields": {},
         "name": "borrowEvents",
         "params": {
           "orderBy": "blockTime"
@@ -63,20 +50,7 @@
       },
       "query": {
         "name": "mintEvents",
-        "fields": {
-          "user": [
-            "to"
-          ],
-          "token": [
-            "cTokenSymbol"
-          ],
-          "amount": [
-            "underlyingAmount"
-          ],
-          "timestamp": [
-            "blockTime"
-          ]
-        },
+        "extra_fields": {},
         "params": {
           "orderBy": "blockTime"
         }
@@ -110,29 +84,7 @@
         ]
       },
       "query": {
-        "fields": {
-          "user": [
-            "from"
-          ],
-          "token_principal": [
-            "underlyingSymbol"
-          ],
-          "token_collateral": [
-            "cTokenSymbol"
-          ],
-          "amount_principal": [
-            "underlyingRepayAmount"
-          ],
-          "amount_collateral": [
-            "amount"
-          ],
-          "liquidator": [
-            "to"
-          ],
-          "timestamp": [
-            "blockTime"
-          ]
-        },
+        "extra_fields": {},
         "name": "liquidationEvents",
         "params": {
           "orderBy": "blockTime"
@@ -159,20 +111,7 @@
       },
       "query": {
         "name": "repayEvents",
-        "fields": {
-          "user": [
-            "payer"
-          ],
-          "token": [
-            "underlyingSymbol"
-          ],
-          "amount": [
-            "amount"
-          ],
-          "timestamp": [
-            "blockTime"
-          ]
-        },
+        "extra_fields": {},
         "params": {
           "orderBy": "blockTime"
         }
@@ -194,18 +133,7 @@
       },
       "query": {
         "name": "accounts",
-        "fields": {
-          "user_id": [
-            "id"
-          ],
-          "active_loans": [
-            "tokens",
-            "totalUnderlyingBorrowed"
-          ],
-          "liquidations_count": [
-            "countLiquidated"
-          ]
-        },
+        "extra_fields": {},
         "params": {
           "orderBy": "id",
           "initial_value": "0"
@@ -234,7 +162,7 @@
       },
       "query": {
         "name": "userReserves",
-        "extra-fields": [],
+        "extra_fields": {},
         "params": {
           "user": "user"
         }
