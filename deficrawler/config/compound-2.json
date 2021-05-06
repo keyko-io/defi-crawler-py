@@ -11,6 +11,9 @@
   "entities": {
     "borrow": {
       "attributes": {
+        "tx_id":[
+          "id"
+        ],
         "user": [
           "borrower"
         ],
@@ -31,10 +34,15 @@
           "orderBy": "blockTime"
         }
       },
-      "transformations": {}
+      "transformations": {
+        "tx_id":"tx_id_hyphen"
+      }
     },
     "deposit": {
       "attributes": {
+        "tx_id":[
+          "id"
+        ],
         "user": [
           "to"
         ],
@@ -56,11 +64,15 @@
         }
       },
       "transformations": {
-        "token": "remove_token_prefix"
+        "token": "remove_token_prefix",
+        "tx_id":"tx_id_hyphen"
       }
     },
     "liquidation": {
       "attributes": {
+        "tx_id":[
+          "id"
+        ],
         "user": [
           "from"
         ],
@@ -91,11 +103,14 @@
         }
       },
       "transformations": {
-        "token_collateral": "remove_token_prefix"
+        "tx_id":"tx_id_hyphen"
       }
     },
     "repay": {
       "attributes": {
+        "tx_id":[
+          "id"
+        ],
         "user": [
           "payer"
         ],
@@ -116,7 +131,9 @@
           "orderBy": "blockTime"
         }
       },
-      "transformations": []
+      "transformations": {
+        "tx_id":"tx_id_hyphen"
+      }
     },
     "user": {
       "attributes": {
@@ -146,28 +163,27 @@
     "user_position": {
       "attributes": {
         "user_id": [
-          "user",
+          "account",
           "id"
         ],
         "symbol": [
-          "reserve",
           "symbol"
         ],
         "debt_amount": [
-          "currentTotalDebt"
+          "totalUnderlyingBorrowed"
         ],
         "collateral_amount": [
-          "currentATokenBalance"
+          "totalUnderlyingSupplied"
         ]
       },
       "query": {
-        "name": "userReserves",
+        "name": "accountCTokens",
         "extra_fields": {},
         "params": {
-          "user": "user"
+          "user": "account"
         }
       },
-      "transformations": []
+      "transformations": {}
     }
   }
 }

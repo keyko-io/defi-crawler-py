@@ -7,11 +7,11 @@ def get_attributes(entity, map_file):
     return list_attr
 
 
-def get_filters(params, filter_dict):
+def get_filters(filter_dict):
     filters = ''
 
     for filter_name, filter_value in filter_dict.items():
-        filters += params[filter_name] + ":\"" + filter_value + "\"\n"
+        filters += filter_name + ":\"" + filter_value + "\"\n"
 
     return filters
 
