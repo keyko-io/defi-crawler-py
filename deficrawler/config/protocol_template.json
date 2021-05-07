@@ -1,19 +1,24 @@
 {
-  "borrow": {
-    "attributes": {
-      "user": [],
-      "token": [],
-      "amount": [],
-      "timestamp": []
-    },
-    "query": {
-      "name": "",
-      "extra-fields": [],
-      "params": {
-        "first": 1000,
-        "orderBy": "",
-        "orderDirection": "asc"
-      }
+  "protocol": {
+    "name": "",
+    "type": "",
+    "version": 1,
+    "chain": "",
+    "endpoint": {
+      "ethereum": ""
+    }
+  },
+  "entities": {
+    "borrow": {
+      "attributes": {},
+      "query": {
+        "extra_fields": {},
+        "name": "borrows",
+        "params": {
+          "orderBy": "timestamp"
+        }
+      },
+      "transformations": {}
     }
   }
 }

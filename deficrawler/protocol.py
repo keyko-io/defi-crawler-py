@@ -73,13 +73,14 @@ class Protocol:
     def get_user_positions(self, user):
 
         config = self.__get_protocol_config('user_position')
+        user_name = self.mappings_file['entities']['user_position']['query']['params']['user']
 
         json_data = get_data_filtered(query_input=self.query_filter,
                                       entity='user_position',
                                       mappings_file=self.mappings_file,
                                       protocol=self.protocol,
                                       endpoint=self.endpoint,
-                                      filters={"user": user})
+                                      filters={user_name: user})
 
         return Mappers.map_data(json_data=json_data,
                                 protocol=self.protocol,
@@ -93,7 +94,8 @@ class Protocol:
     def __get_protocol_config(self, entity):
 
         query_elements = self.mappings_file['entities'][entity]['query']['extra_fields']
-        query_elements.update(self.mappings_file['entities'][entity]['attributes'])
+        query_elements.update(
+            self.mappings_file['entities'][entity]['attributes'])
 
         return {
             'attributes': self.mappings_file['entities'][entity]['attributes'],

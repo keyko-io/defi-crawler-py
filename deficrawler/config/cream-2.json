@@ -5,12 +5,16 @@
     "version": 2,
     "chain": "Ethereum",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/creamfinancedev/cream-lending-v2"
+      "ethereum": "https://api.thegraph.com/subgraphs/name/creamfinancedev/cream-lending-v2",
+      "bsc": "https://api.thegraph.com/subgraphs/name/akshaysrivastav/cream-finance-bsc"
     }
   },
   "entities": {
     "borrow": {
       "attributes": {
+        "tx_id":[
+          "id"
+        ],
         "user": [
           "borrower"
         ],
@@ -31,10 +35,15 @@
           "orderBy": "blockTime"
         }
       },
-      "transformations": {}
+      "transformations": {
+        "tx_id":"tx_id_hyphen"
+      }
     },
     "deposit": {
       "attributes": {
+        "tx_id":[
+          "id"
+        ],
         "user": [
           "to"
         ],
@@ -55,10 +64,15 @@
           "orderBy": "blockTime"
         }
       },
-      "transformations": {}
+      "transformations": {
+        "tx_id":"tx_id_hyphen"
+      }
     },
     "liquidation": {
       "attributes": {
+        "tx_id":[
+          "id"
+        ],
         "user": [
           "from"
         ],
@@ -88,10 +102,15 @@
           "orderBy": "blockTime"
         }
       },
-      "transformations": []
+      "transformations": {
+        "tx_id":"tx_id_hyphen"
+      }
     },
     "repay": {
       "attributes": {
+        "tx_id":[
+          "id"
+        ],
         "user": [
           "payer"
         ],
@@ -112,7 +131,9 @@
           "orderBy": "blockTime"
         }
       },
-      "transformations": []
+      "transformations": {
+        "tx_id":"tx_id_hyphen"
+      }
     },
     "user": {
       "attributes": {
@@ -120,46 +141,49 @@
           "id"
         ],
         "active_loans": [
-          "borrowedReservesCount"
+          "tokens",
+          "totalUnderlyingBorrowed"
         ],
         "liquidations_count": [
-          "id"
+          "countLiquidated"
         ]
       },
       "query": {
-        "name": "users",
-        "extra-fields": {},
+        "name": "accounts",
+        "extra_fields": {},
         "params": {
-          "orderBy": "id"
+          "orderBy": "id",
+          "initial_value": "0"
         }
       },
-      "transformations": []
+      "transformations": {
+        "active_loans": "array_length"
+      }
     },
     "user_position": {
       "attributes": {
         "user_id": [
-          "user",
+          "account",
           "id"
         ],
         "symbol": [
-          "reserve",
           "symbol"
         ],
         "debt_amount": [
-          "currentTotalDebt"
+          "totalUnderlyingBorrowed"
         ],
         "collateral_amount": [
-          "currentATokenBalance"
+          "totalUnderlyingSupplied"
         ]
       },
       "query": {
-        "name": "userReserves",
-        "extra-fields": {},
+        "name": "accountCTokens",
+        "extra_fields": {},
         "params": {
-          "user": "user"
+          "user": "account"
         }
       },
-      "transformations": []
+      "transformations": {}
     }
   }
 }

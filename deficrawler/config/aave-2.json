@@ -5,12 +5,16 @@
     "version": 2,
     "chain": "Ethereum",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/aave/protocol-v2"
+      "ethereum": "https://api.thegraph.com/subgraphs/name/aave/protocol-v2",
+      "polygon": "https://api.thegraph.com/subgraphs/name/aave/aave-v2-matic"
     }
   },
   "entities": {
     "borrow": {
       "attributes": {
+        "tx_id":[
+          "id"
+        ],
         "user": [
           "user",
           "id"
@@ -39,11 +43,15 @@
         }
       },
       "transformations": {
-        "amount": "decimals"
+        "amount": "decimals",
+        "tx_id":"tx_id_colon"
       }
     },
     "deposit": {
       "attributes": {
+        "tx_id":[
+          "id"
+        ],
         "user": [
           "user",
           "id"
@@ -72,11 +80,15 @@
         }
       },
       "transformations": {
-        "amount": "decimals"
+        "amount": "decimals",
+        "tx_id":"tx_id_colon"
       }
     },
     "liquidation": {
       "attributes": {
+        "tx_id":[
+          "id"
+        ],
         "user": [
           "user",
           "id"
@@ -120,11 +132,15 @@
       },
       "transformations": {
         "amount_principal": "principal_decimals",
-        "amount_collateral": "collateral_decimals"
+        "amount_collateral": "collateral_decimals",
+        "tx_id":"tx_id_colon"
       }
     },
     "repay": {
       "attributes": {
+        "tx_id":[
+          "id"
+        ],
         "user": [
           "user",
           "id"
@@ -153,7 +169,8 @@
         }
       },
       "transformations": {
-        "amount": "decimals"
+        "amount": "decimals",
+        "tx_id":"tx_id_colon"
       }
     },
     "user": {
@@ -200,12 +217,19 @@
       "query": {
         "name": "userReserves",
         "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
         },
         "params": {
           "user": "user"
         }
       },
-      "transformations": {}
+      "transformations": {
+        "collateral_amount":"decimals",
+        "debt_amount":"decimals"
+      }
     }
   }
 }

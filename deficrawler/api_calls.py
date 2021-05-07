@@ -78,8 +78,7 @@ def get_data_parameter(query_input, entity, mappings_file, protocol, endpoint):
 
 def get_data_filtered(query_input, entity, mappings_file, protocol, endpoint, filters):
     entity_name = mappings_file['entities'][entity]['query']['name']
-    filters_str = get_filters(
-        mappings_file['entities'][entity]['query']['params'], filters)
+    filters_str = get_filters(filters)
 
     attributes = get_attributes(entity, mappings_file)
 
@@ -91,6 +90,7 @@ def get_data_filtered(query_input, entity, mappings_file, protocol, endpoint, fi
 
     response = requests.post(endpoint, json={'query': query})
     json_data = json.loads(response.text)
+    json_records = []
     if 'errors' in json_data:
         are_data = False
     else:
