@@ -1,0 +1,53 @@
+{
+    "protocol": {
+        "name": "Chainlink",
+        "type": "Oracle",
+        "version": 1,
+        "chain": "Ethereum",
+        "endpoint": {
+            "ethereum": "https://api.thegraph.com/subgraphs/name/openpredict/chainlink-prices-subgraph"
+        }
+    },
+    "entities": {
+        "pair": {
+            "attributes": {
+                "id": [
+                    "id"
+                ]
+            },
+            "query": {
+                "extra_fields": {},
+                "name": "assetPairs",
+                "params": {
+                    "orderBy": "id"
+                }
+            },
+            "transformations": {}
+        },
+        "price": {
+            "attributes": {
+                "pair": [
+                    "assetPair",
+                    "id"
+                ],
+                "price": [
+                    "price"
+                ],
+                "timestamp": [
+                    "timestamp"
+                ]
+            },
+            "query": {
+                "extra_fields": {},
+                "name": "prices",
+                "params": {
+                    "pair": "assetPair",
+                    "orderBy": "timestamp"
+                }
+            },
+            "transformations": {
+                "price":"chainlink_prices"
+            }
+        }
+    }
+}

@@ -10,8 +10,9 @@ def get_attributes(entity, map_file):
 def get_filters(filter_dict):
     filters = ''
 
-    for filter_name, filter_value in filter_dict.items():
-        filters += filter_name + ":\"" + filter_value + "\"\n"
+    if type(filter_dict) is dict:
+        for filter_name, filter_value in filter_dict.items():
+            filters += filter_name + ":\"" + filter_value + "\"\n"
 
     return filters
 
