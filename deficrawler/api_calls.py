@@ -5,7 +5,7 @@ import json
 import pkgutil
 
 
-def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_file, protocol, endpoint):
+def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_file, protocol, endpoint, aditional_filters=""):
     are_data = True
     json_records = []
     iteration_timestamp = from_timestamp
@@ -13,6 +13,7 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
     entity_name = mappings_file['entities'][entity]['query']['name']
     order_by = mappings_file['entities'][entity]['query']['params']['orderBy']
     attributes = get_attributes(entity, mappings_file)
+    filters_str = get_filters(aditional_filters)
 
     while are_data:
         query = query_input.format(
@@ -20,7 +21,8 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
             order_by=order_by,
             from_timestamp=iteration_timestamp,
             to_timestamp=to_timestamp,
-            attributes=attributes
+            attributes=attributes,
+            aditional_filters=filters_str
         )
 
         response = requests.post(endpoint, json={'query': query})
