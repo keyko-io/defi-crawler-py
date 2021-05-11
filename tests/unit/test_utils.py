@@ -1,6 +1,5 @@
 from deficrawler.utils import format_attribute, format_element, get_attributes, get_filters
 
-import pytest
 import pkgutil
 import json
 

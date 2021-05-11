@@ -7,10 +7,7 @@ class Mappers:
     def map_data(json_data, protocol, chain, version, entity, attributes, transformations, query_elements):
         list_elements = []
 
-        transformer = Transformer(
-            entity=entity,
-            protocol=protocol
-        )
+        transformer = Transformer()
 
         for ele in json_data:
             element = {}

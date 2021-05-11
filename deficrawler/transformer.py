@@ -3,9 +3,7 @@ import dict_digger
 
 class Transformer:
 
-    def __init__(self, entity, protocol):
-        self.entity = entity
-        self.protocol = protocol
+    def __init__(self):
         self.transformers = {
             "decimals": self.transform_decimals,
             "principal_decimals": self.transform_principal_decimals,
