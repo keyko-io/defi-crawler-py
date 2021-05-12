@@ -1,4 +1,4 @@
-from deficrawler import Protocol
+from deficrawler.protocol import Protocol
 
 
 def test_deposit_aave_2_eth():

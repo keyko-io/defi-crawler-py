@@ -1,4 +1,4 @@
-from deficrawler import Protocol
+from deficrawler.protocol import Protocol
 
 
 def test_borrow_aave_2_eth():

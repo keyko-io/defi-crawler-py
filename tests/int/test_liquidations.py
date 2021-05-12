@@ -1,4 +1,4 @@
-from deficrawler import Protocol
+from deficrawler.protocol import Protocol
 
 def test_liquidation_aave_2_eth():
     aave = Protocol(protocol="Aave", chain="Ethereum", version=2)
