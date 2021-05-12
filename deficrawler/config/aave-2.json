@@ -182,6 +182,7 @@
           "borrowedReservesCount"
         ],
         "liquidations_count": [
+          "liquidationCallHistory",
           "id"
         ]
       },

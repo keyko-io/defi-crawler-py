@@ -1,3 +1,4 @@
+from deficrawler import protocol
 from deficrawler.querys import Querys
 from deficrawler.mappers import Mappers
 from deficrawler.api_calls import get_data_from, get_data_parameter, get_data_filtered
@@ -56,6 +57,8 @@ class ProtocolBase:
 
     def get_protocol_config(self, entity):
 
+        self.__exists_entity(entity)
+
         query_elements = self.mappings_file['entities'][entity]['query']['extra_fields']
         query_elements.update(
             self.mappings_file['entities'][entity]['attributes'])
@@ -73,6 +76,9 @@ class ProtocolBase:
                 protocol.lower() + "-" + str(version) + ".json"
             )
 
+        except FileNotFoundError:
+            raise Exception('Protocol ' + protocol +
+                            ' version ' + str(version) + ' not supported')
         except:
             raise
 
@@ -81,5 +87,15 @@ class ProtocolBase:
     def __get_protocol_endpoint(self, chain):
         try:
             return self.mappings_file['protocol']['endpoint'][chain.lower()]
+        except KeyError:
+            raise Exception('Protocol ' + self.protocol +
+                            ' chain ' + chain + ' not supported')
         except:
             raise
+
+    def __exists_entity(self, entity):
+        if entity in self.mappings_file['entities']:
+            return True
+        else:
+            raise Exception('Entity ' + entity +
+                            ' not supported for protocol ' + self.protocol)
