@@ -1,4 +1,3 @@
-from deficrawler import protocol
 from deficrawler.querys import Querys
 from deficrawler.mappers import Mappers
 from deficrawler.api_calls import get_data_from, get_data_parameter, get_data_filtered
@@ -25,7 +24,6 @@ class ProtocolBase:
                              to_timestamp=to_timestamp,
                              entity=entity,
                              mappings_file=self.mappings_file,
-                             protocol=self.protocol,
                              endpoint=self.endpoint,
                              aditional_filters=aditional_filters)
 
@@ -34,7 +32,6 @@ class ProtocolBase:
         return get_data_parameter(query_input=self.query_all_elements,
                                   entity=entity,
                                   mappings_file=self.mappings_file,
-                                  protocol=self.protocol,
                                   endpoint=self.endpoint)
 
     def query_data_filtered(self, entity, filters):
@@ -42,7 +39,6 @@ class ProtocolBase:
         return get_data_filtered(query_input=self.query_filter,
                                  entity=entity,
                                  mappings_file=self.mappings_file,
-                                 protocol=self.protocol,
                                  endpoint=self.endpoint,
                                  filters=filters)
 

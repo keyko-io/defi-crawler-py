@@ -2,10 +2,9 @@ from deficrawler.utils import get_attributes, get_filters
 
 import requests
 import json
-import pkgutil
 
 
-def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_file, protocol, endpoint, aditional_filters=""):
+def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_file, endpoint, aditional_filters=""):
     are_data = True
     json_records = []
     iteration_timestamp = from_timestamp
@@ -28,7 +27,8 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
         response = requests.post(endpoint, json={'query': query})
         json_data = json.loads(response.text)
         if 'errors' in json_data:
-            are_data = False
+            raise Exception(
+                'There was an error getting the data from TheGraph' + json_data)
         else:
             response_lenght = len(json_data['data'][entity_name])
             if (response_lenght > 0):
@@ -43,7 +43,7 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
     return json_records
 
 
-def get_data_parameter(query_input, entity, mappings_file, protocol, endpoint):
+def get_data_parameter(query_input, entity, mappings_file, endpoint):
     are_data = True
     json_records = []
 
@@ -63,7 +63,8 @@ def get_data_parameter(query_input, entity, mappings_file, protocol, endpoint):
         response = requests.post(endpoint, json={'query': query})
         json_data = json.loads(response.text)
         if 'errors' in json_data:
-            are_data = False
+            raise Exception(
+                'There was an error getting the data from TheGraph' + json_data)
         else:
             response_lenght = len(json_data['data'][entity_name])
             if (response_lenght > 0):
@@ -78,7 +79,7 @@ def get_data_parameter(query_input, entity, mappings_file, protocol, endpoint):
     return json_records
 
 
-def get_data_filtered(query_input, entity, mappings_file, protocol, endpoint, filters):
+def get_data_filtered(query_input, entity, mappings_file, endpoint, filters):
     entity_name = mappings_file['entities'][entity]['query']['name']
     filters_str = get_filters(filters)
 
@@ -94,7 +95,8 @@ def get_data_filtered(query_input, entity, mappings_file, protocol, endpoint, fi
     json_data = json.loads(response.text)
     json_records = []
     if 'errors' in json_data:
-        are_data = False
+        raise Exception(
+            'There was an error getting the data from TheGraph' + json_data)
     else:
         response_lenght = len(json_data['data'][entity_name])
         if (response_lenght > 0):
