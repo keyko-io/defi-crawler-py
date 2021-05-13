@@ -4,14 +4,20 @@ from datetime import datetime
 
 
 class Oracle(ProtocolBase):
+    """
+    Oracle class to get prices
+    """
     def __init__(self, protocol, chain, version):
         super().__init__(
             protocol=protocol,
             chain=chain,
             version=version
         )
-
+        
     def get_all_pairs(self):
+        """
+        Returns all the existing prices for the oracle.
+        """
 
         config = super().get_protocol_config('pair')
 
@@ -26,6 +32,9 @@ class Oracle(ProtocolBase):
         )
 
     def get_price_from_date_range(self, from_date, to_date, pair):
+        """
+        Returns the prices series for the specified pair in the given period
+        """
 
         from_timestamp = int(
             datetime.strptime(from_date, '%d/%m/%Y %H:%M:%S').strftime("%s"))

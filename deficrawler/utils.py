@@ -1,4 +1,9 @@
 def get_attributes(entity, map_file):
+    """
+    Returns the list of attributes for the given map file and entity.
+    The list is created joining the attributes of the entity and the 
+    extra fields (if exists) to create the query
+    """
     list_attr = ''
     attributes = map_file['entities'][entity]['query']['extra_fields']
     attributes.update(map_file['entities'][entity]['attributes'])
@@ -8,6 +13,11 @@ def get_attributes(entity, map_file):
 
 
 def get_filters(filter_dict):
+    """
+    Returns the filters list in string mode for a given dictionary.
+    Gets all the filters that the dictionary contains and create a list 
+    of key:value elements
+    """
     filters = ''
 
     if type(filter_dict) is dict:
@@ -18,6 +28,11 @@ def get_filters(filter_dict):
 
 
 def format_element(list_elements):
+    """
+    Formats the element to query the subgraph. 
+    If only one element is given returns the element, in other case
+    format the element with the format element{subelement{subsubelement}}
+    """
     if(len(list_elements) == 1):
         return list_elements[0]
 
@@ -33,6 +48,12 @@ def format_element(list_elements):
 
 
 def format_attribute(list_fields):
+    """
+    Format the attribute to base on the information of the json file.
+    For each field calls the format element, can be a single list wich 
+    returns a single element or a list of lists that will concatenate the 
+    strings for each list
+    """
     str_list_attr = ""
 
     if(isinstance(list_fields[0], list)):

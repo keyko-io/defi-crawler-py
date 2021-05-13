@@ -5,6 +5,10 @@ import json
 
 
 def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_file, endpoint, aditional_filters=""):
+    """
+    Gets all the existing data from the subgraph at the given time range.
+    One or mor filters can be passed as parameters and will be applied in the where clause
+    """
     are_data = True
     json_records = []
     iteration_timestamp = from_timestamp
@@ -28,7 +32,7 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
         json_data = json.loads(response.text)
         if 'errors' in json_data:
             raise Exception(
-                'There was an error getting the data from TheGraph' + json_data)
+                'There was an error getting the data from TheGraph' + json.dumps(json_data))
         else:
             response_lenght = len(json_data['data'][entity_name])
             if (response_lenght > 0):
@@ -44,6 +48,11 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
 
 
 def get_data_parameter(query_input, entity, mappings_file, endpoint):
+    """
+    Gets all the existing data for the given entity.
+    If this entity has some filter, in the config file, the query will apply 
+    this filter
+    """
     are_data = True
     json_records = []
 
@@ -64,7 +73,7 @@ def get_data_parameter(query_input, entity, mappings_file, endpoint):
         json_data = json.loads(response.text)
         if 'errors' in json_data:
             raise Exception(
-                'There was an error getting the data from TheGraph' + json_data)
+                'There was an error getting the data from TheGraph' + json.dumps(json_data))
         else:
             response_lenght = len(json_data['data'][entity_name])
             if (response_lenght > 0):
@@ -80,6 +89,9 @@ def get_data_parameter(query_input, entity, mappings_file, endpoint):
 
 
 def get_data_filtered(query_input, entity, mappings_file, endpoint, filters):
+    """
+    Gets all the existing data from the subgraph applying the given filters
+    """
     entity_name = mappings_file['entities'][entity]['query']['name']
     filters_str = get_filters(filters)
 
@@ -96,7 +108,7 @@ def get_data_filtered(query_input, entity, mappings_file, endpoint, filters):
     json_records = []
     if 'errors' in json_data:
         raise Exception(
-            'There was an error getting the data from TheGraph' + json_data)
+            'There was an error getting the data from TheGraph' + json.dumps(json_data))
     else:
         response_lenght = len(json_data['data'][entity_name])
         if (response_lenght > 0):
