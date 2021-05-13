@@ -7,6 +7,9 @@ import json
 
 
 class ProtocolBase:
+    """
+    Parent class to be inherit from Protocol and oracle
+    """
     def __init__(self, protocol, chain, version):
         self.protocol = protocol
         self.query_from_timestamp = Querys.QUERY_FROM_TIMESTAMP
@@ -18,6 +21,9 @@ class ProtocolBase:
         self.endpoint = self.__get_protocol_endpoint(chain)
 
     def query_data_from_date_range(self, from_timestamp, to_timestamp, entity, aditional_filters=''):
+        """
+        Gets all the data from the given entity and the specified period. One or more filters can be applied
+        """
 
         return get_data_from(query_input=self.query_from_timestamp,
                              from_timestamp=from_timestamp,
@@ -28,6 +34,9 @@ class ProtocolBase:
                              aditional_filters=aditional_filters)
 
     def query_data_parameter(self, entity):
+        """
+        Gets all the existing data for the given entity
+        """
 
         return get_data_parameter(query_input=self.query_all_elements,
                                   entity=entity,
@@ -35,6 +44,9 @@ class ProtocolBase:
                                   endpoint=self.endpoint)
 
     def query_data_filtered(self, entity, filters):
+        """
+        Gets all the existing data for the given entity with the specified filters
+        """
 
         return get_data_filtered(query_input=self.query_filter,
                                  entity=entity,
@@ -43,6 +55,10 @@ class ProtocolBase:
                                  filters=filters)
 
     def map_data(self, response_data, config):
+        """
+        Maps the data from the subgraph data to the defined commom model in
+        the json file
+        """
         return Mappers.map_data(response_data=response_data,
                                 protocol=self.protocol,
                                 chain=self.chain,
@@ -52,6 +68,10 @@ class ProtocolBase:
                                 query_elements=config['query_elements'])
 
     def get_protocol_config(self, entity):
+        """
+        Gets the protocol config in the json file for the specified entity.
+        If the entity not exists will raise an error.
+        """
 
         self.__exists_entity(entity)
 
@@ -66,6 +86,10 @@ class ProtocolBase:
         }
 
     def __get_protocol_file(self, protocol, version):
+        """
+        Gets the json file for the specified protocol and the specified version.
+        If the protocol does not exits at this version will raise an error.
+        """
         try:
             config_file = pkgutil.get_data(
                 'deficrawler.config',
@@ -81,6 +105,10 @@ class ProtocolBase:
         return json.loads(config_file.decode())
 
     def __get_protocol_endpoint(self, chain):
+        """
+        Gets the endpoint for the specified chain.
+        If the chain does not exits in the config file will raise an error.
+        """
         try:
             return self.mappings_file['protocol']['endpoint'][chain.lower()]
         except KeyError:
@@ -90,6 +118,10 @@ class ProtocolBase:
             raise
 
     def __exists_entity(self, entity):
+        """
+        Checks if the given entity exists in the entities config.
+        In not exists will raise an error.
+        """
         if entity in self.mappings_file['entities']:
             return True
         else:

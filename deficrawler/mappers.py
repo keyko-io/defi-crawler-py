@@ -2,6 +2,11 @@ from deficrawler.transformer import Transformer
 
 
 class Mappers:
+    """
+    Class to map the data from the subgraph data to the commom model defined in the json file.
+    For each field applies the transformaton (if needed) and retuns the entity with all
+    the fields.
+    """
 
     @staticmethod
     def map_data(response_data, protocol, chain, version, attributes, transformations, query_elements):

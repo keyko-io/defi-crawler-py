@@ -2,8 +2,17 @@ import dict_digger
 
 
 class Transformer:
+    """
+    This class applies the transformations defined in the json config.
+    Apply the specified function to transform the data from the subgraph to
+    the common model format.
+    """
 
     def __init__(self):
+        """
+        Constructor. Defines the dictionary that will be use to link the function name specified
+        in the config file to the class function to apply.
+        """
         self.transformers = {
             "decimals": self.transform_decimals,
             "principal_decimals": self.transform_principal_decimals,
@@ -20,7 +29,11 @@ class Transformer:
         }
 
     def transform(self, element, common_field, protocol_field, transformations, query_elements):
-
+        """
+        Main function, is called from the mapper, if the field to map has a transformation function
+        contained in the class dictionary, the specified function will be applied, in other case
+        the value will be returned without modification.
+        """
         if common_field in transformations:
             type_transformer = transformations[common_field]
             return self.transformers[type_transformer](common_field, element, protocol_field, query_elements)
@@ -30,6 +43,9 @@ class Transformer:
                 *protocol_field)
 
     def transform_decimals_field(self, common_field, element, protocol_field, query_elements, field):
+        """
+        Transform the decimals of the number, dividing the field for the decimals value in the subgraph response
+        """
         decimals_field = query_elements[field]
         dec_value = dict_digger.dig(
             element,
@@ -42,15 +58,27 @@ class Transformer:
         return float(protocol_amount) / 10 ** float(dec_value)
 
     def transform_decimals(self, common_field, element, protocol_field, query_elements):
+        """
+        Use the transform_decimals_field function to transform the decimals in the `decimals` field
+        """
         return self.transform_decimals_field(common_field, element, protocol_field, query_elements, 'decimals')
 
     def transform_principal_decimals(self, common_field, element, protocol_field, query_elements):
+        """
+        Use the transform_decimals_field function to transform the decimals in the `principal_decimals` field
+        """
         return self.transform_decimals_field(common_field, element, protocol_field, query_elements, 'principal_decimals')
 
     def transform_collateral_decimals(self, common_field, element, protocol_field, query_elements):
+        """
+        Use the transform_decimals_field function to transform the decimals in the `collateral_decimals` field
+        """
         return self.transform_decimals_field(common_field, element, protocol_field, query_elements, 'collateral_decimals')
 
     def from_token_selection(self, common_field, element, protocol_field, query_elements):
+        """
+        Gets the from token in a swap, gets the field with amount != 0
+        """
         amount_0_in = dict_digger.dig(
             element,
             *query_elements['from_token_amount'][0])
@@ -62,6 +90,9 @@ class Transformer:
             *query_elements['from_token'][index])
 
     def to_token_selection(self, common_field, element, protocol_field, query_elements):
+        """
+        Gets the to token in a swap, gets the field with amount != 0
+        """
         amount_0_out = dict_digger.dig(
             element,
             *query_elements['to_token_amount'][0])
@@ -73,6 +104,9 @@ class Transformer:
             *query_elements['to_token'][index])
 
     def from_token_amount_selection(self, common_field, element, protocol_field, query_elements):
+        """
+        Gets the from token amount in a swap, gets the field with amount != 0
+        """
         amount_0_in = dict_digger.dig(
             element,
             *query_elements['from_token_amount'][0])
@@ -82,6 +116,9 @@ class Transformer:
             *query_elements['from_token_amount'][1])
 
     def to_token_amount_selection(self, common_field, element, protocol_field, query_elements):
+        """
+        Gets the to token amount in a swap, gets the field with amount != 0
+        """
         amount_0_out = dict_digger.dig(
             element,
             *query_elements['to_token_amount'][0])
@@ -91,6 +128,9 @@ class Transformer:
             *query_elements['to_token_amount'][1])
 
     def array_length(self, common_field, element, protocol_field, query_elements):
+        """
+        Returns the length of a field of array type
+        """
         array_field = dict_digger.dig(
             element,
             query_elements[common_field][0])
@@ -98,6 +138,9 @@ class Transformer:
         return len(array_field)
 
     def remove_token_prefix(self, common_field, element, protocol_field, query_elements):
+        """
+        Removes the token prefix of the token. Usefull to remove cTOkens or aTokens
+        """
         field = dict_digger.dig(
             element,
             *query_elements[common_field])
@@ -105,6 +148,9 @@ class Transformer:
         return field[1:]
 
     def tx_id_colon(self, common_field, element, protocol_field, query_elements):
+        """
+        Removes the trailing data afeter the : in the transaction id field
+        """
         field = dict_digger.dig(
             element,
             *query_elements[common_field])
@@ -112,6 +158,9 @@ class Transformer:
         return field.split(':')[0]
 
     def tx_id_hyphen(self, common_field, element, protocol_field, query_elements):
+        """
+        Removes the trailing data afeter the - in the transaction id field
+        """
         field = dict_digger.dig(
             element,
             *query_elements[common_field])
@@ -119,6 +168,10 @@ class Transformer:
         return field.split('-')[0]
 
     def chainlink_prices(self, common_field, element, protocol_field, query_elements):
+        """
+        Returns the chainlink prices in the correct format, if ETH pair are 18 decimals
+        in other case 8 decimals
+        """
         price = dict_digger.dig(
             element,
             *query_elements[common_field])

@@ -4,6 +4,9 @@ from datetime import datetime
 
 
 class Protocol(ProtocolBase):
+    """
+    Class to get data for the Lending and Dexes protocols
+    """
     def __init__(self, protocol, chain, version):
         super().__init__(
             protocol=protocol,
@@ -12,6 +15,10 @@ class Protocol(ProtocolBase):
         )
 
     def get_data_from_date_range(self, from_date, to_date, entity):
+        """
+        Gets data for the specified entity in the from_data to to_date period.
+        The entities are defined in the configuration of each protocol.
+        """
 
         from_timestamp = int(
             datetime.strptime(from_date, '%d/%m/%Y %H:%M:%S').strftime("%s"))
@@ -33,6 +40,9 @@ class Protocol(ProtocolBase):
         )
 
     def get_all_users(self):
+        """
+        Returns all the users of the protocol
+        """
 
         config = super().get_protocol_config('user')
 
@@ -46,6 +56,9 @@ class Protocol(ProtocolBase):
         )
 
     def get_user_positions(self, user):
+        """
+        Returns the user positions (portfolio) of the given user
+        """
 
         config = super().get_protocol_config('user_position')
         user_name = self.mappings_file['entities']['user_position']['query']['params']['user']
