@@ -42,6 +42,28 @@
         }
       },
       "transformations": {}
+    },
+    "pool": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "pool_tokens": [
+          "tokens",
+          "symbol"
+        ]
+      },
+      "query": {
+        "name": "pools",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "id",
+          "initial_value": "0"
+        }
+      },
+      "transformations": {
+        "pool_tokens": "concat_list_symbols"
+      }
     }
   }
 }

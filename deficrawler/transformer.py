@@ -25,7 +25,9 @@ class Transformer:
             "remove_token_prefix": self.remove_token_prefix,
             "tx_id_colon": self.tx_id_colon,
             "tx_id_hyphen": self.tx_id_hyphen,
-            "chainlink_prices": self.chainlink_prices
+            "chainlink_prices": self.chainlink_prices,
+            "concat_symbols": self.concat_symbols,
+            "concat_list_symbols": self.concat_list_symbols
         }
 
     def transform(self, element, common_field, protocol_field, transformations, query_elements):
@@ -182,7 +184,44 @@ class Transformer:
 
         pair_decimals = 8
         tokens = pair.split('/')
-        if len(tokens)>1:
-            if(tokens[1] == 'ETH'): pair_decimals = 18
-        
+        if len(tokens) > 1:
+            if(tokens[1] == 'ETH'):
+                pair_decimals = 18
+
         return float(price) / 10 ** pair_decimals
+
+    def concat_symbols(self, common_field, element, protocol_field, query_elements):
+        """
+        Return the list of symbols of the pool concatenated
+        """
+        tokens_concat = ''
+        tokens_list = query_elements[common_field]
+
+        for index, token_path in enumerate(tokens_list):
+            token = dict_digger.dig(
+                element,
+                *token_path)
+            tokens_concat += token
+            if(index + 1) < len(tokens_list):
+                tokens_concat += '/'
+
+        return tokens_concat
+
+    def concat_list_symbols(self, common_field, element, protocol_field, query_elements):
+        """
+        Return the list of symbols of the pool concatenated
+        """
+        tokens_concat = ''
+
+        tokens_list = dict_digger.dig(
+            element,
+            query_elements[common_field][0])
+
+        field_name = query_elements[common_field][1]
+
+        for index, token in enumerate(tokens_list):
+            tokens_concat += token[field_name]
+            if(index + 1) < len(tokens_list):
+                tokens_concat += '/'
+        
+        return tokens_concat
