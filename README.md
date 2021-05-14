@@ -10,7 +10,7 @@
   - [Prerequisites](#prerequisites)
   - [Quick-start](#quick-start)
      - [Usage](#usage)
-     - [Supported protocols](supported-protocols)
+     - [Supported protocols](#supported-protocols)
      - [Testing](#testing)
   - [Contributions](#contributions)
   - [License](#license)
@@ -84,6 +84,27 @@ chainlink.get_price_from_date_range(from_date=start_date, to_date=end_date, pair
 ```
 
 ### Supported-protocols
+
+#### Protocols
+
+Name | Type | Version | Chain
+--------|-------|---------|-------
+Aave | Lending | 2 | Ethereum
+Aave | Lending | 2 | Polygon
+Compound | Lending | 2 | Ethereum
+Cream | Lending | 2 | Ethereum
+Cream | Lending | 2 | BSC
+Uniswap | Dexes | 2 | Ethereum
+Balancer | Dexes | 2 | Ethereum
+Bancor | Dexes | 1 | Ethereum
+SushiSwap | Dexes | 1 | Ethereum
+
+#### Oracles
+Name | Type | Version | Chain
+--------|-------|---------|-------
+Chainlink | Oracle | 1 | Ethereum
+Aave | Oracle | 2 | Ethereum
+Compound | Oracle | 2 | Ethereum
 
 #### Testing
 
