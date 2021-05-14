@@ -10,8 +10,9 @@
   - [Prerequisites](#prerequisites)
   - [Quick-start](#quick-start)
      - [Usage](#usage)
-     - [Contributions](#contributions)
-    - [Testing](#testing)
+     - [Supported protocols](supported-protocols)
+     - [Testing](#testing)
+  - [Contributions](#contributions)
   - [License](#license)
 
 ---
@@ -32,10 +33,12 @@ pip install deficrawler
 
 ### Usage
 
-To get data from a protocol, its needed to create an instance of the protocol with the name, version and blockchain where the protocols exists, the supported protocols can be found in [supported protocols](#supported-protocols) section. And the entities for the protocols with the field types in the [entities](#https://github.com/keyko-io/defi-crawler-py/tree/main/docs/entities) folder
+To get data from a protocol, it's needed to create an instance of the protocol with the name, version and blockchain where the protocols exists, the supported protocols can be found in [supported protocols](#supported-protocols) section. And the entities for the protocols with the field types in the [entities](#https://github.com/keyko-io/defi-crawler-py/tree/main/docs/entities) folder
 
 ```python
 # Instanciate the protocol with the name, version and chain
+from deficrawler import Protocol
+
 aave = Protocol(protocol="Aave", chain="Ethereum", version=2)
 aave_polygon = Protocol(protocol="Aave", chain="Polygon", version=2)
 compound = Protocol(protocol="Compound", chain="Ethereum", version=2)
@@ -58,6 +61,36 @@ cream_bsc.get_all_users()
 cream_bsc.get_all_users(user)
 
 ```
+
+To get prices from the oracles it's needed to instanciate an oracle object and call the functions.
+
+```python
+# Instanciate the oracle with the name, version and chain
+from deficrawler import Oracle
+
+chainlink = Oracle(protocol="chainlink", version=1, chain="Ethereum")
+compound = Oracle(protocol="Compound", version=2, chain="Ethereum")
+
+#Not all the protocols has the same available events to get data, to know which entities are supported for each protocol:
+chainlink.supported_entities()
+compound.suuported_entities()
+
+#Get all the available pairs to get the data
+chainlink.get_all_pairs() 
+
+#Get the price for a specific pair in a time range
+chainlink.get_price_from_date_range(from_date=start_date, to_date=end_date, pair="ETH/USD")
+
+```
+
+### Supported-protocols
+
+#### Testing
+
+Tests are creatd using Pytest library. To run the tests
+    
+    pytest -v 
+
 
 ### Contributions
 If you want to add a new protocol to be supported or a new entity to retrive data, create a PR with the new configuration of the protocol and the unit/integration tests of this new feature.
@@ -129,12 +162,6 @@ After this section the supported entities should be specified. Each entity has t
             "tx_id":"tx_id_colon"
           }
       ````
-
-#### Testing
-
-Tests are creatd using Pytest library. To run the tests
-    
-    pytest -v 
     
 ## License
 
