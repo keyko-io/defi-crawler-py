@@ -1,6 +1,6 @@
 from deficrawler.querys import Querys
 from deficrawler.mappers import Mappers
-from deficrawler.api_calls import get_data_from, get_data_parameter, get_data_filtered
+from deficrawler.api_calls import get_data_from, get_data_parameter, get_data_filtered, get_first_element
 
 import pkgutil
 import json
@@ -10,11 +10,13 @@ class ProtocolBase:
     """
     Parent class to be inherit from Protocol and oracle
     """
+
     def __init__(self, protocol, chain, version):
         self.protocol = protocol
         self.query_from_timestamp = Querys.QUERY_FROM_TIMESTAMP
         self.query_all_elements = Querys.QUERY_ALL_ELEMENTS
         self.query_filter = Querys.QUERY_ELEMENT_FILTER
+        self.query_first = Querys.QUERY_FIRST_ELEMENT
         self.mappings_file = self.__get_protocol_file(protocol, version)
         self.chain = chain
         self.version = version
@@ -53,6 +55,17 @@ class ProtocolBase:
                                  mappings_file=self.mappings_file,
                                  endpoint=self.endpoint,
                                  filters=filters)
+
+    def query_first_element(self, entity, timestamp, aditional_filters):
+        """
+        Gets the first existing element for the given entity with the specified filters
+        """
+        return get_first_element(query_input=self.query_first,
+                                 entity=entity,
+                                 mappings_file=self.mappings_file,
+                                 endpoint=self.endpoint,
+                                 timestamp=timestamp,
+                                 aditional_filters=aditional_filters)
 
     def map_data(self, response_data, config):
         """

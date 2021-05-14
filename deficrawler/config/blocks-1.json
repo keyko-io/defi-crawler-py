@@ -1,0 +1,30 @@
+{
+    "protocol": {
+      "name": "BLocks",
+      "endpoint": {
+        "ethereum": "https://api.thegraph.com/subgraphs/name/ayogatot/griffin-ethereum-blocks",
+        "bsc":"https://thegraph.com/explorer/subgraph/matthewlilley/bsc-blocks",
+        "polygon":"https://thegraph.com/explorer/subgraph/ord786/matic-blocks"
+      }
+    },
+    "entities": {
+      "block": {
+        "attributes": {
+          "number": [
+            "number"
+          ],
+          "timestamp": [
+            "timestamp"
+          ]
+        },
+        "query": {
+          "name": "blocks",
+          "extra_fields": {},
+          "params": {
+            "orderBy": "timestamp"
+          }
+        },
+        "transformations": []
+      }
+    }
+  }

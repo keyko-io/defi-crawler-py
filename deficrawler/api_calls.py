@@ -118,3 +118,40 @@ def get_data_filtered(query_input, entity, mappings_file, endpoint, filters):
             json_records = [*list_data]
 
     return json_records
+
+
+def get_first_element(query_input, entity, mappings_file, endpoint, timestamp, aditional_filters):
+    """
+    Gets first existing data from the subgraph applying the given filters
+    """
+    entity_name = mappings_file['entities'][entity]['query']['name']
+    filters_str = get_filters(aditional_filters)
+    order_by = mappings_file['entities'][entity]['query']['params']['orderBy']
+    attributes = get_attributes(entity, mappings_file)
+    lte = '_lte:'
+
+    query = query_input.format(
+        entity_name=entity_name,
+        order_by=order_by,
+        order_by_filter=order_by,
+        aditional_filters=filters_str,
+        attributes=attributes,
+        timestamp=timestamp,
+        lte=lte
+    )
+
+    response = requests.post(endpoint, json={'query': query})
+    json_data = json.loads(response.text)
+    json_records = []
+    if 'errors' in json_data:
+        raise Exception(
+            'There was an error getting the data from TheGraph' + json.dumps(json_data))
+    else:
+        response_lenght = len(json_data['data'][entity_name])
+        if (response_lenght > 0):
+            json_data = json.loads(response.text)
+            list_data = json_data['data'][entity_name]
+
+            json_records = [*list_data]
+
+    return json_records

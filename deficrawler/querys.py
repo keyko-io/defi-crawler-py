@@ -40,3 +40,20 @@ class Querys:
                 }}
             }}
         """
+
+
+    QUERY_FIRST_ELEMENT = """ {{
+            {entity_name}(
+                    orderBy: {order_by}
+                    orderDirection: desc
+                    first: 1
+                    {block}
+                    where: {{
+                        {order_by_filter}{lte} {timestamp}
+                        {aditional_filters}
+                    }}
+                ){{
+                    {attributes}
+                }}
+            }}
+        """
