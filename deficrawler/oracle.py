@@ -7,13 +7,14 @@ class Oracle(ProtocolBase):
     """
     Oracle class to get prices
     """
+
     def __init__(self, protocol, chain, version):
         super().__init__(
             protocol=protocol,
             chain=chain,
             version=version
         )
-        
+
     def get_all_pairs(self):
         """
         Returns all the existing prices for the oracle.
@@ -58,7 +59,6 @@ class Oracle(ProtocolBase):
             config=config
         )
 
-
     def get_price_at_timestamp(self, timestamp, pair):
         """
         Returns the prices for the specified pair in the given timestamp
@@ -79,4 +79,8 @@ class Oracle(ProtocolBase):
             config=config
         )
 
-        return prices[0]['price']
+        if len(prices > 0):
+            return prices[0]['price']
+        else:
+            raise Exception(
+                "Price not found for the specified pair at the timestamp")
