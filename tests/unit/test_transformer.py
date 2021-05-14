@@ -315,12 +315,12 @@ def test_chainlink_prices():
     assert(price == 39178992539 / 10 ** 8)
 
     element = {'assetPair': {'id': 'ENJ/ETH'},
-            'price': '513200000000000', 'timestamp': '1596791153'}
+               'price': '513200000000000', 'timestamp': '1596791153'}
     common_field = "price"
     protocol_field = ['price']
     transformations = {'price': 'chainlink_prices'}
     query_elements = {'pair': ['assetPair', 'id'],
-                    'price': ['price'], 'timestamp': ['timestamp']}
+                      'price': ['price'], 'timestamp': ['timestamp']}
 
     transformer = Transformer()
 
@@ -356,3 +356,101 @@ def test_remove_token_prefix():
     )
 
     assert(token == "ETH")
+
+
+def test_concat_symbols():
+    element = {'amount0In': '0.1', 'amount0Out': '0', 'amount1In': '223212862.542378007',
+               'amount1Out': '777931322218.496933182', 'token0': {'symbol': 'WETH'}, 'token1': {'symbol': 'HOKK'},
+               'sender': '0x7a250d5630b4cf539739df2c5dacb4c659f2488d',
+               'timestamp': '1620079287', 'transaction': {'id': '0xf7bec9d32958801feb1fc06a7dee136e1de844ddbf801ebbb7967b0e39392333'}}
+
+    common_field = "pool_tokens"
+    protocol_field = [
+        [
+            "token0",
+            "symbol"
+        ],
+        [
+            "token1",
+            "symbol"
+        ]
+    ]
+    transformations = {
+        "pool_tokens": "concat_symbols"
+    }
+    query_elements = {"id": [
+        "id"
+    ],
+        "pool_tokens": [
+        [
+            "token0",
+            "symbol"
+        ],
+        [
+            "token1",
+            "symbol"
+        ]
+    ]}
+
+    transformer = Transformer()
+
+    pool = transformer.transform(
+        element,
+        common_field,
+        protocol_field,
+        transformations,
+        query_elements
+    )
+
+    assert(pool == 'WETH/HOKK')
+
+
+def test_concat_symbols():
+    element = {
+        "id": "0x00e5a66d31768318a7cae45dd7a0ef8288d7288d",
+        "tokens": [
+            {
+              "symbol": "WBTC"
+            },
+            {
+                "symbol": "DAI"
+            },
+            {
+                "symbol": "USDC"
+            },
+            {
+                "symbol": "WETH"
+            },
+            {
+                "symbol": "renBTC"
+            }
+        ]
+    }
+
+    common_field = "pool_tokens"
+    protocol_field = [
+        "tokens",
+        "symbol"
+    ]
+    transformations = {
+        "pool_tokens": "concat_list_symbols"
+    }
+    query_elements = {"id": [
+        "id"
+    ],
+        "pool_tokens": [
+        "tokens",
+        "symbol"
+    ]}
+
+    transformer = Transformer()
+
+    pool = transformer.transform(
+        element,
+        common_field,
+        protocol_field,
+        transformations,
+        query_elements
+    )
+
+    assert(pool == 'WBTC/DAI/USDC/WETH/renBTC')

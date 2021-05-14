@@ -3,10 +3,11 @@ from deficrawler.protocol_base import ProtocolBase
 from datetime import datetime
 
 
-class Protocol(ProtocolBase):
+class Dex(ProtocolBase):
     """
-    Class to get data for the Lending and Dexes protocols
+    Class to get data for Dexes protocols
     """
+
     def __init__(self, protocol, chain, version):
         super().__init__(
             protocol=protocol,
@@ -39,37 +40,18 @@ class Protocol(ProtocolBase):
             config=config
         )
 
-    def get_all_users(self):
+    def get_all_pools(self):
         """
-        Returns all the users of the protocol
+        Returns all pools of the protocol
         """
 
-        config = super().get_protocol_config('user')
+        config = super().get_protocol_config('pool')
 
         response_data = super().query_data_parameter(
-            entity='user'
+            entity='pool'
         )
 
         return super().map_data(
             response_data=response_data,
             config=config
         )
-
-    def get_user_positions(self, user):
-        """
-        Returns the user positions (portfolio) of the given user
-        """
-
-        config = super().get_protocol_config('user_position')
-        user_name = self.mappings_file['entities']['user_position']['query']['params']['user']
-
-        response_data = super().query_data_filtered(
-            entity='user_position',
-            filters={user_name: user}
-        )
-
-        return super().map_data(
-            response_data=response_data,
-            config=config
-        )
-
