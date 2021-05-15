@@ -35,30 +35,53 @@ pip install deficrawler
 
 To get data from a protocol, it's needed to create an instance of the protocol with the name, version and blockchain where the protocols exists, the supported protocols can be found in [supported protocols](#supported-protocols) section. And the entities for the protocols with the field types in the [entities](#https://github.com/keyko-io/defi-crawler-py/tree/main/docs/entities) folder
 
+To get data from Lending protocols
+
 ```python
 # Instanciate the protocol with the name, version and chain
-from deficrawler import Protocol
+from deficrawler import Lending
 
-aave = Protocol(protocol="Aave", chain="Ethereum", version=2)
-aave_polygon = Protocol(protocol="Aave", chain="Polygon", version=2)
-compound = Protocol(protocol="Compound", chain="Ethereum", version=2)
-cream = Protocol(protocol="Cream", chain="Ethereum", version=2)
-cream_bsc = Protocol(protocol="Cream", chain="bsc", version=2)
-uniswap = Protocol(protocol="Uniswap", chain="Ethereum", version=2)
-balancer = Protocol(protocol="Balancer", chain="Ethereum", version=1)
+aave = Lending(protocol="Aave", chain="Ethereum", version=2)
+aave_polygon = Lending(protocol="Aave", chain="Polygon", version=2)
+compound = Lending(protocol="Compound", chain="Ethereum", version=2)
+cream = Lending(protocol="Cream", chain="Ethereum", version=2)
+cream_bsc = Lending(protocol="Cream", chain="bsc", version=2)
 
-#Not all the protocols has the same available events to get data, to know which entities are supported for each protocol:
+# Not all the protocols has the same available events to get data, to know which entities are supported for each protocol:
 aave.supported_entities()
-uniswap.suuported_entities()
+uniswap.suported_entities()
 
-##For each different entity, data can be retrieved in a specific time range.
+## For each different entity, data can be retrieved in a specific time range.
 compound.get_data_from_date_range(start_date, end_date, "borrow")
 
-#To get the all the users of a protocol
+# To get the all the users of a protocol
 cream_bsc.get_all_users()
 
-#And the user positions 
+# And the user positions 
 cream_bsc.get_all_users(user)
+
+```
+
+To get data from Dex protocols
+
+```python
+# Instanciate the protocol with the name, version and chain
+from deficrawler import Dex
+
+uniswap = Dex(protocol="Uniswap", chain="Ethereum", version=2)
+balancer = Dex(protocol="Balancer", chain="Ethereum", version=1)
+bancor = Dex("Bancor", chain="Ethereum", version=1)
+shushi = Dex("SushiSwap", chain="Ethereum", version=1)
+
+# Not all the protocols has the same available events to get data, to know which entities are supported for each protocol:
+uniswap.supported_entities()
+balancer.suported_entities()
+
+## For each different entity, data can be retrieved in a specific time range.
+uniswap.get_data_from_date_range(start_date_amm, end_date_amm, "swap")
+
+# To get the all the pools of a protocol
+uniswap.get_all_pools()
 
 ```
 
@@ -73,7 +96,7 @@ compound = Oracle(protocol="Compound", version=2, chain="Ethereum")
 
 #Not all the protocols has the same available events to get data, to know which entities are supported for each protocol:
 chainlink.supported_entities()
-compound.suuported_entities()
+compound.suported_entities()
 
 #Get all the available pairs to get the data
 chainlink.get_all_pairs() 
