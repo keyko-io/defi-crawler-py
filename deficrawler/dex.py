@@ -14,6 +14,7 @@ class Dex(ProtocolBase):
             chain=chain,
             version=version
         )
+        self.protocol_type = "dex"
 
     def get_data_from_date_range(self, from_date, to_date, entity):
         """
@@ -55,3 +56,9 @@ class Dex(ProtocolBase):
             response_data=response_data,
             config=config
         )
+
+    def supported_entities(self):
+        """
+        Returns the supported entities for the protocol
+        """
+        return super().supported_entities(self.protocol_type)

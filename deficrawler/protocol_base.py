@@ -21,6 +21,7 @@ class ProtocolBase:
         self.chain = chain
         self.version = version
         self.endpoint = self.__get_protocol_endpoint(chain)
+        self.global_config = self.__load_global_config()
 
     def query_data_from_date_range(self, from_timestamp, to_timestamp, entity, aditional_filters=''):
         """
@@ -98,6 +99,19 @@ class ProtocolBase:
             'query_elements': query_elements,
         }
 
+    def supported_entities(self, protocol_type):
+        """
+        Returns an array with the supported entities for each type of protocol
+        """
+        supported = []
+        protocol_type_entities = self.global_config['supported_entities'][protocol_type]
+        for attr, _ in self.mappings_file['entities'].items():
+            if attr in protocol_type_entities:
+                supported.append(attr)
+
+        return supported
+
+
     def __get_protocol_file(self, protocol, version):
         """
         Gets the json file for the specified protocol and the specified version.
@@ -140,3 +154,20 @@ class ProtocolBase:
         else:
             raise Exception('Entity ' + entity +
                             ' not supported for protocol ' + self.protocol)
+
+    def __load_global_config(self):
+        """
+        Loads the global config file
+        """
+        try:
+            global_config_file = pkgutil.get_data(
+                "deficrawler.config",
+                "global.json"
+            )
+
+        except FileNotFoundError:
+            raise Exception('Error loading global config')
+        except:
+            raise
+
+        return json.loads(global_config_file.decode())

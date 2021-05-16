@@ -1,0 +1,14 @@
+{
+    "supported_entities": {
+        "lending": [
+            "borrow",
+            "deposit",
+            "liquidation",
+            "repay"
+        ],
+        "dex": [
+            "swap",
+            "pool"
+        ]
+    }
+}

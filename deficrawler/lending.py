@@ -7,12 +7,14 @@ class Lending(ProtocolBase):
     """
     Class to get data for Lending protocols
     """
+
     def __init__(self, protocol, chain, version):
         super().__init__(
             protocol=protocol,
             chain=chain,
             version=version
         )
+        self.protocol_type = "lending"
 
     def get_data_from_date_range(self, from_date, to_date, entity):
         """
@@ -73,3 +75,8 @@ class Lending(ProtocolBase):
             config=config
         )
 
+    def supported_entities(self):
+        """
+        Returns the supported entities for the protocol
+        """
+        return super().supported_entities(self.protocol_type)
