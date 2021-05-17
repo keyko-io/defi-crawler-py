@@ -1,13 +1,11 @@
 {
   "protocol": {
-    "name": "Sushiswap",
+    "name": "Ubeswap",
     "type": "Descentralized Exchange",
     "version": 1,
-    "chain": "Ethereum",
+    "chain": "Celo",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/croco-finance/sushiswap",
-      "bsc": "https://api.thegraph.com/subgraphs/name/sushiswap/bsc-exchange",
-      "polygon": "https://api.thegraph.com/subgraphs/name/sushiswap/matic-exchange"
+      "celo": "https://api.thegraph.com/subgraphs/name/ubeswap/ubeswap"
     }
   },
   "entities": {
@@ -68,7 +66,8 @@
         "name": "swaps",
         "extra_fields": {},
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "timestamp",
+          "pool": "pair"
         }
       },
       "transformations": {

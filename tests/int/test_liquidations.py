@@ -1,7 +1,7 @@
-from deficrawler.protocol import Protocol
+from deficrawler.lending import Lending
 
 def test_liquidation_aave_2_eth():
-    aave = Protocol(protocol="Aave", chain="Ethereum", version=2)
+    aave = Lending(protocol="Aave", chain="Ethereum", version=2)
     liquidations = aave.get_data_from_date_range(
         '21/04/2021 05:20:01', '22/04/2021 06:22:01', "liquidation")
     assert(liquidations[0]['tx_id'] != "")
@@ -18,7 +18,7 @@ def test_liquidation_aave_2_eth():
 
 
 def test_liquidation_aave_2_polygon():
-    aave = Protocol(protocol="Aave", chain="Polygon", version=2)
+    aave = Lending(protocol="Aave", chain="Polygon", version=2)
     liquidations = aave.get_data_from_date_range(
         '10/05/2021 00:00:01', '11/05/2021 00:01:10', "liquidation")
 
@@ -36,7 +36,7 @@ def test_liquidation_aave_2_polygon():
 
 
 def test_liquidation_compound_2_eth():
-    compound = Protocol(protocol="Compound", chain="Ethereum", version=2)
+    compound = Lending(protocol="Compound", chain="Ethereum", version=2)
     liquidations = compound.get_data_from_date_range(
         '09/05/2021 00:00:01', '11/05/2021 00:01:10', "liquidation")
 
@@ -54,7 +54,7 @@ def test_liquidation_compound_2_eth():
 
 
 def test_liquidation_cream_2_eth():
-    cream = Protocol(protocol="Cream", chain="Ethereum", version=2)
+    cream = Lending(protocol="Cream", chain="Ethereum", version=2)
     liquidations = cream.get_data_from_date_range(
         '01/05/2021 00:00:01', '12/05/2021 11:54:10', "liquidation")
 
@@ -72,7 +72,7 @@ def test_liquidation_cream_2_eth():
 
 
 def test_liquidation_cream_2_bsc():
-    cream = Protocol(protocol="Cream", chain="bsc", version=2)
+    cream = Lending(protocol="Cream", chain="bsc", version=2)
     liquidations = cream.get_data_from_date_range(
         '01/05/2021 00:00:01', '12/05/2021 11:54:10', "liquidation")
 
