@@ -27,7 +27,8 @@ class Transformer:
             "tx_id_hyphen": self.tx_id_hyphen,
             "chainlink_prices": self.chainlink_prices,
             "concat_symbols": self.concat_symbols,
-            "concat_list_symbols": self.concat_list_symbols
+            "concat_list_symbols": self.concat_list_symbols,
+            "eth_pair": self.eth_pair
         }
 
     def transform(self, element, common_field, protocol_field, transformations, query_elements):
@@ -223,5 +224,16 @@ class Transformer:
             tokens_concat += token[field_name]
             if(index + 1) < len(tokens_list):
                 tokens_concat += '/'
-        
+
         return tokens_concat
+
+    def eth_pair(self, common_field, element, protocol_field, query_elements):
+        """
+        Returns the pair concatenate with ETH
+        """
+
+        token = dict_digger.dig(
+            element,
+            *query_elements[common_field])
+
+        return token + '/ETH'

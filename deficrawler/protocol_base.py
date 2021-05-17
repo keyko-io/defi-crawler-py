@@ -112,6 +112,12 @@ class ProtocolBase:
         return supported
 
 
+    def get_block_at_timestamp(self, timestamp):
+        """
+        Returns the block number at the specified timestamp
+        """
+
+
     def __get_protocol_file(self, protocol, version):
         """
         Gets the json file for the specified protocol and the specified version.
@@ -171,3 +177,5 @@ class ProtocolBase:
             raise
 
         return json.loads(global_config_file.decode())
+
+

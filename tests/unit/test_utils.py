@@ -1,4 +1,4 @@
-from deficrawler.utils import format_attribute, format_element, get_attributes, get_filters
+from deficrawler.utils import format_attribute, format_element, get_attributes, get_filters, block_or_timestamp
 
 import pkgutil
 import json
@@ -59,7 +59,8 @@ def test_get_attributes():
 
     map_file = json.loads(config_file.decode())
     borrow_attr = get_attributes('borrow', map_file)
-    print(borrow_attr == "reserve{decimals} id user{id} reserve{symbol} amount timestamp ")
+    print(borrow_attr ==
+          "reserve{decimals} id user{id} reserve{symbol} amount timestamp ")
 
     config_file = pkgutil.get_data(
         'deficrawler.config',
@@ -68,5 +69,25 @@ def test_get_attributes():
 
     map_file = json.loads(config_file.decode())
     swap_attr = get_attributes('swap', map_file)
-    assert(swap_attr =="sender transaction{id} pair{token0{symbol}} pair{token1{symbol}}  pair{token0{symbol}} pair{token1{symbol}}  amount0In amount1In  amount0Out amount1Out  timestamp ")
+    assert(swap_attr ==
+           "sender transaction{id} pair{token0{symbol}} pair{token1{symbol}}  pair{token0{symbol}} pair{token1{symbol}}  amount0In amount1In  amount0Out amount1Out  timestamp ")
 
+
+def test_block_or_timestamp():
+    timestamp = 12313123
+
+    filters = block_or_timestamp('id', timestamp, {"pool": 33})
+
+    assert(filters['order_by_filter'] == 'id')
+    assert(filters['timestamp'] == 12313123)
+    assert(filters['lte'] == '_lte:')
+    assert(filters['block'] == '')
+
+    timestamp = 12313123
+
+    filters = block_or_timestamp('id', timestamp, {"pool": 33, "block": 1232})
+
+    assert(filters['order_by_filter'] == '')
+    assert(filters['lte'] == '')
+    assert(filters['timestamp'] == '')
+    assert(filters['block'] == "block: {number: 1232}")

@@ -1,4 +1,4 @@
-from deficrawler.utils import get_attributes, get_filters
+from deficrawler.utils import get_attributes, get_filters, block_or_timestamp
 
 import requests
 import json
@@ -125,22 +125,27 @@ def get_first_element(query_input, entity, mappings_file, endpoint, timestamp, a
     Gets first existing data from the subgraph applying the given filters
     """
     entity_name = mappings_file['entities'][entity]['query']['name']
-    filters_str = get_filters(aditional_filters)
     order_by = mappings_file['entities'][entity]['query']['params']['orderBy']
+    filters = block_or_timestamp(order_by, timestamp, aditional_filters)
+    filters_str = get_filters(aditional_filters)
     attributes = get_attributes(entity, mappings_file)
-    lte = '_lte:'
+    block = filters['block']
 
     query = query_input.format(
         entity_name=entity_name,
         order_by=order_by,
-        order_by_filter=order_by,
+        order_by_filter=filters['order_by_filter'],
         aditional_filters=filters_str,
         attributes=attributes,
-        timestamp=timestamp,
-        lte=lte
+        timestamp=filters['timestamp'],
+        lte=filters['lte'],
+        block=block
     )
 
+    print(query)
+
     response = requests.post(endpoint, json={'query': query})
+
     json_data = json.loads(response.text)
     json_records = []
     if 'errors' in json_data:

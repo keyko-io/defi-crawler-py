@@ -11,7 +11,7 @@
   "entities": {
     "borrow": {
       "attributes": {
-        "tx_id":[
+        "tx_id": [
           "id"
         ],
         "user": [
@@ -35,12 +35,12 @@
         }
       },
       "transformations": {
-        "tx_id":"tx_id_hyphen"
+        "tx_id": "tx_id_hyphen"
       }
     },
     "deposit": {
       "attributes": {
-        "tx_id":[
+        "tx_id": [
           "id"
         ],
         "user": [
@@ -65,12 +65,12 @@
       },
       "transformations": {
         "token": "remove_token_prefix",
-        "tx_id":"tx_id_hyphen"
+        "tx_id": "tx_id_hyphen"
       }
     },
     "liquidation": {
       "attributes": {
-        "tx_id":[
+        "tx_id": [
           "id"
         ],
         "user": [
@@ -103,12 +103,12 @@
         }
       },
       "transformations": {
-        "tx_id":"tx_id_hyphen"
+        "tx_id": "tx_id_hyphen"
       }
     },
     "repay": {
       "attributes": {
-        "tx_id":[
+        "tx_id": [
           "id"
         ],
         "user": [
@@ -132,7 +132,7 @@
         }
       },
       "transformations": {
-        "tx_id":"tx_id_hyphen"
+        "tx_id": "tx_id_hyphen"
       }
     },
     "user": {
@@ -184,6 +184,48 @@
         }
       },
       "transformations": {}
+    },
+    "pair": {
+      "attributes": {
+        "id": [
+          "underlyingSymbol"
+        ]
+      },
+      "query": {
+        "extra_fields": {},
+        "name": "markets",
+        "params": {
+          "orderBy": "id"
+        }
+      },
+      "transformations": {
+        "id": "eth_pair"
+      }
+    },
+    "price": {
+      "attributes": {
+        "pair": [
+          "underlyingSymbol"
+        ],
+        "price": [
+          "underlyingPrice"
+        ],
+        "timestamp": [
+          "blockTimestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {},
+        "name": "markets",
+        "params": {
+          "pair": "id",
+          "orderBy": "blockTimestamp",
+          "block": "block"
+        }
+      },
+      "transformations": {
+        "price": "chainlink_prices"
+      }
     }
   }
 }

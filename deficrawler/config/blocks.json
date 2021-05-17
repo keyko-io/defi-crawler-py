@@ -1,6 +1,6 @@
 {
     "protocol": {
-      "name": "BLocks",
+      "name": "Blocks",
       "endpoint": {
         "ethereum": "https://api.thegraph.com/subgraphs/name/ayogatot/griffin-ethereum-blocks",
         "bsc":"https://thegraph.com/explorer/subgraph/matthewlilley/bsc-blocks",

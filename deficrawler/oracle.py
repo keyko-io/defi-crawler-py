@@ -1,3 +1,4 @@
+from deficrawler.blocks import Block
 from deficrawler.protocol_base import ProtocolBase
 
 from datetime import datetime
@@ -65,11 +66,10 @@ class Oracle(ProtocolBase):
         """
 
         config = super().get_protocol_config('price')
-
-        pair_name = self.mappings_file['entities']['price']['query']['params']['pair']
+        aditional_filters = self.__get_additional_filters(pair, timestamp)
 
         response_data = super().query_first_element(
-            aditional_filters={pair_name: pair},
+            aditional_filters=aditional_filters,
             entity='price',
             timestamp=timestamp
         )
@@ -78,9 +78,25 @@ class Oracle(ProtocolBase):
             response_data=response_data,
             config=config
         )
-
-        if len(prices > 0):
+        if (len(prices) > 0):
             return prices[0]['price']
         else:
             raise Exception(
                 "Price not found for the specified pair at the timestamp")
+
+    def __get_additional_filters(self, pair, timestamp):
+        add_filters = {}
+        pair_name = self.mappings_file['entities']['price']['query']['params']['pair']
+        if 'block' in self.mappings_file['entities']['price']['query']['params']:
+            add_filters[pair_name] = pair.split("/")[0]
+            block_for_timestamp = Block(self.protocol, self.chain).get_block_at_timestamp(
+                timestamp
+            )
+            add_filters['block'] = block_for_timestamp
+
+        else:
+            add_filters[pair_name] = pair
+
+        print(add_filters)
+
+        return add_filters
