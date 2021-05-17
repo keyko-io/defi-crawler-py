@@ -92,11 +92,6 @@ To get prices from the oracles it's needed to instanciate an oracle object and c
 from deficrawler import Oracle
 
 chainlink = Oracle(protocol="chainlink", version=1, chain="Ethereum")
-compound = Oracle(protocol="Compound", version=2, chain="Ethereum")
-
-#Not all the protocols has the same available events to get data, to know which entities are supported for each protocol:
-chainlink.supported_entities()
-compound.suported_entities()
 
 #Get all the available pairs to get the data
 chainlink.get_all_pairs() 
@@ -121,13 +116,15 @@ Uniswap | Dexes | 2 | Ethereum
 Balancer | Dexes | 2 | Ethereum
 Bancor | Dexes | 1 | Ethereum
 SushiSwap | Dexes | 1 | Ethereum
+SushiSwap | Dexes | 1 | BSC
+SushiSwap | Dexes | 1 | Polygon
+Ubeswap | Dexes | 1 | Celo
+
 
 #### Oracles
 Name | Type | Version | Chain
 --------|-------|---------|-------
 Chainlink | Oracle | 1 | Ethereum
-Aave | Oracle | 2 | Ethereum
-Compound | Oracle | 2 | Ethereum
 
 #### Testing
 
