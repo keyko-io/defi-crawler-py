@@ -10,7 +10,7 @@ with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
 setup(
     name='deficrawler',
     description='Python package to query DeFi data from several The Graph subgraphs',
-        classifiers=[
+    classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
@@ -19,7 +19,7 @@ setup(
     ],
     long_description=long_description,
     long_description_content_type='text/markdown',
-    version='0.1.0',
+    version='0.1.1',
     author='keyko.io',
     author_email='root@keyko.io',
     url='https://github.com/keyko-io/defi-crawler-py',
