@@ -5,4 +5,5 @@ include README.md
 recursive-include tests *
 recursive-exclude * __pycache__
 
-recursive-include config *.json
+global-include *.json
+
