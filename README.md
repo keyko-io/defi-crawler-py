@@ -133,6 +133,13 @@ Tests are creatd using Pytest library. To run the tests
     pytest -v 
 
 
+#### Examples
+
+To run the examples run 
+    
+    python3 docs/examples.py 
+
+
 ### Contributions
 If you want to add a new protocol to be supported or a new entity to retrive data, create a PR with the new configuration of the protocol and the unit/integration tests of this new feature.
 

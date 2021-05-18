@@ -19,6 +19,4 @@ Timestamp | Timestamp of deposit | Timestamp
 Field | Description | Type
 --------|-------|--------------
 Id | Unique identifier for pool | String
-Liquidity | Total liquidity of the pool | Decimal
-Volume | Total volume of the pool | Decimal
-Fee | Swap fee of poll | Decimal
+Pool tokens | List of tokens of the pool | String

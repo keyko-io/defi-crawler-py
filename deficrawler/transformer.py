@@ -223,5 +223,5 @@ class Transformer:
             tokens_concat += token[field_name]
             if(index + 1) < len(tokens_list):
                 tokens_concat += '/'
-        
+
         return tokens_concat
