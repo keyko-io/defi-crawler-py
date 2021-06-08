@@ -41,6 +41,35 @@ class Lending(ProtocolBase):
             config=config
         )
 
+    def get_rates_from_date_range(self, from_date, to_date, entity, asset):
+        """
+        Gets rates data for the specified entity in the from_data to to_date period.
+        """
+
+        from_timestamp = int(
+            datetime.strptime(from_date, '%d/%m/%Y %H:%M:%S').strftime("%s"))
+
+        to_timestamp = int(datetime.strptime(
+            to_date, '%d/%m/%Y %H:%M:%S').strftime("%s"))
+
+        config = super().get_protocol_config(entity)
+
+        asset_filter = {
+            self.mappings_file['entities'][entity]['query']['params']['asset']: asset
+        }
+
+        response_data = super().query_data_from_date_range(
+            from_timestamp=from_timestamp,
+            to_timestamp=to_timestamp,
+            entity=entity,
+            aditional_filters=asset_filter
+        )
+
+        return super().map_data(
+            response_data=response_data,
+            config=config
+        )
+
     def get_all_users(self):
         """
         Returns all the users of the protocol
