@@ -153,10 +153,12 @@ class Lending(ProtocolBase):
                                                   aditional_filters=aditional_filters,
                                                   block=block_start)
 
-            print(respose)
-
             data = [*data,  *respose]
-            type(block_start)
-            block_start = int(block_start) + 1
+            updated_timestamp = respose[0]['blockTimestamp']
+
+            block_start = int(blocks.get_block_at_timestamp(updated_timestamp)[
+                0]['number']) - 1
+
+            print(block_start)
 
         return data
