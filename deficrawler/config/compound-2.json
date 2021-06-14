@@ -232,9 +232,9 @@
         }
       },
       "transformations": {
-        "variable_borrow_rate": "rates_units_aave",
-        "stable_borrow_rate": "rates_units_aave",
-        "supply_rate": "rates_units_aave"
+        "variable_borrow_rate": "rates_units_comp",
+        "stable_borrow_rate": "rates_na",
+        "supply_rate": "rates_units_comp"
       }
     }
   }

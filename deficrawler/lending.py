@@ -146,9 +146,6 @@ class Lending(ProtocolBase):
         block_end = int(blocks.get_block_at_timestamp(
             to_timestamp)[0]['number'])
 
-        print(f'block start {block_start}')
-        print(f'block end {block_end}')
-
         data = []
         while(block_start < block_end):
             respose = super().query_first_element(entity=entity,
@@ -163,7 +160,5 @@ class Lending(ProtocolBase):
                 updated_timestamp = respose[0]['blockTimestamp']
                 block_end = int(blocks.get_block_at_timestamp(updated_timestamp)[
                     0]['number']) - 1
-
-            print(block_end)
 
         return data
