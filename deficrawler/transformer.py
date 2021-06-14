@@ -253,7 +253,7 @@ class Transformer:
 
     def rates_na(self, common_field, element, protocol_field, query_elements):
         """
-        Return not applicable for a specific rate value
+        Return zero to not applicable rate value
         """
 
-        return 'na'
+        return 0
