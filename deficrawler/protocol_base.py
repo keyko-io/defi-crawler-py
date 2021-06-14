@@ -57,7 +57,7 @@ class ProtocolBase:
                                  endpoint=self.endpoint,
                                  filters=filters)
 
-    def query_first_element(self, entity, timestamp, aditional_filters):
+    def query_first_element(self, entity, timestamp, aditional_filters, block=None):
         """
         Gets the first existing element for the given entity with the specified filters
         """
@@ -66,7 +66,8 @@ class ProtocolBase:
                                  mappings_file=self.mappings_file,
                                  endpoint=self.endpoint,
                                  timestamp=timestamp,
-                                 aditional_filters=aditional_filters)
+                                 aditional_filters=aditional_filters,
+                                 block=block)
 
     def map_data(self, response_data, config):
         """
@@ -110,7 +111,6 @@ class ProtocolBase:
                 supported.append(attr)
 
         return supported
-
 
     def __get_protocol_file(self, protocol, version):
         """

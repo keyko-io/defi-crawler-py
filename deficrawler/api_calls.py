@@ -1,4 +1,4 @@
-from deficrawler.utils import get_attributes, get_filters
+from deficrawler.utils import get_attributes, get_filters, filter_method
 
 import requests
 import json
@@ -120,7 +120,7 @@ def get_data_filtered(query_input, entity, mappings_file, endpoint, filters):
     return json_records
 
 
-def get_first_element(query_input, entity, mappings_file, endpoint, timestamp, aditional_filters):
+def get_first_element(query_input, entity, mappings_file, endpoint, timestamp, aditional_filters, block=None):
     """
     Gets first existing data from the subgraph applying the given filters
     """
@@ -128,16 +128,20 @@ def get_first_element(query_input, entity, mappings_file, endpoint, timestamp, a
     filters_str = get_filters(aditional_filters)
     order_by = mappings_file['entities'][entity]['query']['params']['orderBy']
     attributes = get_attributes(entity, mappings_file)
-    lte = '_lte:'
+    params = filter_method(block=block,
+                           order_by_filter=order_by,
+                           lte='_lte:',
+                           timestamp=timestamp)
 
     query = query_input.format(
         entity_name=entity_name,
         order_by=order_by,
-        order_by_filter=order_by,
+        order_by_filter=params['order_by_filter'],
         aditional_filters=filters_str,
         attributes=attributes,
-        timestamp=timestamp,
-        lte=lte
+        timestamp=params['timestamp'],
+        lte=params['lte'],
+        block=params['block']
     )
 
     response = requests.post(endpoint, json={'query': query})

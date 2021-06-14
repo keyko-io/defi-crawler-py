@@ -2,7 +2,7 @@
     "protocol": {
       "name": "BLocks",
       "endpoint": {
-        "ethereum": "https://api.thegraph.com/subgraphs/name/ayogatot/griffin-ethereum-blocks",
+        "ethereum": "https://api.thegraph.com/subgraphs/name/elkfinance/eth-blocks",
         "bsc":"https://thegraph.com/explorer/subgraph/matthewlilley/bsc-blocks",
         "polygon":"https://thegraph.com/explorer/subgraph/ord786/matic-blocks"
       }

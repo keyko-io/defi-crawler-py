@@ -175,7 +175,7 @@
     },
     "rates": {
       "attributes": {
-        "asset": [
+        "token": [
           "reserve",
           "symbol"
         ],
@@ -210,6 +210,25 @@
         "stable_borrow_rate": "rates_units_aave",
         "supply_rate": "rates_units_aave"
       }
+    },
+    "token": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "symbol": [
+          "symbol"
+        ]
+      },
+      "query": {
+        "name": "reserves",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "id",
+          "initial_value": "0"
+        }
+      },
+      "transformations": {}
     },
     "user": {
       "attributes": {

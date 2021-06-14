@@ -1,3 +1,6 @@
+from datetime import time
+
+
 def get_attributes(entity, map_file):
     """
     Returns the list of attributes for the given map file and entity.
@@ -62,3 +65,27 @@ def format_attribute(list_fields):
     else:
         str_list_attr += format_element(list_fields)
     return str_list_attr
+
+
+def filter_method(block, order_by_filter, lte, timestamp):
+    """
+    Returns the block filter or the where filter depending of the block passed
+    """
+    block_ret = ''
+    order_by_filter_ret = ''
+    lte_ret = ''
+    timestamp_ret = ''
+
+    if block:
+        block_ret = "block:{{ number: {number} }}".format(number=block)
+    else:
+        order_by_filter_ret = order_by_filter
+        lte_ret = lte
+        timestamp_ret = timestamp
+
+    return {
+        'block': block_ret,
+        'order_by_filter': order_by_filter_ret,
+        'lte': lte_ret,
+        'timestamp': timestamp_ret
+    }
