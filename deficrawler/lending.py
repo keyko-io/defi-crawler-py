@@ -146,19 +146,24 @@ class Lending(ProtocolBase):
         block_end = int(blocks.get_block_at_timestamp(
             to_timestamp)[0]['number'])
 
+        print(f'block start {block_start}')
+        print(f'block end {block_end}')
+
         data = []
         while(block_start < block_end):
             respose = super().query_first_element(entity=entity,
                                                   timestamp=from_timestamp,
                                                   aditional_filters=aditional_filters,
-                                                  block=block_start)
+                                                  block=block_end)
 
             data = [*data,  *respose]
-            updated_timestamp = respose[0]['blockTimestamp']
+            if(len(respose) == 0 or int(respose[0]['blockTimestamp']) == 0):
+                block_end = block_start
+            else:
+                updated_timestamp = respose[0]['blockTimestamp']
+                block_end = int(blocks.get_block_at_timestamp(updated_timestamp)[
+                    0]['number']) - 1
 
-            block_start = int(blocks.get_block_at_timestamp(updated_timestamp)[
-                0]['number']) - 1
-
-            print(block_start)
+            print(block_end)
 
         return data
