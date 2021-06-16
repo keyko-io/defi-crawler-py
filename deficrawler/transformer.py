@@ -27,7 +27,10 @@ class Transformer:
             "tx_id_hyphen": self.tx_id_hyphen,
             "chainlink_prices": self.chainlink_prices,
             "concat_symbols": self.concat_symbols,
-            "concat_list_symbols": self.concat_list_symbols
+            "concat_list_symbols": self.concat_list_symbols,
+            "rates_units_aave": self.rates_units_aave,
+            "rates_units_comp": self.rates_units_comp,
+            "rates_na": self.rates_na
         }
 
     def transform(self, element, common_field, protocol_field, transformations, query_elements):
@@ -225,3 +228,32 @@ class Transformer:
                 tokens_concat += '/'
 
         return tokens_concat
+
+    def rates_units_aave(self, common_field, element, protocol_field, query_elements):
+        """
+        Return the aave rates units converted
+        """
+
+        rate = dict_digger.dig(
+            element,
+            *query_elements[common_field])
+
+        return float(rate)/1e25
+
+    def rates_units_comp(self, common_field, element, protocol_field, query_elements):
+        """
+        Return the comp rates units converted
+        """
+
+        rate = dict_digger.dig(
+            element,
+            *query_elements[common_field])
+
+        return float(rate) * 1e2
+
+    def rates_na(self, common_field, element, protocol_field, query_elements):
+        """
+        Return zero to not applicable rate value
+        """
+
+        return 0

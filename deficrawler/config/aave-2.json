@@ -12,7 +12,7 @@
   "entities": {
     "borrow": {
       "attributes": {
-        "tx_id":[
+        "tx_id": [
           "id"
         ],
         "user": [
@@ -44,12 +44,12 @@
       },
       "transformations": {
         "amount": "decimals",
-        "tx_id":"tx_id_colon"
+        "tx_id": "tx_id_colon"
       }
     },
     "deposit": {
       "attributes": {
-        "tx_id":[
+        "tx_id": [
           "id"
         ],
         "user": [
@@ -81,12 +81,12 @@
       },
       "transformations": {
         "amount": "decimals",
-        "tx_id":"tx_id_colon"
+        "tx_id": "tx_id_colon"
       }
     },
     "liquidation": {
       "attributes": {
-        "tx_id":[
+        "tx_id": [
           "id"
         ],
         "user": [
@@ -133,12 +133,12 @@
       "transformations": {
         "amount_principal": "principal_decimals",
         "amount_collateral": "collateral_decimals",
-        "tx_id":"tx_id_colon"
+        "tx_id": "tx_id_colon"
       }
     },
     "repay": {
       "attributes": {
-        "tx_id":[
+        "tx_id": [
           "id"
         ],
         "user": [
@@ -170,8 +170,65 @@
       },
       "transformations": {
         "amount": "decimals",
-        "tx_id":"tx_id_colon"
+        "tx_id": "tx_id_colon"
       }
+    },
+    "rates": {
+      "attributes": {
+        "token": [
+          "reserve",
+          "symbol"
+        ],
+        "variable_borrow_rate": [
+          "variableBorrowRate"
+        ],
+        "stable_borrow_rate": [
+          "stableBorrowRate"
+        ],
+        "supply_rate": [
+          "liquidityRate"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "name": "reserveParamsHistoryItems",
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "params": {
+          "orderBy": "timestamp",
+          "asset": "reserve"
+        }
+      },
+      "transformations": {
+        "variable_borrow_rate": "rates_units_aave",
+        "stable_borrow_rate": "rates_units_aave",
+        "supply_rate": "rates_units_aave"
+      }
+    },
+    "token": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "symbol": [
+          "symbol"
+        ]
+      },
+      "query": {
+        "name": "reserves",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "id",
+          "initial_value": "0"
+        }
+      },
+      "transformations": {}
     },
     "user": {
       "attributes": {
@@ -228,8 +285,8 @@
         }
       },
       "transformations": {
-        "collateral_amount":"decimals",
-        "debt_amount":"decimals"
+        "collateral_amount": "decimals",
+        "debt_amount": "decimals"
       }
     }
   }

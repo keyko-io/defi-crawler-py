@@ -11,7 +11,7 @@
   "entities": {
     "borrow": {
       "attributes": {
-        "tx_id":[
+        "tx_id": [
           "id"
         ],
         "user": [
@@ -35,12 +35,12 @@
         }
       },
       "transformations": {
-        "tx_id":"tx_id_hyphen"
+        "tx_id": "tx_id_hyphen"
       }
     },
     "deposit": {
       "attributes": {
-        "tx_id":[
+        "tx_id": [
           "id"
         ],
         "user": [
@@ -65,12 +65,12 @@
       },
       "transformations": {
         "token": "remove_token_prefix",
-        "tx_id":"tx_id_hyphen"
+        "tx_id": "tx_id_hyphen"
       }
     },
     "liquidation": {
       "attributes": {
-        "tx_id":[
+        "tx_id": [
           "id"
         ],
         "user": [
@@ -103,12 +103,12 @@
         }
       },
       "transformations": {
-        "tx_id":"tx_id_hyphen"
+        "tx_id": "tx_id_hyphen"
       }
     },
     "repay": {
       "attributes": {
-        "tx_id":[
+        "tx_id": [
           "id"
         ],
         "user": [
@@ -132,8 +132,27 @@
         }
       },
       "transformations": {
-        "tx_id":"tx_id_hyphen"
+        "tx_id": "tx_id_hyphen"
       }
+    },
+    "token": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "symbol": [
+          "underlyingSymbol"
+        ]
+      },
+      "query": {
+        "name": "markets",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "id",
+          "initial_value": "0"
+        }
+      },
+      "transformations": {}
     },
     "user": {
       "attributes": {
@@ -184,6 +203,39 @@
         }
       },
       "transformations": {}
+    },
+    "rates": {
+      "attributes": {
+        "token": [
+          "underlyingSymbol"
+        ],
+        "variable_borrow_rate": [
+          "borrowRate"
+        ],
+        "stable_borrow_rate": [
+          "borrowRate"
+        ],
+        "supply_rate": [
+          "supplyRate"
+        ],
+        "timestamp": [
+          "blockTimestamp"
+        ]
+      },
+      "query": {
+        "name": "markets",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "blockTimestamp",
+          "asset": "id",
+          "block": true
+        }
+      },
+      "transformations": {
+        "variable_borrow_rate": "rates_units_comp",
+        "stable_borrow_rate": "rates_na",
+        "supply_rate": "rates_units_comp"
+      }
     }
   }
 }
