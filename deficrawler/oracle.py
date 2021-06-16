@@ -79,7 +79,7 @@ class Oracle(ProtocolBase):
             config=config
         )
 
-        if len(prices > 0):
+        if len(prices) > 0:
             return prices[0]['price']
         else:
             raise Exception(
