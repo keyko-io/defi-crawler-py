@@ -4,7 +4,7 @@
       "endpoint": {
         "ethereum": "https://api.thegraph.com/subgraphs/name/elkfinance/eth-blocks",
         "bsc":"https://api.thegraph.com/subgraphs/name/matthewlilley/bsc-blocks",
-        "polygon":"https://thegraph.com/explorer/subgraph/ord786/matic-blocks"
+        "polygon":"https://api.thegraph.com/subgraphs/name/ord786/matic-blocks"
       }
     },
     "entities": {
@@ -22,6 +22,27 @@
           "extra_fields": {},
           "params": {
             "orderBy": "timestamp"
+          }
+        },
+        "transformations": []
+      },
+      "block_info": {
+        "attributes": {
+          "id": [
+            "id"
+          ],
+          "number": [
+            "number"
+          ],
+          "timestamp": [
+            "timestamp"
+          ]
+        },
+        "query": {
+          "name": "blocks",
+          "extra_fields": {},
+          "params": {
+            "number": "number"
           }
         },
         "transformations": []
