@@ -32,6 +32,25 @@ class Block(ProtocolBase):
             config=config
         )
 
+    def get_block_info(self, block_number):
+        """
+        Gets the block information related to a block number
+        """
+
+        config = super().get_protocol_config('block_info')
+
+        block_name = self.mappings_file['entities']['block_info']['query']['params']['number']
+
+        response_data = super().query_data_filtered(
+            filters={block_name: str(block_number)},
+            entity='block_info'
+        )
+
+        return super().map_data(
+            response_data=response_data,
+            config=config
+        )
+
     def supported_entities(self):
         """
         Returns the supported entities for the protocol
