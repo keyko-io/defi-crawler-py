@@ -64,6 +64,12 @@ def test_swap_shushi_1_eth():
     assert(float(swaps[0]['to_token_amount']) > 0)
     assert(float(swaps[0]['timestamp']) > 0)
 
+    list_swaps = shushi.get_data_from_date_range(
+        '04/05/2021 00:00:00', '04/05/2021 0:01:30', "swap", pool='0xceff51756c56ceffca006cd410b03ffc46dd3a58'
+    )
+
+    assert(len(list_swaps) > 0)
+
 
 def test_swap_shushi_1_bsc():
     shushi = Dex(protocol="SushiSwap", chain="bsc", version=1)
