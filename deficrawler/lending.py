@@ -24,10 +24,10 @@ class Lending(ProtocolBase):
         """
 
         from_timestamp = int(
-            datetime.strptime(from_date, '%d/%m/%Y %H:%M:%S').strftime("%s"))
+            datetime.strptime(from_date, '%d/%m/%Y %H:%M:%S').timestamp())
 
         to_timestamp = int(datetime.strptime(
-            to_date, '%d/%m/%Y %H:%M:%S').strftime("%s"))
+            to_date, '%d/%m/%Y %H:%M:%S').timestamp())
 
         config = super().get_protocol_config(entity)
 
