@@ -68,6 +68,35 @@
         "tx_id": "tx_id_hyphen"
       }
     },
+    "redeem": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "to"
+        ],
+        "token": [
+          "cTokenSymbol"
+        ],
+        "amount": [
+          "underlyingAmount"
+        ],
+        "timestamp": [
+          "blockTime"
+        ]
+      },
+      "query": {
+        "name": "redeemEvents",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "blockTime"
+        }
+      },
+      "transformations": {
+        "tx_id": "tx_id_hyphen"
+      }
+    },
     "liquidation": {
       "attributes": {
         "tx_id": [
