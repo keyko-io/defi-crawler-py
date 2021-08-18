@@ -141,7 +141,7 @@
           "id"
         ],
         "user": [
-          "to"
+          "from"
         ],
         "token": [
           "vTokenSymbol"
