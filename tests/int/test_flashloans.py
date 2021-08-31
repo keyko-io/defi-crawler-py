@@ -6,7 +6,6 @@ def test_flashloans_aave_2_eth():
     flash_loans = aave.get_data_from_date_range(
         '30/08/2021 00:00:01', '30/08/2021 18:01:00', "flashloans")
 
-    print(flash_loans)
     assert(flash_loans[0]['tx_id'] != "")
     assert(flash_loans[0]['protocol'] == "Aave")
     assert(flash_loans[0]['chain'] == "Ethereum")

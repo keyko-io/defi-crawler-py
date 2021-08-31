@@ -173,6 +173,43 @@
         "tx_id": "tx_id_colon"
       }
     },
+    "redeem": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "user",
+          "id"
+        ],
+        "token": [
+          "reserve",
+          "symbol"
+        ],
+        "amount": [
+          "amount"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "name": "redeemUnderlyings",
+        "params": {
+          "orderBy": "timestamp"
+        }
+      },
+      "transformations": {
+        "amount": "decimals",
+        "tx_id": "tx_id_colon"
+      }
+    },
     "flashloans": {
       "attributes": {
         "tx_id": [
