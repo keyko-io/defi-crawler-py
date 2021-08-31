@@ -103,20 +103,20 @@ def test_swap_shushi_1_polygon():
     assert(float(swaps[0]['timestamp']) > 0)
 
 
-# def test_swap_uniswap_3_eth():
-#     uniswap = Dex(protocol="Uniswap", chain="Ethereum", version=3)
-#     swaps = uniswap.get_data_from_date_range(
-#         '15/05/2021 00:00:00', '15/05/2021 00:10:00', "swap")
-#     assert(swaps[0]['tx_id'] != "")
-#     assert(swaps[0]['protocol'] == "Uniswap")
-#     assert(swaps[0]['chain'] == "Ethereum")
-#     assert(swaps[0]['version'] == 3)
-#     assert(swaps[0]['user'] != "")
-#     assert(swaps[0]['from_token'] != "")
-#     assert(swaps[0]['to_token'] != "")
-#     assert(float(swaps[0]['from_token_amount']) > 0)
-#     assert(float(swaps[0]['to_token_amount']) > 0)
-#     assert(float(swaps[0]['timestamp']) > 0)
+def test_swap_uniswap_3_eth():
+    uniswap = Dex(protocol="Uniswap", chain="Ethereum", version=3)
+    swaps = uniswap.get_data_from_date_range(
+        '31/08/2021 00:00:00', '31/08/2021 00:10:00', "swap")
+    assert(swaps[0]['tx_id'] != "")
+    assert(swaps[0]['protocol'] == "Uniswap")
+    assert(swaps[0]['chain'] == "Ethereum")
+    assert(swaps[0]['version'] == 3)
+    assert(swaps[0]['user'] != "")
+    assert(swaps[0]['from_token'] != "")
+    assert(swaps[0]['to_token'] != "")
+    assert(float(swaps[0]['from_token_amount']) > 0)
+    assert(float(swaps[0]['to_token_amount']) > 0)
+    assert(float(swaps[0]['timestamp']) > 0)
 
 
 def test_swap_ubeswap_1_celo():
