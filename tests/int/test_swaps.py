@@ -153,8 +153,8 @@ def test_swap_ubeswap_1_celo():
 
 
 def test_swap_balancer_2_eth():
-    ubeswap = Dex(protocol="balancer", chain="ethereum", version=2)
-    swaps = ubeswap.get_data_from_date_range(
+    balancer = Dex(protocol="balancer", chain="ethereum", version=2)
+    swaps = balancer.get_data_from_date_range(
         '31/08/2021 00:00:00', '31/08/2021 01:00:00', "swap")
 
     assert(swaps[0]['tx_id'] != "")
@@ -170,8 +170,8 @@ def test_swap_balancer_2_eth():
 
 
 def test_swap_balancer_2_polygon():
-    ubeswap = Dex(protocol="balancer", chain="polygon", version=2)
-    swaps = ubeswap.get_data_from_date_range(
+    balancer = Dex(protocol="balancer", chain="polygon", version=2)
+    swaps = balancer.get_data_from_date_range(
         '31/08/2021 00:00:00', '31/08/2021 01:00:00', "swap")
 
     assert(swaps[0]['tx_id'] != "")
@@ -187,8 +187,8 @@ def test_swap_balancer_2_polygon():
 
 
 def test_swap_balancer_2_arbitrum():
-    ubeswap = Dex(protocol="balancer", chain="arbitrum", version=2)
-    swaps = ubeswap.get_data_from_date_range(
+    balancer = Dex(protocol="balancer", chain="arbitrum", version=2)
+    swaps = balancer.get_data_from_date_range(
         '31/08/2021 00:00:00', '01/09/2021 0:01:30', "swap")
 
     assert(swaps[0]['tx_id'] != "")
@@ -201,3 +201,22 @@ def test_swap_balancer_2_arbitrum():
     assert(float(swaps[0]['from_token_amount']) > 0)
     assert(float(swaps[0]['to_token_amount']) > 0)
     assert(float(swaps[0]['timestamp']) > 0)
+
+
+def test_swap_pancakeswap_2_bsc():
+    pancakeswap = Dex(protocol="pancakeswap", chain="bsc", version=2)
+    swaps = pancakeswap.get_data_from_date_range(
+        '31/08/2021 00:00:00', '01/09/2021 0:01:30', "swap")
+
+    assert(swaps[0]['tx_id'] != "")
+    assert(swaps[0]['protocol'] == "pancakeswap")
+    assert(swaps[0]['chain'] == "bsc")
+    assert(swaps[0]['version'] == 2)
+    assert(swaps[0]['user'] != "")
+    assert(swaps[0]['from_token'] != "")
+    assert(swaps[0]['to_token'] != "")
+    assert(float(swaps[0]['from_token_amount']) > 0)
+    assert(float(swaps[0]['to_token_amount']) > 0)
+    assert(float(swaps[0]['timestamp']) > 0)
+
+
