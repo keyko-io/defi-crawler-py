@@ -21,6 +21,10 @@ class Transformer:
             "to_token": self.to_token_selection,
             "from_token_amount": self.from_token_amount_selection,
             "to_token_amount": self.to_token_amount_selection,
+            "from_token_v3": self.from_token_selection_v3,
+            "to_token_v3": self.to_token_selection_v3,
+            "from_token_amount_v3": self.from_token_amount_selection_v3,
+            "to_token_amount_v3": self.to_token_amount_selection_v3,
             "array_length": self.array_length,
             "remove_token_prefix": self.remove_token_prefix,
             "tx_id_colon": self.tx_id_colon,
@@ -256,4 +260,64 @@ class Transformer:
         Return zero to not applicable rate value
         """
 
-        return 0
+        return 
+        
+    def from_token_selection_v3(self, common_field, element, protocol_field, query_elements):
+        """
+        Gets the from token in a swap for uniswap v3, gets the field with amount positive
+        """
+        amount_0 = dict_digger.dig(
+            element,
+            *query_elements['from_token_amount'][0])
+
+        index = 0 if (amount_0.find('-') == -1) else 1
+
+        return dict_digger.dig(
+            element,
+            *query_elements['from_token'][index])
+
+    def to_token_selection_v3(self, common_field, element, protocol_field, query_elements):
+        """
+        Gets the to token in a swap for uniswap v3, gets the field with amount negative
+        """
+        amount_0 = dict_digger.dig(
+            element,
+            *query_elements['to_token_amount'][0])
+
+        index = 0 if (amount_0.find('-') != -1) else 1
+
+        return dict_digger.dig(
+            element,
+            *query_elements['to_token'][index])
+
+    def from_token_amount_selection_v3(self, common_field, element, protocol_field, query_elements):
+        """
+        Gets the from token amount in a swap, gets the field with amount positive
+        """
+        amount_0 = dict_digger.dig(
+            element,
+            *query_elements['from_token_amount'][0])
+
+        index = 0 if (amount_0.find('-') == -1) else 1
+
+        amount = dict_digger.dig(
+            element,
+            *query_elements['from_token_amount'][index])
+
+        return amount.replace("-", "")
+
+    def to_token_amount_selection_v3(self, common_field, element, protocol_field, query_elements):
+        """
+        Gets the to token amount in a swap, gets the field with amount negative
+        """
+        amount_0 = dict_digger.dig(
+            element,
+            *query_elements['from_token_amount'][0])
+
+        index = 0 if (amount_0.find('-') != -1) else 1
+
+        amount = dict_digger.dig(
+            element,
+            *query_elements['from_token_amount'][index])
+
+        return amount.replace("-", "")
