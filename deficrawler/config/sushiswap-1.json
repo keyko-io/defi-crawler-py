@@ -7,7 +7,8 @@
     "endpoint": {
       "ethereum": "https://api.thegraph.com/subgraphs/name/croco-finance/sushiswap",
       "bsc": "https://api.thegraph.com/subgraphs/name/sushiswap/bsc-exchange",
-      "polygon": "https://api.thegraph.com/subgraphs/name/sushiswap/matic-exchange"
+      "polygon": "https://api.thegraph.com/subgraphs/name/sushiswap/matic-exchange",
+      "fantom": "https://api.thegraph.com/subgraphs/name/sushiswap/fantom-exchange"
     }
   },
   "entities": {
