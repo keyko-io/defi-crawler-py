@@ -112,13 +112,22 @@ Aave | Lending | 2 | Polygon
 Compound | Lending | 2 | Ethereum
 Cream | Lending | 2 | Ethereum
 Cream | Lending | 2 | BSC
+Cream | Lending | 2 | Polygon
+Cream | Lending | 2 | Arbitrum
 Uniswap | Dexes | 2 | Ethereum
+Uniswap | Dexes | 3 | Ethereum
 Balancer | Dexes | 2 | Ethereum
+Balancer | Dexes | 2 | Arbitrum
+Balancer | Dexes | 2 | Polygon
 Bancor | Dexes | 1 | Ethereum
 SushiSwap | Dexes | 1 | Ethereum
 SushiSwap | Dexes | 1 | BSC
 SushiSwap | Dexes | 1 | Polygon
+SushiSwap | Dexes | 1 | Fantom
 Ubeswap | Dexes | 1 | Celo
+Pancakeswap | Dexes | 2 | BSC
+
+
 
 
 #### Oracles

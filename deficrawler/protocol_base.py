@@ -17,7 +17,7 @@ class ProtocolBase:
         self.query_all_elements = Querys.QUERY_ALL_ELEMENTS
         self.query_filter = Querys.QUERY_ELEMENT_FILTER
         self.query_first = Querys.QUERY_FIRST_ELEMENT
-        self.mappings_file = self.__get_protocol_file(protocol, version)
+        self.mappings_file = self.__get_protocol_file(protocol, version, chain)
         self.chain = chain
         self.version = version
         self.endpoint = self.__get_protocol_endpoint(chain)
@@ -112,7 +112,7 @@ class ProtocolBase:
 
         return supported
 
-    def __get_protocol_file(self, protocol, version):
+    def __get_protocol_file(self, protocol, version, chain):
         """
         Gets the json file for the specified protocol and the specified version.
         If the protocol does not exits at this version will raise an error.
@@ -120,12 +120,18 @@ class ProtocolBase:
         try:
             config_file = pkgutil.get_data(
                 'deficrawler.config',
-                protocol.lower() + "-" + str(version) + ".json"
+                protocol.lower() + "-" + str(version) + "-" + chain.lower() + ".json"
             )
 
         except FileNotFoundError:
-            raise Exception('Protocol ' + protocol +
-                            ' version ' + str(version) + ' not supported')
+            try:
+                config_file = pkgutil.get_data(
+                    'deficrawler.config',
+                    protocol.lower() + "-" + str(version) + ".json"
+                )
+            except:
+                raise Exception('Protocol ' + protocol +
+                                ' version ' + str(version) + ' not supported')
         except:
             raise
 

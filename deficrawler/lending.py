@@ -17,7 +17,7 @@ class Lending(ProtocolBase):
         )
         self.protocol_type = "lending"
 
-    def get_data_from_date_range(self, from_date, to_date, entity):
+    def get_data_from_date_range(self, from_date, to_date, entity, user=''):
         """
         Gets data for the specified entity in the from_data to to_date period.
         The entities are defined in the configuration of each protocol.
@@ -31,10 +31,17 @@ class Lending(ProtocolBase):
 
         config = super().get_protocol_config(entity)
 
+        user_filter = ''
+        if(user != ''):
+            user_filter = {
+                self.mappings_file['entities'][entity]['query']['params']['user']: user
+            }
+
         response_data = super().query_data_from_date_range(
             from_timestamp=from_timestamp,
             to_timestamp=to_timestamp,
-            entity=entity
+            entity=entity,
+            aditional_filters=user_filter
         )
 
         return super().map_data(

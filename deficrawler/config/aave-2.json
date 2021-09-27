@@ -39,7 +39,8 @@
         },
         "name": "borrows",
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "timestamp",
+          "user": "user"
         }
       },
       "transformations": {
@@ -76,7 +77,8 @@
         },
         "name": "deposits",
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "timestamp",
+          "user": "user"
         }
       },
       "transformations": {
@@ -127,7 +129,8 @@
         },
         "name": "liquidationCalls",
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "timestamp",
+          "user": "user"
         }
       },
       "transformations": {
@@ -165,7 +168,8 @@
           ]
         },
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "timestamp",
+          "user": "user"
         }
       },
       "transformations": {
@@ -202,7 +206,8 @@
         },
         "name": "redeemUnderlyings",
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "timestamp",
+          "user": "user"
         }
       },
       "transformations": {
@@ -239,7 +244,8 @@
           ]
         },
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "timestamp",
+          "user": "initiator"
         }
       },
       "transformations": {
