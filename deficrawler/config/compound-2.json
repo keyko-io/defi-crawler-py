@@ -31,7 +31,8 @@
         "extra_fields": {},
         "name": "borrowEvents",
         "params": {
-          "orderBy": "blockTime"
+          "orderBy": "blockTime",
+          "user":"borrower"
         }
       },
       "transformations": {
@@ -60,7 +61,8 @@
         "name": "mintEvents",
         "extra_fields": {},
         "params": {
-          "orderBy": "blockTime"
+          "orderBy": "blockTime",
+          "user":"to"
         }
       },
       "transformations": {
@@ -99,7 +101,8 @@
         "extra_fields": {},
         "name": "liquidationEvents",
         "params": {
-          "orderBy": "blockTime"
+          "orderBy": "blockTime",
+          "user":"from"
         }
       },
       "transformations": {
@@ -128,7 +131,8 @@
         "name": "repayEvents",
         "extra_fields": {},
         "params": {
-          "orderBy": "blockTime"
+          "orderBy": "blockTime",
+          "user":"payer"
         }
       },
       "transformations": {
@@ -157,7 +161,8 @@
         "name": "redeemEvents",
         "extra_fields": {},
         "params": {
-          "orderBy": "blockTime"
+          "orderBy": "blockTime",
+          "user":"to"
         }
       },
       "transformations": {
