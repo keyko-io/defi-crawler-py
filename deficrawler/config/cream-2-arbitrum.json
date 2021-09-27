@@ -3,11 +3,9 @@
     "name": "Cream",
     "type": "Lending",
     "version": 2,
-    "chain": "Ethereum",
+    "chain": "Arbitrum",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/creamfinancedev/cream-lending",
-      "bsc": "https://api.thegraph.com/subgraphs/name/akshaysrivastav/cream-finance-bsc",
-      "polygon":"https://api.thegraph.com/subgraphs/name/creamfinancedev/cream-polygon"
+      "arbitrum":"https://api.thegraph.com/subgraphs/name/creamfinancedev/cream-arbitrum"
     }
   },
   "entities": {
@@ -47,7 +45,7 @@
           "id"
         ],
         "user": [
-          "to"
+          "minter"
         ],
         "token": [
           "cTokenSymbol"
@@ -77,22 +75,22 @@
           "id"
         ],
         "user": [
-          "from"
+          "borrower"
         ],
         "token_principal": [
-          "underlyingSymbol"
+          "seizeCToken"
         ],
         "token_collateral": [
-          "cTokenSymbol"
+          "cToken"
         ],
         "amount_principal": [
           "underlyingRepayAmount"
         ],
         "amount_collateral": [
-          "amount"
+          "underlyingSeizeAmount"
         ],
         "liquidator": [
-          "to"
+          "liquidator"
         ],
         "timestamp": [
           "blockTime"
@@ -116,7 +114,7 @@
           "id"
         ],
         "user": [
-          "payer"
+          "borrower"
         ],
         "token": [
           "underlyingSymbol"
@@ -196,7 +194,7 @@
           "id"
         ],
         "user": [
-          "to"
+          "redeemer"
         ],
         "token": [
           "cTokenSymbol"

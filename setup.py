@@ -20,7 +20,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     include_package_data=True,
-    version='0.2.9',
+    version='0.3.0',
     author='keyko.io',
     author_email='root@keyko.io',
     url='https://github.com/keyko-io/defi-crawler-py',

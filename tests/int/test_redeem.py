@@ -85,6 +85,38 @@ def test_redeem_cream_2_eth():
     assert(float(redeem[0]['amount']) > 0)
     assert(redeem[0]['timestamp'] > 0)
 
+def test_redeem_cream_2_polygon():
+    cream = Lending(protocol="Cream", chain="Polygon", version=2)
+    redeem = cream.get_data_from_date_range(
+        '25/09/2021 00:00:01', '26/09/2021 18:01:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Cream")
+    assert(redeem[0]['chain'] == "Polygon")
+    assert(redeem[0]['version'] == 2)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(float(redeem[0]['amount']) > 0)
+    assert(redeem[0]['timestamp'] > 0)
+
+
+
+def test_redeem_cream_2_arbitrum():
+    cream = Lending(protocol="Cream", chain="Arbitrum", version=2)
+    redeem = cream.get_data_from_date_range(
+        '25/09/2021 00:00:01', '26/09/2021 18:01:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Cream")
+    assert(redeem[0]['chain'] == "Arbitrum")
+    assert(redeem[0]['version'] == 2)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(float(redeem[0]['amount']) > 0)
+    assert(redeem[0]['timestamp'] > 0)
+
+
+
 def test_redeem_cream_2_eth_user():
     cream = Lending(protocol="Cream", chain="Ethereum", version=2)
     redeems = cream.get_data_from_date_range(

@@ -85,7 +85,36 @@ def test_repay_cream_2_eth():
     assert(float(repays[0]['amount']) > 0)
     assert(repays[0]['timestamp'] > 0)
 
-def test_repay_cream_2_eth():
+
+def test_repay_cream_2_arbitrum():
+    cream = Lending(protocol="Cream", chain="Arbitrum", version=2)
+    repays = cream.get_data_from_date_range(
+        '20/09/2021 00:00:01', '26/09/2021 11:54:10', "repay")
+
+    assert(repays[0]['tx_id'] != "")
+    assert(repays[0]['protocol'] == "Cream")
+    assert(repays[0]['chain'] == "Arbitrum")
+    assert(repays[0]['version'] == 2)
+    assert(repays[0]['user'] != "")
+    assert(repays[0]['token'] != "")
+    assert(float(repays[0]['amount']) > 0)
+    assert(repays[0]['timestamp'] > 0)
+
+def test_repay_cream_2_polygon():
+    cream = Lending(protocol="Cream", chain="Polygon", version=2)
+    repays = cream.get_data_from_date_range(
+        '25/09/2021 00:00:01', '26/09/2021 11:54:10', "repay")
+
+    assert(repays[0]['tx_id'] != "")
+    assert(repays[0]['protocol'] == "Cream")
+    assert(repays[0]['chain'] == "Polygon")
+    assert(repays[0]['version'] == 2)
+    assert(repays[0]['user'] != "")
+    assert(repays[0]['token'] != "")
+    assert(float(repays[0]['amount']) > 0)
+    assert(repays[0]['timestamp'] > 0)
+
+def test_repay_cream_2_eth_user():
     cream = Lending(protocol="Cream", chain="Ethereum", version=2)
     repays = cream.get_data_from_date_range(
         '11/05/2021 00:00:01', '12/05/2021 11:54:10', "repay", "0xf662eba33a8630b51a3d955213dd7a58c2a687a9")
