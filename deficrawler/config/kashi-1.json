@@ -1,0 +1,52 @@
+{
+  "protocol": {
+    "name": "Kashi",
+    "type": "Lending",
+    "version": 1,
+    "endpoint": {
+      "ethereum": "https://api.thegraph.com/subgraphs/name/sushiswap/bentobox"
+    }
+  },
+  "entities": {
+    "borrow": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "root",
+          "user",
+          "id"
+        ],
+        "token": [
+          "token",
+          "symbol"
+        ],
+        "amount": [
+          "amount"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "decimals": [
+            "token",
+            "decimals"
+          ]
+        },
+        "name": "kashiPairActions",
+        "params": {
+          "orderBy": "timestamp",
+          "type": "borrow"
+        }
+      },
+      "transformations": {
+        "timestamp": "to_int",
+        "tx_id": "tx_id_hyphen",
+        "amount": "decimals"
+      }
+    }
+  }
+}
