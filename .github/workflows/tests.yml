@@ -23,4 +23,4 @@ jobs:
         pip install pytest dict_digger requests
     - name: Tests
       run: |
-        python -m pytest tests/unit -v
+        python -m pytest -v
