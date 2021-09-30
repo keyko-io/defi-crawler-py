@@ -164,3 +164,27 @@ def test_borrow_kashi_1_eth():
     assert(borrows[0]['token'] != "")
     assert(float(borrows[0]['amount']) > 0)
     assert(borrows[0]['timestamp'] > 0)
+
+
+def test_borrow_kashi_1_eth_user():
+    kashi = Lending(protocol="Kashi", chain="Ethereum", version=1)
+    borrows = kashi.get_data_from_date_range(
+        '20/09/2021 00:00:01', '30/09/2021 11:54:10', "borrow", "0xb715606b0482bd0ec5c54e8dc616e1deb59d5308")
+
+    for borrow in borrows:
+        assert(borrow['user'] == "0xb715606b0482bd0ec5c54e8dc616e1deb59d5308")
+
+
+def test_borrow_kashi_1_polygon():
+    kashi = Lending(protocol="Kashi", chain="Polygon", version=1)
+    borrows = kashi.get_data_from_date_range(
+        '30/09/2021 00:00:01', '30/09/2021 11:54:10', "borrow")
+
+    assert(borrows[0]['tx_id'] != "")
+    assert(borrows[0]['protocol'] == "Kashi")
+    assert(borrows[0]['chain'] == "Polygon")
+    assert(borrows[0]['version'] == 1)
+    assert(borrows[0]['user'] != "")
+    assert(borrows[0]['token'] != "")
+    assert(float(borrows[0]['amount']) > 0)
+    assert(borrows[0]['timestamp'] > 0)
