@@ -151,3 +151,35 @@ def test_redeem_cream_2_bsc_user():
     for redeem in redeems:
         assert(redeem['user'] ==
                "0x1ffe17b99b439be0afc831239ddecda2a790ff3a")
+
+
+
+def test_redeem_kashi_1_eth():
+    kashi = Lending(protocol="Kashi", chain="Ethereum", version=1)
+    redeem = kashi.get_data_from_date_range(
+        '25/09/2021 00:00:01', '30/09/2021 18:01:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Kashi")
+    assert(redeem[0]['chain'] == "Ethereum")
+    assert(redeem[0]['version'] == 1)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(float(redeem[0]['amount']) > 0)
+    assert(redeem[0]['timestamp'] > 0)
+
+
+def test_redeem_kashi_1_polygon():
+    kashi = Lending(protocol="Kashi", chain="Polygon", version=1)
+    redeem = kashi.get_data_from_date_range(
+        '25/09/2021 00:00:01', '30/09/2021 18:01:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Kashi")
+    assert(redeem[0]['chain'] == "Polygon")
+    assert(redeem[0]['version'] == 1)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(float(redeem[0]['amount']) > 0)
+    assert(redeem[0]['timestamp'] > 0)
+

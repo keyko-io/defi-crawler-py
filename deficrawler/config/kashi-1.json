@@ -1,0 +1,179 @@
+{
+  "protocol": {
+    "name": "Kashi",
+    "type": "Lending",
+    "version": 1,
+    "endpoint": {
+      "ethereum": "https://api.thegraph.com/subgraphs/name/sushiswap/bentobox",
+      "polygon": "https://api.thegraph.com/subgraphs/name/sushiswap/matic-bentobox",
+      "xdai": "https://api.thegraph.com/subgraphs/name/sushiswap/xdai-bentobox",
+      "fantom": "https://api.thegraph.com/subgraphs/name/sushiswap/fantom-bentobox"
+    }
+  },
+  "entities": {
+    "borrow": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "root",
+          "user",
+          "id"
+        ],
+        "token": [
+          "token",
+          "symbol"
+        ],
+        "amount": [
+          "amount"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "decimals": [
+            "token",
+            "decimals"
+          ]
+        },
+        "name": "kashiPairActions",
+        "params": {
+          "orderBy": "timestamp",
+          "type": "borrow",
+          "user": "root_contains"
+        }
+      },
+      "transformations": {
+        "timestamp": "to_int",
+        "tx_id": "tx_id_hyphen",
+        "amount": "decimals"
+      }
+    },
+    "repay": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "root",
+          "user",
+          "id"
+        ],
+        "token": [
+          "token",
+          "symbol"
+        ],
+        "amount": [
+          "amount"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "name": "kashiPairActions",
+        "extra_fields": {
+          "decimals": [
+            "token",
+            "decimals"
+          ]
+        },
+        "params": {
+          "orderBy": "timestamp",
+          "type": "repay",
+          "user": "root_contains"
+        }
+      },
+      "transformations": {
+        "timestamp": "to_int",
+        "tx_id": "tx_id_hyphen",
+        "amount": "decimals"
+      }
+    },
+    "deposit": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "root",
+          "user",
+          "id"
+        ],
+        "token": [
+          "token",
+          "symbol"
+        ],
+        "amount": [
+          "share"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "decimals": [
+            "token",
+            "decimals"
+          ]
+        },
+        "name": "kashiPairActions",
+        "params": {
+          "orderBy": "timestamp",
+          "type": "addCollateral",
+          "user": "root_contains"
+        }
+      },
+      "transformations": {
+        "timestamp": "to_int",
+        "tx_id": "tx_id_hyphen",
+        "amount": "decimals"
+      }
+    },
+    "redeem": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "root",
+          "user",
+          "id"
+        ],
+        "token": [
+          "token",
+          "symbol"
+        ],
+        "amount": [
+          "share"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "decimals": [
+            "token",
+            "decimals"
+          ]
+        },
+        "name": "kashiPairActions",
+        "params": {
+          "orderBy": "timestamp",
+          "type": "removeCollateral",
+          "user": "root_contains"
+        }
+      },
+      "transformations": {
+        "timestamp": "to_int",
+        "tx_id": "tx_id_hyphen",
+        "amount": "decimals"
+      }
+    }
+  }
+}

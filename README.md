@@ -114,6 +114,10 @@ Cream | Lending | 2 | Ethereum
 Cream | Lending | 2 | BSC
 Cream | Lending | 2 | Polygon
 Cream | Lending | 2 | Arbitrum
+Kashi | Lending | 1 | Ethereum
+Kashi | Lending | 1 | Polygon
+Kashi | Lending | 1 | xDai
+Kashi | Lending | 1 | fantom
 Uniswap | Dexes | 2 | Ethereum
 Uniswap | Dexes | 3 | Ethereum
 Balancer | Dexes | 2 | Ethereum

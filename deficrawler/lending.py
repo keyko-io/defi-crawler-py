@@ -31,17 +31,15 @@ class Lending(ProtocolBase):
 
         config = super().get_protocol_config(entity)
 
-        user_filter = ''
-        if(user != ''):
-            user_filter = {
-                self.mappings_file['entities'][entity]['query']['params']['user']: user
-            }
+        aditional_filters = self.__get_aditional_filters__(
+            user=user, entity=entity
+        )
 
         response_data = super().query_data_from_date_range(
             from_timestamp=from_timestamp,
             to_timestamp=to_timestamp,
             entity=entity,
-            aditional_filters=user_filter
+            aditional_filters=aditional_filters
         )
 
         return super().map_data(
@@ -169,3 +167,22 @@ class Lending(ProtocolBase):
                     0]['number']) - 1
 
         return data
+
+    def __get_aditional_filters__(self, user, entity):
+        user_filter = {}
+
+        if(user != ''):
+            user_filter = {
+                self.mappings_file['entities'][entity]['query']['params']['user']: user
+            }
+
+        type = {}
+        if('type' in self.mappings_file['entities'][entity]['query']['params']):
+            type = {
+                'type': self.mappings_file['entities'][entity]['query']['params']['type']
+            }
+
+        if (len(user_filter.items()) > 0 or len(type.items()) > 0):
+            return {**user_filter, **type}
+
+        return ''

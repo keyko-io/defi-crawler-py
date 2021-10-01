@@ -34,7 +34,8 @@ class Transformer:
             "concat_list_symbols": self.concat_list_symbols,
             "rates_units_aave": self.rates_units_aave,
             "rates_units_comp": self.rates_units_comp,
-            "rates_na": self.rates_na
+            "rates_na": self.rates_na,
+            "to_int": self.to_int
         }
 
     def transform(self, element, common_field, protocol_field, transformations, query_elements):
@@ -321,3 +322,14 @@ class Transformer:
             *query_elements['from_token_amount'][index])
 
         return amount.replace("-", "")
+
+
+    def to_int(self, common_field, element, protocol_field, query_elements):
+        """
+        Transform the value to integer
+        """
+        ele = dict_digger.dig(
+            element,
+            *query_elements[common_field])
+
+        return int(ele)

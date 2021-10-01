@@ -133,3 +133,33 @@ def test_deposit_cream_2_bsc_user():
 
     for deposit in deposits:
         assert(deposit['user'] == "0xc6fb91e0ee3b1077c5465d54b3dda176a695199b")
+
+
+def test_deposit_kashi_1_eth():
+    kashi = Lending(protocol="kashi", chain="Ethereum", version=1)
+    deposits = kashi.get_data_from_date_range(
+        '25/09/2021 00:00:01', '30/09/2021 11:54:10', "deposit")
+
+    assert(deposits[0]['tx_id'] != "")
+    assert(deposits[0]['protocol'] == "kashi")
+    assert(deposits[0]['chain'] == "Ethereum")
+    assert(deposits[0]['version'] == 1)
+    assert(deposits[0]['user'] != "")
+    assert(deposits[0]['token'] != "")
+    assert(float(deposits[0]['amount']) > 0)
+    assert(deposits[0]['timestamp'] > 0)
+
+
+def test_deposit_kashi_1_polygon():
+    kashi = Lending(protocol="kashi", chain="Polygon", version=1)
+    deposits = kashi.get_data_from_date_range(
+        '25/09/2021 00:00:01', '30/09/2021 11:54:10', "deposit")
+
+    assert(deposits[0]['tx_id'] != "")
+    assert(deposits[0]['protocol'] == "kashi")
+    assert(deposits[0]['chain'] == "Polygon")
+    assert(deposits[0]['version'] == 1)
+    assert(deposits[0]['user'] != "")
+    assert(deposits[0]['token'] != "")
+    assert(float(deposits[0]['amount']) > 0)
+    assert(deposits[0]['timestamp'] > 0)
