@@ -32,6 +32,10 @@
         "to_token_amount": [
           "tokenAmountOut"
         ],
+        "pool": [
+          "poolId",
+          "address"
+        ],
         "timestamp": [
           "timestamp"
         ]

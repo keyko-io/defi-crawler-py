@@ -54,6 +54,10 @@
             "amount1"
           ]
         ],
+        "pool": [
+          "pool",
+          "id"
+        ],
         "timestamp": [
           "timestamp"
         ]
