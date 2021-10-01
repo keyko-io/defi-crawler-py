@@ -61,6 +61,10 @@
             "amount1Out"
           ]
         ],
+        "pool": [
+          "pair",
+          "id"
+        ],
         "timestamp": [
           "timestamp"
         ]
