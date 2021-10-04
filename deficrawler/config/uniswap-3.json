@@ -76,6 +76,86 @@
         "from_token_amount": "from_token_amount_v3",
         "to_token_amount": "to_token_amount_v3"
       }
+    },
+    "mint": {
+      "attributes": {
+        "tx_id": [
+          "transaction",
+          "id"
+        ],
+        "token0": [
+          "token0",
+          "symbol"
+        ],
+        "token1": [
+          "token1",
+          "symbol"
+        ],
+        "amount0": [
+          "amount0"
+        ],
+        "amount1": [
+          "amount1"
+        ],
+        "user": [
+          "owner"
+        ],
+        "pool": [
+          "pool",
+          "id"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "name": "mints",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "timestamp"
+        }
+      },
+      "transformations": {}
+    },
+    "burn": {
+      "attributes": {
+        "tx_id": [
+          "transaction",
+          "id"
+        ],
+        "token0": [
+          "token0",
+          "symbol"
+        ],
+        "token1": [
+          "token1",
+          "symbol"
+        ],
+        "amount0": [
+          "amount0"
+        ],
+        "amount1": [
+          "amount1"
+        ],
+        "user": [
+          "owner"
+        ],
+        "pool": [
+          "pool",
+          "id"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "name": "burns",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "timestamp"
+        }
+      },
+      "transformations": {}
     }
   }
 }

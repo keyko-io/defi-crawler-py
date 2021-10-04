@@ -1,11 +1,10 @@
 {
   "protocol": {
-    "name": "Uniswap",
+    "name": "QuickSwap",
     "type": "Descentralized Exchange",
-    "version": 2,
-    "chain": "Ethereum",
+    "version": 1,
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2"
+      "polygon": "https://api.thegraph.com/subgraphs/name/proy24/quickswap-polygon"
     }
   },
   "entities": {
