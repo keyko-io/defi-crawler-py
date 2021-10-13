@@ -2,6 +2,7 @@ from deficrawler.utils import get_attributes, get_filters, filter_method
 
 import requests
 import json
+from retry import retry
 
 
 def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_file, endpoint, aditional_filters=""):
@@ -28,21 +29,16 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
             aditional_filters=filters_str
         )
 
-        response = requests.post(endpoint, json={'query': query})
-        json_data = json.loads(response.text)
-        if 'errors' in json_data:
-            raise Exception(
-                'There was an error getting the data from TheGraph' + json.dumps(json_data))
-        else:
-            response_lenght = len(json_data['data'][entity_name])
-            if (response_lenght > 0):
-                json_data = json.loads(response.text)
-                list_data = json_data['data'][entity_name]
-                iteration_timestamp = json_data['data'][entity_name][response_lenght - 1][order_by]
+        json_data = call_api(endpoint=endpoint, query=query)
 
-                json_records = [*json_records, *list_data]
-            else:
-                are_data = False
+        response_lenght = len(json_data['data'][entity_name])
+        if (response_lenght > 0):
+            list_data = json_data['data'][entity_name]
+            iteration_timestamp = json_data['data'][entity_name][response_lenght - 1][order_by]
+
+            json_records = [*json_records, *list_data]
+        else:
+            are_data = False
 
     return json_records
 
@@ -50,7 +46,7 @@ def get_data_from(query_input, entity, from_timestamp, to_timestamp, mappings_fi
 def get_data_parameter(query_input, entity, mappings_file, endpoint):
     """
     Gets all the existing data for the given entity.
-    If this entity has some filter, in the config file, the query will apply 
+    If this entity has some filter, in the config file, the query will apply
     this filter
     """
     are_data = True
@@ -69,21 +65,16 @@ def get_data_parameter(query_input, entity, mappings_file, endpoint):
             attributes=attributes
         )
 
-        response = requests.post(endpoint, json={'query': query})
-        json_data = json.loads(response.text)
-        if 'errors' in json_data:
-            raise Exception(
-                'There was an error getting the data from TheGraph' + json.dumps(json_data))
-        else:
-            response_lenght = len(json_data['data'][entity_name])
-            if (response_lenght > 0):
-                json_data = json.loads(response.text)
-                list_data = json_data['data'][entity_name]
-                filter_value = json_data['data'][entity_name][response_lenght - 1][order_by]
+        json_data = call_api(endpoint=endpoint, query=query)
 
-                json_records = [*json_records, *list_data]
-            else:
-                are_data = False
+        response_lenght = len(json_data['data'][entity_name])
+        if (response_lenght > 0):
+            list_data = json_data['data'][entity_name]
+            filter_value = json_data['data'][entity_name][response_lenght - 1][order_by]
+
+            json_records = [*json_records, *list_data]
+        else:
+            are_data = False
 
     return json_records
 
@@ -103,19 +94,14 @@ def get_data_filtered(query_input, entity, mappings_file, endpoint, filters):
         attributes=attributes
     )
 
-    response = requests.post(endpoint, json={'query': query})
-    json_data = json.loads(response.text)
+    json_data = call_api(endpoint=endpoint, query=query)
     json_records = []
-    if 'errors' in json_data:
-        raise Exception(
-            'There was an error getting the data from TheGraph' + json.dumps(json_data))
-    else:
-        response_lenght = len(json_data['data'][entity_name])
-        if (response_lenght > 0):
-            json_data = json.loads(response.text)
-            list_data = json_data['data'][entity_name]
 
-            json_records = [*list_data]
+    response_lenght = len(json_data['data'][entity_name])
+    if (response_lenght > 0):
+        list_data = json_data['data'][entity_name]
+
+        json_records = [*list_data]
 
     return json_records
 
@@ -144,18 +130,27 @@ def get_first_element(query_input, entity, mappings_file, endpoint, timestamp, a
         block=params['block']
     )
 
+    json_data = call_api(endpoint=endpoint, query=query)
+    json_records = []
+
+    response_lenght = len(json_data['data'][entity_name])
+    if (response_lenght > 0):
+        list_data = json_data['data'][entity_name]
+
+        json_records = [*list_data]
+
+    return json_records
+
+@retry(Exception, tries=3, delay=2)
+def call_api(endpoint, query):
+    """
+    Returns the data from the api, if there is any error throws
+    """
+
     response = requests.post(endpoint, json={'query': query})
     json_data = json.loads(response.text)
-    json_records = []
     if 'errors' in json_data:
         raise Exception(
             'There was an error getting the data from TheGraph' + json.dumps(json_data))
-    else:
-        response_lenght = len(json_data['data'][entity_name])
-        if (response_lenght > 0):
-            json_data = json.loads(response.text)
-            list_data = json_data['data'][entity_name]
 
-            json_records = [*list_data]
-
-    return json_records
+    return json_data
