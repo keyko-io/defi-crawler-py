@@ -130,6 +130,8 @@ SushiSwap | Dexes | 1 | Polygon
 SushiSwap | Dexes | 1 | Fantom
 Ubeswap | Dexes | 1 | Celo
 Pancakeswap | Dexes | 2 | BSC
+Pangolin | Dexes | 1 | Avalanche
+Traderjoe | Dexes | 1 | Avalanche
 
 
 

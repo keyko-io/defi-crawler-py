@@ -160,3 +160,40 @@ def test_burn_quickswap_1_polygon():
     assert(float(burns[0]['amount0']) > 0)
     assert(float(burns[0]['amount1']) > 0)
     assert(float(burns[0]['timestamp']) > 0)
+
+
+
+def test_burn_pangolin_1_avalanche():
+    pangolin = Dex(protocol="pangolin", chain="avalanche", version=1)
+    mints = pangolin.get_data_from_date_range(
+        '30/09/2021 00:00:00', '30/09/2021 01:00:30', "burn")
+
+    assert(mints[0]['tx_id'] != "")
+    assert(mints[0]['protocol'] == "pangolin")
+    assert(mints[0]['chain'] == "avalanche")
+    assert(mints[0]['version'] == 1)
+    assert(mints[0]['user'] != "")
+    assert(mints[0]['token0'] != "")
+    assert(mints[0]['token1'] != "")
+    assert(mints[0]['pool'] != "")
+    assert(float(mints[0]['amount0']) > 0)
+    assert(float(mints[0]['amount1']) > 0)
+    assert(float(mints[0]['timestamp']) > 0)
+
+
+def test_burn_traderjoe_1_avalanche():
+    traderjoe = Dex(protocol="traderjoe", chain="avalanche", version=1)
+    mints = traderjoe.get_data_from_date_range(
+        '30/09/2021 00:00:00', '30/09/2021 01:00:30', "burn")
+
+    assert(mints[0]['tx_id'] != "")
+    assert(mints[0]['protocol'] == "traderjoe")
+    assert(mints[0]['chain'] == "avalanche")
+    assert(mints[0]['version'] == 1)
+    assert(mints[0]['user'] != "")
+    assert(mints[0]['token0'] != "")
+    assert(mints[0]['token1'] != "")
+    assert(mints[0]['pool'] != "")
+    assert(float(mints[0]['amount0']) > 0)
+    assert(float(mints[0]['amount1']) > 0)
+    assert(float(mints[0]['timestamp']) > 0)
