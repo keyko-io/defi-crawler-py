@@ -60,6 +60,9 @@
         ],
         "timestamp": [
           "timestamp"
+        ],
+        "amountUSD": [
+          "amountUSD"
         ]
       },
       "query": {
@@ -67,7 +70,8 @@
         "extra_fields": {},
         "params": {
           "orderBy": "timestamp",
-          "pool": "pair"
+          "pool": "pair",
+          "user": "sender"
         }
       },
       "transformations": {
@@ -106,13 +110,17 @@
         ],
         "timestamp": [
           "timestamp"
+        ],
+        "amountUSD": [
+          "amountUSD"
         ]
       },
       "query": {
         "name": "mints",
         "extra_fields": {},
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "timestamp",
+          "user": "sender"
         }
       },
       "transformations": {}
@@ -146,13 +154,17 @@
         ],
         "timestamp": [
           "timestamp"
+        ],
+        "amountUSD": [
+          "amountUSD"
         ]
       },
       "query": {
         "name": "burns",
         "extra_fields": {},
         "params": {
-          "orderBy": "timestamp"
+          "orderBy": "timestamp",
+          "user": "sender"
         }
       },
       "transformations": {}
