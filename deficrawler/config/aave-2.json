@@ -6,7 +6,8 @@
     "chain": "Ethereum",
     "endpoint": {
       "ethereum": "https://api.thegraph.com/subgraphs/name/aave/protocol-v2",
-      "polygon": "https://api.thegraph.com/subgraphs/name/aave/aave-v2-matic"
+      "polygon": "https://api.thegraph.com/subgraphs/name/aave/aave-v2-matic",
+      "avalanche": "https://api.thegraph.com/subgraphs/name/aave/protocol-v2-avalanche"
     }
   },
   "entities": {

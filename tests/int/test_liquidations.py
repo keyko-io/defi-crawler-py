@@ -45,6 +45,23 @@ def test_liquidation_aave_2_polygon():
     assert(liquidations[0]['liquidator'] != "")
     assert(liquidations[0]['timestamp'] > 0)
 
+def test_liquidation_aave_2_avalanche():
+    aave = Lending(protocol="Aave", chain="Avalanche", version=2)
+    liquidations = aave.get_data_from_date_range(
+        '10/10/2021 00:00:01', '18/10/2021 00:01:10', "liquidation")
+
+    assert(liquidations[0]['tx_id'] != "")
+    assert(liquidations[0]['protocol'] == "Aave")
+    assert(liquidations[0]['chain'] == "Avalanche")
+    assert(liquidations[0]['version'] == 2)
+    assert(liquidations[0]['user'] != "")
+    assert(liquidations[0]['token_principal'] != "")
+    assert(liquidations[0]['token_collateral'] != "")
+    assert(liquidations[0]['amount_principal'] > 0)
+    assert(liquidations[0]['amount_collateral'] > 0)
+    assert(liquidations[0]['liquidator'] != "")
+    assert(liquidations[0]['timestamp'] > 0)
+
 
 def test_liquidation_aave_2_polygon_user():
     aave = Lending(protocol="Aave", chain="Polygon", version=2)
