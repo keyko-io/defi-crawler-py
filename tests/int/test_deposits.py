@@ -51,7 +51,7 @@ def test_deposit_aave_2_polygon_user():
 def test_deposit_compound_2_eth():
     compound = Lending(protocol="Compound", chain="Ethereum", version=2)
     deposits = compound.get_data_from_date_range(
-        '11/05/2021 00:00:01', '11/05/2021 00:01:10', "deposit")
+        '11/05/2021 00:00:01', '11/05/2021 01:01:10', "deposit")
 
     assert(deposits[0]['tx_id'] != "")
     assert(deposits[0]['protocol'] == "Compound")
