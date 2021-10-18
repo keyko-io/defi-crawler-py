@@ -4,7 +4,7 @@ from deficrawler.lending import Lending
 def test_borrow_aave_2_eth():
     aave = Lending(protocol="Aave", chain="Ethereum", version=2)
     borrows = aave.get_data_from_date_range(
-        '11/05/2021 00:00:01', '11/05/2021 00:01:00', "borrow")
+        '11/05/2021 00:00:01', '11/05/2021 01:01:00', "borrow")
 
     assert(borrows[0]['tx_id'] != "")
     assert(borrows[0]['protocol'] == "Aave")
@@ -52,7 +52,7 @@ def test_borrow_aave_2_polygon_user():
 def test_borrow_compound_2_eth():
     compound = Lending(protocol="Compound", chain="Ethereum", version=2)
     borrows = compound.get_data_from_date_range(
-        '11/05/2021 00:00:01', '11/05/2021 00:01:10', "borrow")
+        '11/05/2021 00:00:01', '11/05/2021 1:01:10', "borrow")
 
     assert(borrows[0]['tx_id'] != "")
     assert(borrows[0]['protocol'] == "Compound")
