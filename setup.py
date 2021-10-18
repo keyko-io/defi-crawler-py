@@ -28,6 +28,7 @@ setup(
     install_requires=[
         'dict_digger',
         'requests',
+        'retry'
     ],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
