@@ -109,6 +109,7 @@ Name | Type | Version | Chain
 --------|-------|---------|-------
 Aave | Lending | 2 | Ethereum
 Aave | Lending | 2 | Polygon
+Aave | Lending | 2 | Avalanche
 Compound | Lending | 2 | Ethereum
 Cream | Lending | 2 | Ethereum
 Cream | Lending | 2 | BSC

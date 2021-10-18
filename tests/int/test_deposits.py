@@ -39,6 +39,21 @@ def test_deposit_aave_2_polygon():
     assert(deposits[0]['timestamp'] > 0)
 
 
+def test_deposit_aave_2_avalanche():
+    aave = Lending(protocol="Aave", chain="Avalanche", version=2)
+    deposits = aave.get_data_from_date_range(
+        '16/10/2021 00:00:01', '16/10/2021 09:01:10', "deposit")
+
+    assert(deposits[0]['tx_id'] != "")
+    assert(deposits[0]['protocol'] == "Aave")
+    assert(deposits[0]['chain'] == "Avalanche")
+    assert(deposits[0]['version'] == 2)
+    assert(deposits[0]['user'] != "")
+    assert(deposits[0]['token'] != "")
+    assert(deposits[0]['amount'] > 0)
+    assert(deposits[0]['timestamp'] > 0)
+
+
 def test_deposit_aave_2_polygon_user():
     aave = Lending(protocol="Aave", chain="Polygon", version=2)
     deposits = aave.get_data_from_date_range(

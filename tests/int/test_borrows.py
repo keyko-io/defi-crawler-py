@@ -40,6 +40,21 @@ def test_borrow_aave_2_polygon():
     assert(borrows[0]['timestamp'] > 0)
 
 
+def test_borrow_aave_2_avalanche():
+    aave = Lending(protocol="Aave", chain="avalanche", version=2)
+    borrows = aave.get_data_from_date_range(
+        '16/10/2021 00:00:01', '18/10/2021 00:01:10', "borrow")
+
+    assert(borrows[0]['tx_id'] != "")
+    assert(borrows[0]['protocol'] == "Aave")
+    assert(borrows[0]['chain'] == "avalanche")
+    assert(borrows[0]['version'] == 2)
+    assert(borrows[0]['user'] != "")
+    assert(borrows[0]['token'] != "")
+    assert(borrows[0]['amount'] > 0)
+    assert(borrows[0]['timestamp'] > 0)
+
+
 def test_borrow_aave_2_polygon_user():
     aave = Lending(protocol="Aave", chain="Polygon", version=2)
     borrows = aave.get_data_from_date_range(

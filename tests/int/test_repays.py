@@ -38,6 +38,22 @@ def test_repay_aave_2_polygon():
     assert(repays[0]['amount'] > 0)
     assert(repays[0]['timestamp'] > 0)
 
+
+def test_repay_aave_2_avalanche():
+    aave = Lending(protocol="Aave", chain="Avalanche", version=2)
+    repays = aave.get_data_from_date_range(
+        '17/10/2021 00:00:01', '18/10/2021 00:01:10', "repay")
+
+    assert(repays[0]['tx_id'] != "")
+    assert(repays[0]['protocol'] == "Aave")
+    assert(repays[0]['chain'] == "Avalanche")
+    assert(repays[0]['version'] == 2)
+    assert(repays[0]['user'] != "")
+    assert(repays[0]['token'] != "")
+    assert(repays[0]['amount'] > 0)
+    assert(repays[0]['timestamp'] > 0)
+
+
 def test_repay_aave_2_polygon_user():
     aave = Lending(protocol="Aave", chain="Polygon", version=2)
     repays = aave.get_data_from_date_range(
