@@ -284,3 +284,57 @@ def test_swap_traderjoe_1_avalanche():
     assert(float(swaps[0]['from_token_amount']) > 0)
     assert(float(swaps[0]['to_token_amount']) > 0)
     assert(float(swaps[0]['timestamp']) > 0)
+
+
+def test_swap_dodoex_2_ethereum():
+    dodoex = Dex(protocol="dodoex", chain="ethereum", version=2)
+    swaps = dodoex.get_data_from_date_range(
+        '17/10/2021 00:00:00', '17/10/2021 1:00:30', "swap")
+
+    assert(swaps[0]['tx_id'] != "")
+    assert(swaps[0]['protocol'] == "dodoex")
+    assert(swaps[0]['chain'] == "ethereum")
+    assert(swaps[0]['version'] == 2)
+    assert(swaps[0]['user'] != "")
+    assert(swaps[0]['from_token'] != "")
+    assert(swaps[0]['to_token'] != "")
+    assert(swaps[0]['pool'] != "")
+    assert(float(swaps[0]['from_token_amount']) > 0)
+    assert(float(swaps[0]['to_token_amount']) > 0)
+    assert(float(swaps[0]['timestamp']) > 0)
+
+
+def test_swap_dodoex_2_polygon():
+    dodoex = Dex(protocol="dodoex", chain="polygon", version=2)
+    swaps = dodoex.get_data_from_date_range(
+        '17/10/2021 00:00:00', '17/10/2021 1:00:30', "swap")
+
+    assert(swaps[0]['tx_id'] != "")
+    assert(swaps[0]['protocol'] == "dodoex")
+    assert(swaps[0]['chain'] == "polygon")
+    assert(swaps[0]['version'] == 2)
+    assert(swaps[0]['user'] != "")
+    assert(swaps[0]['from_token'] != "")
+    assert(swaps[0]['to_token'] != "")
+    assert(swaps[0]['pool'] != "")
+    assert(float(swaps[0]['from_token_amount']) > 0)
+    assert(float(swaps[0]['to_token_amount']) > 0)
+    assert(float(swaps[0]['timestamp']) > 0)
+
+
+def test_swap_dodoex_2_bsc():
+    dodoex = Dex(protocol="dodoex", chain="bsc", version=2)
+    swaps = dodoex.get_data_from_date_range(
+        '17/10/2021 00:00:00', '17/10/2021 1:00:30', "swap")
+
+    assert(swaps[0]['tx_id'] != "")
+    assert(swaps[0]['protocol'] == "dodoex")
+    assert(swaps[0]['chain'] == "bsc")
+    assert(swaps[0]['version'] == 2)
+    assert(swaps[0]['user'] != "")
+    assert(swaps[0]['from_token'] != "")
+    assert(swaps[0]['to_token'] != "")
+    assert(swaps[0]['pool'] != "")
+    assert(float(swaps[0]['from_token_amount']) > 0)
+    assert(float(swaps[0]['to_token_amount']) > 0)
+    assert(float(swaps[0]['timestamp']) > 0)
