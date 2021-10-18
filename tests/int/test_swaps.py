@@ -250,3 +250,37 @@ def test_swap_quickswap_1_polygon():
     assert(float(swaps[0]['timestamp']) > 0)
 
 
+def test_swap_pangolin_1_avalanche():
+    pangolin = Dex(protocol="pangolin", chain="avalanche", version=1)
+    swaps = pangolin.get_data_from_date_range(
+        '31/08/2021 00:00:00', '31/08/2021 0:01:30', "swap")
+
+    assert(swaps[0]['tx_id'] != "")
+    assert(swaps[0]['protocol'] == "pangolin")
+    assert(swaps[0]['chain'] == "avalanche")
+    assert(swaps[0]['version'] == 1)
+    assert(swaps[0]['user'] != "")
+    assert(swaps[0]['from_token'] != "")
+    assert(swaps[0]['to_token'] != "")
+    assert(swaps[0]['pool'] != "")
+    assert(float(swaps[0]['from_token_amount']) > 0)
+    assert(float(swaps[0]['to_token_amount']) > 0)
+    assert(float(swaps[0]['timestamp']) > 0)
+
+
+def test_swap_traderjoe_1_avalanche():
+    traderjoe = Dex(protocol="traderjoe", chain="avalanche", version=1)
+    swaps = traderjoe.get_data_from_date_range(
+        '31/08/2021 00:00:00', '31/08/2021 0:01:30', "swap")
+
+    assert(swaps[0]['tx_id'] != "")
+    assert(swaps[0]['protocol'] == "traderjoe")
+    assert(swaps[0]['chain'] == "avalanche")
+    assert(swaps[0]['version'] == 1)
+    assert(swaps[0]['user'] != "")
+    assert(swaps[0]['from_token'] != "")
+    assert(swaps[0]['to_token'] != "")
+    assert(swaps[0]['pool'] != "")
+    assert(float(swaps[0]['from_token_amount']) > 0)
+    assert(float(swaps[0]['to_token_amount']) > 0)
+    assert(float(swaps[0]['timestamp']) > 0)
