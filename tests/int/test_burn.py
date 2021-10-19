@@ -126,6 +126,24 @@ def test_burn_sushi_2_fantom():
     assert(float(burns[0]['timestamp']) > 0)
 
 
+def test_burn_sushi_1_celo():
+    sushi = Dex(protocol="Sushiswap", chain="celo", version=1)
+    burns = sushi.get_data_from_date_range(
+        '17/10/2021 00:00:00', '17/10/2021 03:00:30', "burn")
+
+    assert(burns[0]['tx_id'] != "")
+    assert(burns[0]['protocol'] == "Sushiswap")
+    assert(burns[0]['chain'] == "celo")
+    assert(burns[0]['version'] == 1)
+    assert(burns[0]['user'] != "")
+    assert(burns[0]['token0'] != "")
+    assert(burns[0]['token1'] != "")
+    assert(burns[0]['pool'] != "")
+    assert(float(burns[0]['amount0']) > 0)
+    assert(float(burns[0]['amount1']) > 0)
+    assert(float(burns[0]['timestamp']) > 0)
+
+
 def test_burn_pancakeswap_2_bsc():
     pancakeswap = Dex(protocol="Pancakeswap", chain="bsc", version=2)
     burns = pancakeswap.get_data_from_date_range(

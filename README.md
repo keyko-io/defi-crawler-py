@@ -129,6 +129,7 @@ SushiSwap | Dexes | 1 | Ethereum
 SushiSwap | Dexes | 1 | BSC
 SushiSwap | Dexes | 1 | Polygon
 SushiSwap | Dexes | 1 | Fantom
+SushiSwap | Dexes | 1 | Celo
 Ubeswap | Dexes | 1 | Celo
 Pancakeswap | Dexes | 2 | BSC
 Pangolin | Dexes | 1 | Avalanche
