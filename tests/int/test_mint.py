@@ -125,6 +125,23 @@ def test_mint_sushi_2_fantom():
     assert(float(mints[0]['amount1']) > 0)
     assert(float(mints[0]['timestamp']) > 0)
 
+def test_mint_sushi_1_celo():
+    sushi = Dex(protocol="Sushiswap", chain="celo", version=1)
+    mints = sushi.get_data_from_date_range(
+        '17/10/2021 00:00:00', '17/10/2021 03:00:30', "mint")
+
+    assert(mints[0]['tx_id'] != "")
+    assert(mints[0]['protocol'] == "Sushiswap")
+    assert(mints[0]['chain'] == "celo")
+    assert(mints[0]['version'] == 1)
+    assert(mints[0]['user'] != "")
+    assert(mints[0]['token0'] != "")
+    assert(mints[0]['token1'] != "")
+    assert(mints[0]['pool'] != "")
+    assert(float(mints[0]['amount0']) > 0)
+    assert(float(mints[0]['amount1']) > 0)
+    assert(float(mints[0]['timestamp']) > 0)
+
 
 def test_mint_pancakeswap_2_bsc():
     pancakeswap = Dex(protocol="Pancakeswap", chain="bsc", version=2)

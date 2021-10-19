@@ -108,6 +108,23 @@ def test_swap_shushi_1_polygon():
     assert(float(swaps[0]['timestamp']) > 0)
 
 
+def test_swap_shushi_1_celo():
+    shushi = Dex(protocol="SushiSwap", chain="celo", version=1)
+    swaps = shushi.get_data_from_date_range(
+        '17/10/2021 00:00:00', '17/10/2021 3:01:30', "swap")
+    assert(swaps[0]['tx_id'] != "")
+    assert(swaps[0]['protocol'] == "SushiSwap")
+    assert(swaps[0]['chain'] == "celo")
+    assert(swaps[0]['version'] == 1)
+    assert(swaps[0]['user'] != "")
+    assert(swaps[0]['from_token'] != "")
+    assert(swaps[0]['to_token'] != "")
+    assert(swaps[0]['pool'] != "")
+    assert(float(swaps[0]['from_token_amount']) > 0)
+    assert(float(swaps[0]['to_token_amount']) > 0)
+    assert(float(swaps[0]['timestamp']) > 0)
+
+
 def test_swap_shushi_1_fantom():
     shushi = Dex(protocol="SushiSwap", chain="fantom", version=1)
     swaps = shushi.get_data_from_date_range(
