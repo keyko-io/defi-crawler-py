@@ -120,6 +120,7 @@ Kashi | Lending | 1 | xDai
 Kashi | Lending | 1 | fantom
 Uniswap | Dexes | 2 | Ethereum
 Uniswap | Dexes | 3 | Ethereum
+Uniswap | Dexes | 3 | Optimism
 Balancer | Dexes | 2 | Ethereum
 Balancer | Dexes | 2 | Arbitrum
 Balancer | Dexes | 2 | Polygon
