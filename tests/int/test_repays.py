@@ -154,6 +154,22 @@ def test_repay_cream_2_bsc():
     assert(repays[0]['timestamp'] > 0)
 
 
+
+def test_repay_cream_2_bsc():
+    cream = Lending(protocol="Cream", chain="avalanche", version=2)
+    repays = cream.get_data_from_date_range(
+        '18/10/2021 00:00:01', '19/10/2021 00:00:10', "repay")
+
+    assert(repays[0]['tx_id'] != "")
+    assert(repays[0]['protocol'] == "Cream")
+    assert(repays[0]['chain'] == "avalanche")
+    assert(repays[0]['version'] == 2)
+    assert(repays[0]['user'] != "")
+    assert(repays[0]['token'] != "")
+    assert(float(repays[0]['amount']) > 0)
+    assert(repays[0]['timestamp'] > 0)
+
+
 def test_repay_cream_2_bsc():
     cream = Lending(protocol="Cream", chain="bsc", version=2)
     repays = cream.get_data_from_date_range(

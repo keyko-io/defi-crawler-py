@@ -132,6 +132,36 @@ def test_borrow_cream_2_arbitrum():
     assert(borrows[0]['timestamp'] > 0)
 
 
+def test_borrow_cream_2_fantom():
+    cream = Lending(protocol="Cream", chain="fantom", version=2)
+    borrows = cream.get_data_from_date_range(
+        '20/10/2021 00:00:01', '21/10/2021 00:00:00', "borrow")
+
+    assert(borrows[0]['tx_id'] != "")
+    assert(borrows[0]['protocol'] == "Cream")
+    assert(borrows[0]['chain'] == "fantom")
+    assert(borrows[0]['version'] == 2)
+    assert(borrows[0]['user'] != "")
+    assert(borrows[0]['token'] != "")
+    assert(float(borrows[0]['amount']) > 0)
+    assert(borrows[0]['timestamp'] > 0)
+
+
+def test_borrow_cream_2_avalanche():
+    cream = Lending(protocol="Cream", chain="avalanche", version=2)
+    borrows = cream.get_data_from_date_range(
+        '20/10/2021 00:00:01', '21/10/2021 00:00:00', "borrow")
+
+    assert(borrows[0]['tx_id'] != "")
+    assert(borrows[0]['protocol'] == "Cream")
+    assert(borrows[0]['chain'] == "avalanche")
+    assert(borrows[0]['version'] == 2)
+    assert(borrows[0]['user'] != "")
+    assert(borrows[0]['token'] != "")
+    assert(float(borrows[0]['amount']) > 0)
+    assert(borrows[0]['timestamp'] > 0)
+
+
 def test_borrow_cream_2_eth_user():
     cream = Lending(protocol="Cream", chain="Ethereum", version=2)
     borrows = cream.get_data_from_date_range(

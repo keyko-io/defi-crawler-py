@@ -15,6 +15,7 @@ def test_redeem_aave_2_eth():
     assert(redeem[0]['amount'] > 0)
     assert(redeem[0]['timestamp'] > 0)
 
+
 def test_redeem_aave_2_eth_user():
     aave = Lending(protocol="Aave", chain="Ethereum", version=2)
     redeems = aave.get_data_from_date_range(
@@ -52,6 +53,7 @@ def test_redeem_aave_2_avalanche():
     assert(redeem[0]['amount'] > 0)
     assert(redeem[0]['timestamp'] > 0)
 
+
 def test_redeem_aave_2_polygon_user():
     aave = Lending(protocol="Aave", chain="Polygon", version=2)
     redeems = aave.get_data_from_date_range(
@@ -60,6 +62,7 @@ def test_redeem_aave_2_polygon_user():
     for redeem in redeems:
         assert(redeem['user'] ==
                "0x3fcd5de6a9fc8a99995c406c77dda3ed7e406f81")
+
 
 def test_redeem_compound_2_eth():
     compound = Lending(protocol="Compound", chain="Ethereum", version=2)
@@ -74,6 +77,7 @@ def test_redeem_compound_2_eth():
     assert(redeem[0]['token'] != "")
     assert(float(redeem[0]['amount']) > 0)
     assert(redeem[0]['timestamp'] > 0)
+
 
 def test_redeem_compound_2_eth_user():
     compound = Lending(protocol="Compound", chain="Ethereum", version=2)
@@ -99,6 +103,7 @@ def test_redeem_cream_2_eth():
     assert(float(redeem[0]['amount']) > 0)
     assert(redeem[0]['timestamp'] > 0)
 
+
 def test_redeem_cream_2_polygon():
     cream = Lending(protocol="Cream", chain="Polygon", version=2)
     redeem = cream.get_data_from_date_range(
@@ -112,7 +117,6 @@ def test_redeem_cream_2_polygon():
     assert(redeem[0]['token'] != "")
     assert(float(redeem[0]['amount']) > 0)
     assert(redeem[0]['timestamp'] > 0)
-
 
 
 def test_redeem_cream_2_arbitrum():
@@ -130,11 +134,40 @@ def test_redeem_cream_2_arbitrum():
     assert(redeem[0]['timestamp'] > 0)
 
 
+def test_redeem_cream_2_fantom():
+    cream = Lending(protocol="Cream", chain="fantom", version=2)
+    redeem = cream.get_data_from_date_range(
+        '18/10/2021 00:00:01', '19/10/2021 00:00:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Cream")
+    assert(redeem[0]['chain'] == "fantom")
+    assert(redeem[0]['version'] == 2)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(float(redeem[0]['amount']) > 0)
+    assert(redeem[0]['timestamp'] > 0)
+
+
+def test_redeem_cream_2_avalanche():
+    cream = Lending(protocol="Cream", chain="avalanche", version=2)
+    redeem = cream.get_data_from_date_range(
+        '18/10/2021 00:00:01', '19/10/2021 00:00:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Cream")
+    assert(redeem[0]['chain'] == "avalanche")
+    assert(redeem[0]['version'] == 2)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(float(redeem[0]['amount']) > 0)
+    assert(redeem[0]['timestamp'] > 0)
+
 
 def test_redeem_cream_2_eth_user():
     cream = Lending(protocol="Cream", chain="Ethereum", version=2)
     redeems = cream.get_data_from_date_range(
-        '28/07/2021 00:00:01', '30/07/2021 18:01:00', "redeem","0x85759961b116f1d36fd697855c57a6ae40793d9b")
+        '28/07/2021 00:00:01', '30/07/2021 18:01:00', "redeem", "0x85759961b116f1d36fd697855c57a6ae40793d9b")
 
     for redeem in redeems:
         assert(redeem['user'] ==
@@ -156,16 +189,14 @@ def test_redeem_cream_2_bsc():
     assert(redeem[0]['timestamp'] > 0)
 
 
-
 def test_redeem_cream_2_bsc_user():
     cream = Lending(protocol="Cream", chain="Bsc", version=2)
     redeems = cream.get_data_from_date_range(
-        '28/07/2021 00:00:01', '30/07/2021 18:01:00', "redeem","0x1ffe17b99b439be0afc831239ddecda2a790ff3a")
+        '28/07/2021 00:00:01', '30/07/2021 18:01:00', "redeem", "0x1ffe17b99b439be0afc831239ddecda2a790ff3a")
 
     for redeem in redeems:
         assert(redeem['user'] ==
                "0x1ffe17b99b439be0afc831239ddecda2a790ff3a")
-
 
 
 def test_redeem_kashi_1_eth():
@@ -196,4 +227,3 @@ def test_redeem_kashi_1_polygon():
     assert(redeem[0]['token'] != "")
     assert(float(redeem[0]['amount']) > 0)
     assert(redeem[0]['timestamp'] > 0)
-
