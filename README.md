@@ -115,6 +115,8 @@ Cream | Lending | 2 | Ethereum
 Cream | Lending | 2 | BSC
 Cream | Lending | 2 | Polygon
 Cream | Lending | 2 | Arbitrum
+Cream | Lending | 2 | Avalance
+Cream | Lending | 2 | Fantom
 Kashi | Lending | 1 | Ethereum
 Kashi | Lending | 1 | Polygon
 Kashi | Lending | 1 | xDai

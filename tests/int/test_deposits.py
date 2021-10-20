@@ -141,6 +141,35 @@ def test_deposit_cream_2_bsc():
     assert(deposits[0]['timestamp'] > 0)
 
 
+def test_deposit_cream_2_fantom():
+    cream = Lending(protocol="Cream", chain="fantom", version=2)
+    deposits = cream.get_data_from_date_range(
+        '10/10/2021 00:00:01', '19/10/2021 00:00:00', "deposit")
+
+    assert(deposits[0]['tx_id'] != "")
+    assert(deposits[0]['protocol'] == "Cream")
+    assert(deposits[0]['chain'] == "fantom")
+    assert(deposits[0]['version'] == 2)
+    assert(deposits[0]['user'] != "")
+    assert(deposits[0]['token'] != "")
+    assert(float(deposits[0]['amount']) > 0)
+    assert(deposits[0]['timestamp'] > 0)
+
+
+def test_deposit_cream_2_avalanche():
+    cream = Lending(protocol="Cream", chain="avalanche", version=2)
+    deposits = cream.get_data_from_date_range(
+        '10/10/2021 00:00:01', '19/10/2021 00:00:00', "deposit")
+
+    assert(deposits[0]['tx_id'] != "")
+    assert(deposits[0]['protocol'] == "Cream")
+    assert(deposits[0]['chain'] == "avalanche")
+    assert(deposits[0]['version'] == 2)
+    assert(deposits[0]['user'] != "")
+    assert(deposits[0]['token'] != "")
+    assert(float(deposits[0]['amount']) > 0)
+    assert(deposits[0]['timestamp'] > 0)
+
 def test_deposit_cream_2_bsc_user():
     cream = Lending(protocol="Cream", chain="bsc", version=2)
     deposits = cream.get_data_from_date_range(

@@ -167,6 +167,7 @@ def test_liquidation_cream_2_bsc():
     assert(liquidations[0]['timestamp'] > 0)
 
 
+
 def test_liquidation_cream_2_bsc_user():
     cream = Lending(protocol="Cream", chain="bsc", version=2)
     liquidations = cream.get_data_from_date_range(
