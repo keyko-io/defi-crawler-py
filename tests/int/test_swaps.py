@@ -159,6 +159,23 @@ def test_swap_uniswap_3_eth():
     assert(float(swaps[0]['timestamp']) > 0)
 
 
+def test_swap_uniswap_3_optimism():
+    uniswap = Dex(protocol="Uniswap", chain="optimism", version=3)
+    swaps = uniswap.get_data_from_date_range(
+        '18/10/2021 00:00:00', '18/10/2021 02:10:00', "swap")
+    assert(swaps[0]['tx_id'] != "")
+    assert(swaps[0]['protocol'] == "Uniswap")
+    assert(swaps[0]['chain'] == "optimism")
+    assert(swaps[0]['version'] == 3)
+    assert(swaps[0]['user'] != "")
+    assert(swaps[0]['from_token'] != "")
+    assert(swaps[0]['to_token'] != "")
+    assert(swaps[0]['pool'] != "")
+    assert(float(swaps[0]['from_token_amount']) > 0)
+    assert(float(swaps[0]['to_token_amount']) > 0)
+    assert(float(swaps[0]['timestamp']) > 0)
+
+
 # def test_swap_ubeswap_1_celo():
 #     ubeswap = Dex(protocol="ubeswap", chain="celo", version=1)
 #     swaps = ubeswap.get_data_from_date_range(
@@ -347,6 +364,24 @@ def test_swap_dodoex_2_bsc():
     assert(swaps[0]['tx_id'] != "")
     assert(swaps[0]['protocol'] == "dodoex")
     assert(swaps[0]['chain'] == "bsc")
+    assert(swaps[0]['version'] == 2)
+    assert(swaps[0]['user'] != "")
+    assert(swaps[0]['from_token'] != "")
+    assert(swaps[0]['to_token'] != "")
+    assert(swaps[0]['pool'] != "")
+    assert(float(swaps[0]['from_token_amount']) > 0)
+    assert(float(swaps[0]['to_token_amount']) > 0)
+    assert(float(swaps[0]['timestamp']) > 0)
+
+
+def test_swap_dodoex_2_arbitrum():
+    dodoex = Dex(protocol="dodoex", chain="arbitrum", version=2)
+    swaps = dodoex.get_data_from_date_range(
+        '17/10/2021 00:00:00', '17/10/2021 1:00:30', "swap")
+
+    assert(swaps[0]['tx_id'] != "")
+    assert(swaps[0]['protocol'] == "dodoex")
+    assert(swaps[0]['chain'] == "arbitrum")
     assert(swaps[0]['version'] == 2)
     assert(swaps[0]['user'] != "")
     assert(swaps[0]['from_token'] != "")

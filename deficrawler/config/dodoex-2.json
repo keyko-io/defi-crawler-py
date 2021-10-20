@@ -6,7 +6,8 @@
     "endpoint": {
       "ethereum": "https://api.thegraph.com/subgraphs/name/dodoex/dodoex-v2",
       "bsc": "https://api.thegraph.com/subgraphs/name/dodoex/dodoex-v2-bsc",
-      "polygon": "https://api.thegraph.com/subgraphs/name/dodoex/dodoex-v2-polygon"
+      "polygon": "https://api.thegraph.com/subgraphs/name/dodoex/dodoex-v2-polygon",
+      "arbitrum": "https://api.thegraph.com/subgraphs/name/dodoex/dodoex-v2-arbitrum"
     }
   },
   "entities": {

@@ -5,7 +5,8 @@
     "version": 3,
     "chain": "Ethereum",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3"
+      "ethereum": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3",
+      "optimism": "https://api.thegraph.com/subgraphs/name/proy24/uniswap-optimism-subgraph"
     }
   },
   "entities": {
