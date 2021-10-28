@@ -56,15 +56,22 @@
         "id": [
           "id"
         ],
-        "pool_tokens": [
-          [
-            "token0",
-            "symbol"
-          ],
-          [
-            "token1",
-            "symbol"
-          ]
+        "token0":[
+          "baseToken",
+          "symbol"
+        ],
+        "token1":[
+          "quoteToken",
+          "symbol"
+        ],
+        "reserve0_amount": [
+          "baseReserve"
+        ],
+        "reserve1_amount":[
+          "quoteReserve"
+        ],
+        "createdAt":[
+          "createdAtTimestamp"
         ]
       },
       "query": {

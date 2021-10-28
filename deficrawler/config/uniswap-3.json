@@ -157,6 +157,41 @@
         }
       },
       "transformations": {}
+    },
+    "pool": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "token0":[
+          "token0",
+          "symbol"
+        ],
+        "token1":[
+          "token0",
+          "symbol"
+        ],
+        "reserve0_amount": [
+          "totalValueLockedToken0"
+        ],
+        "reserve1_amount":[
+          "totalValueLockedToken1"
+        ],
+        "createdAt":[
+          "createdAtTimestamp"
+        ]
+      },
+      "query": {
+        "name": "pools",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "id",
+          "initial_value": "0"
+        }
+      },
+      "transformations": {
+        "pool_tokens": "concat_symbols"
+      }
     }
   }
 }
