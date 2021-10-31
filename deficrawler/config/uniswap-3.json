@@ -59,6 +59,9 @@
           "pool",
           "id"
         ],
+        "amount_usd": [
+          "amountUSD"
+        ],
         "timestamp": [
           "timestamp"
         ]

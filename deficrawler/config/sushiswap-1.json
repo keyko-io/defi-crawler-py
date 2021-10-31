@@ -66,6 +66,9 @@
           "pair",
           "id"
         ],
+        "amount_usd": [
+          "amountUSD"
+        ],
         "timestamp": [
           "timestamp"
         ]

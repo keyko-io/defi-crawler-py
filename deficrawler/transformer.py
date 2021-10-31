@@ -35,7 +35,8 @@ class Transformer:
             "rates_units_aave": self.rates_units_aave,
             "rates_units_comp": self.rates_units_comp,
             "rates_na": self.rates_na,
-            "to_int": self.to_int
+            "to_int": self.to_int,
+            "na": self.na
         }
 
     def transform(self, element, common_field, protocol_field, transformations, query_elements):
@@ -333,3 +334,9 @@ class Transformer:
             *query_elements[common_field])
 
         return int(ele)
+
+    def na(self, common_field, element, protocol_field, query_elements):
+        """
+        Returns NA for non applicable field
+        """
+        return 'NA'

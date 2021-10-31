@@ -37,6 +37,9 @@
           "pair",
           "id"
         ],
+        "amount_usd": [
+          "volumeUSD"
+        ],
         "timestamp": [
           "timestamp"
         ]

@@ -36,6 +36,9 @@
           "poolId",
           "address"
         ],
+        "amount_usd": [
+          "id"
+        ],
         "timestamp": [
           "timestamp"
         ]
@@ -48,7 +51,9 @@
           "pool": "poolAddress"
         }
       },
-      "transformations": {}
+      "transformations": {
+        "amount_usd": "na"
+      }
     }
   }
 }
