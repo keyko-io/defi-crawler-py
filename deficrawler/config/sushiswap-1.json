@@ -102,6 +102,9 @@
             "token1",
             "symbol"
           ]
+        ],
+        "created_at":[
+          "timestamp"
         ]
       },
       "query": {
