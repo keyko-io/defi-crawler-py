@@ -160,6 +160,37 @@
         }
       },
       "transformations": {}
+    },
+    "pool": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "pool_tokens": [
+          [
+            "token0",
+            "symbol"
+          ],
+          [
+            "token1",
+            "symbol"
+          ]
+        ],
+        "created_at": [
+          "createdAtTimestamp"
+        ]
+      },
+      "query": {
+        "name": "pools",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "id",
+          "initial_value": "0"
+        }
+      },
+      "transformations": {
+        "pool_tokens": "concat_symbols"
+      }
     }
   }
 }
