@@ -98,6 +98,9 @@
             "token1",
             "symbol"
           ]
+        ],
+        "created_at":[
+          "createdAtTimestamp"
         ]
       },
       "query": {
