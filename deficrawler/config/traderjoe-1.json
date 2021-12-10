@@ -98,8 +98,11 @@
             "symbol"
           ]
         ],
-        "created_at":[
+        "created_at": [
           "timestamp"
+        ],
+        "liquidity_usd": [
+          "reserveUSD"
         ]
       },
       "query": {
