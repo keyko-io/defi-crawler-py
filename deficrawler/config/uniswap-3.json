@@ -178,6 +178,9 @@
         ],
         "created_at": [
           "createdAtTimestamp"
+        ],
+        "liquidity_usd": [
+          "totalValueLockedUSD"
         ]
       },
       "query": {

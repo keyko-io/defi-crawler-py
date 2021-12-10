@@ -105,6 +105,9 @@
         ],
         "created_at":[
           "timestamp"
+        ],
+        "liquidity_usd": [
+          "reserveUSD"
         ]
       },
       "query": {
