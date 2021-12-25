@@ -103,7 +103,7 @@
           "createdAtTimestamp"
         ],
         "liquidity_usd": [
-          "totalValueLockedUSD"
+          "reserveUSD"
         ]
       },
       "query": {
