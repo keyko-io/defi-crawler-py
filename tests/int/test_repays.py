@@ -195,16 +195,3 @@ def test_repay_kashi_1_eth():
     assert(repays[0]['timestamp'] > 0)
 
 
-def test_repay_kashi_1_polygon():
-    kashi = Lending(protocol="Kashi", chain="Polygon", version=1)
-    repays = kashi.get_data_from_date_range(
-        '20/09/2021 00:00:01', '20/09/2021 11:54:10', "repay")
-
-    assert(repays[0]['tx_id'] != "")
-    assert(repays[0]['protocol'] == "Kashi")
-    assert(repays[0]['chain'] == "Polygon")
-    assert(repays[0]['version'] == 1)
-    assert(repays[0]['user'] != "")
-    assert(repays[0]['token'] != "")
-    assert(float(repays[0]['amount']) > 0)
-    assert(repays[0]['timestamp'] > 0)

@@ -5,7 +5,7 @@
     "version": 2,
     "chain": "Ethereum",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/cavanmflynn/compound-v2"
+      "ethereum": "https://api.thegraph.com/subgraphs/name/graphprotocol/compound-v2"
     }
   },
   "entities": {

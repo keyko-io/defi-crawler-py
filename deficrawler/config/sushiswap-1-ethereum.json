@@ -1,11 +1,15 @@
 {
   "protocol": {
-    "name": "Uniswap",
+    "name": "Sushiswap",
     "type": "Descentralized Exchange",
-    "version": 2,
+    "version": 1,
     "chain": "Ethereum",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2"
+      "ethereum": "https://api.thegraph.com/subgraphs/name/croco-finance/sushiswap",
+      "bsc": "https://api.thegraph.com/subgraphs/name/sushiswap/bsc-exchange",
+      "polygon": "https://api.thegraph.com/subgraphs/name/sushiswap/matic-exchange",
+      "fantom": "https://api.thegraph.com/subgraphs/name/sushiswap/fantom-exchange",
+      "celo": "https://api.thegraph.com/subgraphs/name/sushiswap/celo-exchange"
     }
   },
   "entities": {
@@ -99,8 +103,8 @@
             "symbol"
           ]
         ],
-        "created_at":[
-          "createdAtTimestamp"
+        "created_at": [
+          "timestamp"
         ],
         "liquidity_usd": [
           "reserveUSD"
@@ -208,25 +212,25 @@
           "pair",
           "id"
         ],
-        "token0":[
+        "token0": [
           "reserve0"
         ],
-        "token1":[
+        "token1": [
           "reserve1"
         ],
-        "liquidity":[
+        "liquidity": [
           "reserveUSD"
         ],
-        "hourlyVolumeUSD":[
+        "hourlyVolumeUSD": [
           "hourlyVolumeUSD"
         ],
-        "hourlyVolumeToken0":[
+        "hourlyVolumeToken0": [
           "hourlyVolumeToken0"
         ],
-        "hourlyVolumeToken1":[
+        "hourlyVolumeToken1": [
           "hourlyVolumeToken1"
         ],
-        "hourlyTxns":[
+        "hourlyTxns": [
           "hourlyTxns"
         ],
         "hourStartUnix": [
@@ -241,8 +245,7 @@
           "pool": "pair"
         }
       },
-      "transformations": {
-      }
+      "transformations": {}
     }
   }
 }

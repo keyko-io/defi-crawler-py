@@ -168,6 +168,48 @@
         }
       },
       "transformations": {}
+    },
+    "pool_volume_hourly": {
+      "attributes": {
+        "id": [
+          "pairAddress"
+        ],
+        "token0": [
+          "baseToken",
+          "id"
+        ],
+        "token1": [
+          "quoteToken",
+          "id"
+        ],
+        "liquidity": [
+          "volumeUSD"
+        ],
+        "hourlyVolumeUSD": [
+          "volumeUSD"
+        ],
+        "hourlyVolumeToken0": [
+          "volumeBase"
+        ],
+        "hourlyVolumeToken1": [
+          "volumeQuote"
+        ],
+        "hourlyTxns": [
+          "txns"
+        ],
+        "hourStartUnix": [
+          "hour"
+        ]
+      },
+      "query": {
+        "name": "pairHourDatas",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "hour",
+          "pool": "pairAddress"
+        }
+      },
+      "transformations": {}
     }
   }
 }
