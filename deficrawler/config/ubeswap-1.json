@@ -99,7 +99,7 @@
             "symbol"
           ]
         ],
-        "created_at":[
+        "created_at": [
           "createdAtTimestamp"
         ],
         "liquidity_usd": [
@@ -198,6 +198,47 @@
         "extra_fields": {},
         "params": {
           "orderBy": "timestamp"
+        }
+      },
+      "transformations": {}
+    },
+    "pool_volume_hourly": {
+      "attributes": {
+        "id": [
+          "pair",
+          "id"
+        ],
+        "token0": [
+          "reserve0"
+        ],
+        "token1": [
+          "reserve1"
+        ],
+        "liquidity": [
+          "reserveUSD"
+        ],
+        "hourlyVolumeUSD": [
+          "hourlyVolumeUSD"
+        ],
+        "hourlyVolumeToken0": [
+          "hourlyVolumeToken0"
+        ],
+        "hourlyVolumeToken1": [
+          "hourlyVolumeToken1"
+        ],
+        "hourlyTxns": [
+          "hourlyTxns"
+        ],
+        "hourStartUnix": [
+          "hourStartUnix"
+        ]
+      },
+      "query": {
+        "name": "pairHourDatas",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "hourStartUnix",
+          "pool": "pair"
         }
       },
       "transformations": {}

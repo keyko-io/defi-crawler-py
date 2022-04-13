@@ -6,7 +6,8 @@
     "chain": "Ethereum",
     "endpoint": {
       "ethereum": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3",
-      "optimism": "https://api.thegraph.com/subgraphs/name/proy24/uniswap-optimism-subgraph"
+      "optimism": "https://api.thegraph.com/subgraphs/name/storres93/uniswap-v3-optimism",
+      "polygon": "https://api.thegraph.com/subgraphs/name/kalinbas/uniswap-v3-polygon"
     }
   },
   "entities": {

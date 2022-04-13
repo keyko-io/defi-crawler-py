@@ -205,6 +205,48 @@
         }
       },
       "transformations": {}
+    },
+    "pool_volume_hourly": {
+      "attributes": {
+        "id": [
+          "pair",
+          "id"
+        ],
+        "token0":[
+          "reserve0"
+        ],
+        "token1":[
+          "reserve1"
+        ],
+        "liquidity":[
+          "reserveUSD"
+        ],
+        "hourlyVolumeUSD":[
+          "volumeUSD"
+        ],
+        "hourlyVolumeToken0":[
+          "volumeToken0"
+        ],
+        "hourlyVolumeToken1":[
+          "volumeToken1"
+        ],
+        "hourlyTxns":[
+          "txCount"
+        ],
+        "hourStartUnix": [
+          "date"
+        ]
+      },
+      "query": {
+        "name": "pairHourDatas",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "date",
+          "pool": "pair"
+        }
+      },
+      "transformations": {
+      }
     }
   }
 }

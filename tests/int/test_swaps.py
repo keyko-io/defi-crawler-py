@@ -125,7 +125,7 @@ def test_swap_shushi_1_celo():
     assert(swaps[0]['from_token'] != "")
     assert(swaps[0]['to_token'] != "")
     assert(swaps[0]['pool'] != "")
-    assert(float(swaps[0]['amount_usd']) > 0)
+    assert(float(swaps[0]['amount_usd']) >= 0)
     assert(float(swaps[0]['from_token_amount']) > 0)
     assert(float(swaps[0]['to_token_amount']) > 0)
     assert(float(swaps[0]['timestamp']) > 0)
@@ -170,7 +170,7 @@ def test_swap_uniswap_3_eth():
 def test_swap_uniswap_3_optimism():
     uniswap = Dex(protocol="Uniswap", chain="optimism", version=3)
     swaps = uniswap.get_data_from_date_range(
-        '18/10/2021 00:00:00', '18/10/2021 02:10:00', "swap")
+        '01/03/2022 00:00:00', '01/03/2022 02:10:00', "swap")
     assert(swaps[0]['tx_id'] != "")
     assert(swaps[0]['protocol'] == "Uniswap")
     assert(swaps[0]['chain'] == "optimism")
@@ -179,7 +179,7 @@ def test_swap_uniswap_3_optimism():
     assert(swaps[0]['from_token'] != "")
     assert(swaps[0]['to_token'] != "")
     assert(swaps[0]['pool'] != "")
-    assert(float(swaps[0]['amount_usd']) > 0)
+    assert(float(swaps[0]['amount_usd']) >= 0)
     assert(float(swaps[0]['from_token_amount']) > 0)
     assert(float(swaps[0]['to_token_amount']) > 0)
     assert(float(swaps[0]['timestamp']) > 0)
@@ -260,24 +260,6 @@ def test_swap_balancer_2_arbitrum():
     assert(float(swaps[0]['timestamp']) > 0)
 
 
-def test_swap_pancakeswap_2_bsc():
-    pancakeswap = Dex(protocol="pancakeswap", chain="bsc", version=2)
-    swaps = pancakeswap.get_data_from_date_range(
-        '31/08/2021 00:00:00', '01/09/2021 0:01:30', "swap")
-
-    assert(swaps[0]['tx_id'] != "")
-    assert(swaps[0]['protocol'] == "pancakeswap")
-    assert(swaps[0]['chain'] == "bsc")
-    assert(swaps[0]['version'] == 2)
-    assert(swaps[0]['user'] != "")
-    assert(swaps[0]['from_token'] != "")
-    assert(swaps[0]['to_token'] != "")
-    assert(swaps[0]['pool'] != "")
-    assert(float(swaps[0]['amount_usd']) >= 0)
-    assert(float(swaps[0]['from_token_amount']) > 0)
-    assert(float(swaps[0]['to_token_amount']) > 0)
-    assert(float(swaps[0]['timestamp']) > 0)
-
 
 def test_swap_quickswap_1_polygon():
     quickswap = Dex(protocol="quickswap", chain="polygon", version=1)
@@ -305,25 +287,6 @@ def test_swap_pangolin_1_avalanche():
 
     assert(swaps[0]['tx_id'] != "")
     assert(swaps[0]['protocol'] == "pangolin")
-    assert(swaps[0]['chain'] == "avalanche")
-    assert(swaps[0]['version'] == 1)
-    assert(swaps[0]['user'] != "")
-    assert(swaps[0]['from_token'] != "")
-    assert(swaps[0]['to_token'] != "")
-    assert(swaps[0]['pool'] != "")
-    assert(float(swaps[0]['amount_usd']) > 0)
-    assert(float(swaps[0]['from_token_amount']) > 0)
-    assert(float(swaps[0]['to_token_amount']) > 0)
-    assert(float(swaps[0]['timestamp']) > 0)
-
-
-def test_swap_traderjoe_1_avalanche():
-    traderjoe = Dex(protocol="traderjoe", chain="avalanche", version=1)
-    swaps = traderjoe.get_data_from_date_range(
-        '31/08/2021 00:00:00', '31/08/2021 0:01:30', "swap")
-
-    assert(swaps[0]['tx_id'] != "")
-    assert(swaps[0]['protocol'] == "traderjoe")
     assert(swaps[0]['chain'] == "avalanche")
     assert(swaps[0]['version'] == 1)
     assert(swaps[0]['user'] != "")
