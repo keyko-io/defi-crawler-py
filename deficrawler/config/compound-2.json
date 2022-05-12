@@ -270,6 +270,42 @@
         "stable_borrow_rate": "rates_na",
         "supply_rate": "rates_units_comp"
       }
+    },
+    "prices": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "symbol": [
+          "symbol"
+        ],
+        "underlyingAsset": [
+          "underlyingSymbol"
+        ],
+        "priceInETH": [
+          "underlyingPrice"
+        ],
+        "priceInUsd": [
+          "underlyingPriceUSD"
+        ],
+        "exchangeRate": [
+          "exchangeRate"
+        ],
+        "timestamp": [
+          "blockTimestamp"
+        ]
+      },
+      "query": {
+        "name": "markets",
+        "extra_fields": {
+        },
+        "params": {
+          "orderBy": "blockTimestamp",
+          "block": "block"
+        }
+      },
+      "transformations": {
+      }
     }
   }
 }
