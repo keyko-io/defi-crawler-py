@@ -36,7 +36,8 @@ class Transformer:
             "rates_units_comp": self.rates_units_comp,
             "rates_na": self.rates_na,
             "to_int": self.to_int,
-            "na": self.na
+            "na": self.na,
+            "exchange_rate_one": self.exchange_rate_one
         }
 
     def transform(self, element, common_field, protocol_field, transformations, query_elements):
@@ -340,3 +341,10 @@ class Transformer:
         Returns NA for non applicable field
         """
         return 'NA'
+
+
+    def exchange_rate_one(self, common_field, element, protocol_field, query_elements):
+        """
+        Returns one for pegged tokens
+        """
+        return 1

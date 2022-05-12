@@ -369,6 +369,45 @@
         "collateral_amount": "decimals",
         "debt_amount": "decimals"
       }
+    },
+    "prices": {
+      "attributes": {
+        "id": [
+          "reserve",
+          "underlyingAsset"
+        ],
+        "symbol": [
+          "reserve",
+          "symbol"
+        ],
+        "underlyingAsset": [
+          "reserve",
+          "symbol"
+        ],
+        "priceInETH": [
+          "priceInEth"
+        ],
+        "priceInUsd": [
+          "priceInUsd"
+        ],
+        "exchangeRate": [
+          "priceInUsd"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "name": "reserveParamsHistoryItems",
+        "extra_fields": {
+        },
+        "params": {
+          "orderBy": "timestamp"
+        }
+      },
+      "transformations": {
+        "exchangeRate": "exchange_rate_one"
+      }
     }
   }
 }

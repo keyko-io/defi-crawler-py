@@ -35,7 +35,14 @@ class Lending(ProtocolBase):
             user=user, entity=entity
         )
 
-        response_data = super().query_data_from_date_range(
+        filter_by_block = 'block' in self.mappings_file['entities'][entity]['query']['params']
+
+        response_data = self.__get_data_from_blocks__(
+            from_timestamp=from_timestamp,
+            to_timestamp=to_timestamp,
+            entity=entity,
+            aditional_filters={}
+        ) if filter_by_block else super().query_data_from_date_range(
             from_timestamp=from_timestamp,
             to_timestamp=to_timestamp,
             entity=entity,
