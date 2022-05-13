@@ -233,3 +233,108 @@ def test_borrow_kashi_1_eth_user():
 #     assert(borrows[0]['token'] != "")
 #     assert(float(borrows[0]['amount']) > 0)
 #     assert(borrows[0]['timestamp'] > 0)
+
+
+def test_borrow_venus_2_bsc():
+    compound = Lending(protocol="Venus", chain="Bsc", version=1)
+    borrows = compound.get_data_from_date_range(
+        '11/01/2022 00:00:01', '12/01/2022 1:01:10', "borrow")
+
+    assert(borrows[0]['tx_id'] != "")
+    assert(borrows[0]['protocol'] == "Venus")
+    assert(borrows[0]['chain'] == "Bsc")
+    assert(borrows[0]['version'] == 1)
+    assert(borrows[0]['user'] != "")
+    assert(borrows[0]['token'] != "")
+    assert(float(borrows[0]['amount']) > 0)
+    assert(borrows[0]['timestamp'] > 0)
+
+
+def test_borrow_scream_2_fantom():
+    compound = Lending(protocol="scream", chain="fantom", version=1)
+    borrows = compound.get_data_from_date_range(
+        '11/01/2022 00:00:01', '12/01/2022 1:01:10', "borrow")
+
+    assert(borrows[0]['tx_id'] != "")
+    assert(borrows[0]['protocol'] == "scream")
+    assert(borrows[0]['chain'] == "fantom")
+    assert(borrows[0]['version'] == 1)
+    assert(borrows[0]['user'] != "")
+    assert(borrows[0]['token'] != "")
+    assert(float(borrows[0]['amount']) > 0)
+    assert(borrows[0]['timestamp'] > 0)
+
+
+def test_borrow_aave_3_arbitrum():
+    aave = Lending(protocol="Aave", chain="Arbitrum", version=3)
+    borrows = aave.get_data_from_date_range(
+        '11/05/2022 00:00:01', '12/05/2022 01:01:00', "borrow")
+
+    assert(borrows[0]['tx_id'] != "")
+    assert(borrows[0]['protocol'] == "Aave")
+    assert(borrows[0]['chain'] == "Arbitrum")
+    assert(borrows[0]['version'] == 3)
+    assert(borrows[0]['user'] != "")
+    assert(borrows[0]['token'] != "")
+    assert(borrows[0]['amount'] > 0)
+    assert(borrows[0]['timestamp'] > 0)
+
+
+def test_borrow_aave_3_optimism():
+    aave = Lending(protocol="Aave", chain="optimism", version=3)
+    borrows = aave.get_data_from_date_range(
+        '11/05/2022 00:00:01', '12/05/2022 01:01:00', "borrow")
+
+    assert(borrows[0]['tx_id'] != "")
+    assert(borrows[0]['protocol'] == "Aave")
+    assert(borrows[0]['chain'] == "optimism")
+    assert(borrows[0]['version'] == 3)
+    assert(borrows[0]['user'] != "")
+    assert(borrows[0]['token'] != "")
+    assert(borrows[0]['amount'] > 0)
+    assert(borrows[0]['timestamp'] > 0)
+
+
+def test_borrow_aave_3_fantom():
+    aave = Lending(protocol="Aave", chain="Fantom", version=3)
+    borrows = aave.get_data_from_date_range(
+        '11/05/2022 00:00:01', '12/05/2022 01:01:00', "borrow")
+
+    assert(borrows[0]['tx_id'] != "")
+    assert(borrows[0]['protocol'] == "Aave")
+    assert(borrows[0]['chain'] == "Fantom")
+    assert(borrows[0]['version'] == 3)
+    assert(borrows[0]['user'] != "")
+    assert(borrows[0]['token'] != "")
+    assert(borrows[0]['amount'] > 0)
+    assert(borrows[0]['timestamp'] > 0)
+
+
+def test_borrow_aave_3_polygon():
+    aave = Lending(protocol="Aave", chain="Polygon", version=3)
+    borrows = aave.get_data_from_date_range(
+        '11/05/2022 00:00:01', '12/05/2022 01:01:00', "borrow")
+
+    assert(borrows[0]['tx_id'] != "")
+    assert(borrows[0]['protocol'] == "Aave")
+    assert(borrows[0]['chain'] == "Polygon")
+    assert(borrows[0]['version'] == 3)
+    assert(borrows[0]['user'] != "")
+    assert(borrows[0]['token'] != "")
+    assert(borrows[0]['amount'] > 0)
+    assert(borrows[0]['timestamp'] > 0)
+
+def test_borrow_aave_3_avax():
+    aave = Lending(protocol="Aave", chain="Avalanche", version=3)
+    borrows = aave.get_data_from_date_range(
+        '11/05/2022 00:00:01', '12/05/2022 01:01:00', "borrow")
+
+    assert(borrows[0]['tx_id'] != "")
+    assert(borrows[0]['protocol'] == "Aave")
+    assert(borrows[0]['chain'] == "Avalanche")
+    assert(borrows[0]['version'] == 3)
+    assert(borrows[0]['user'] != "")
+    assert(borrows[0]['token'] != "")
+    assert(borrows[0]['amount'] > 0)
+    assert(borrows[0]['timestamp'] > 0)
+

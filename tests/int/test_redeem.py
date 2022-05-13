@@ -212,3 +212,108 @@ def test_redeem_kashi_1_eth():
     assert(redeem[0]['token'] != "")
     assert(float(redeem[0]['amount']) > 0)
     assert(redeem[0]['timestamp'] > 0)
+
+
+def test_redeem_venus_1_bsc():
+    compound = Lending(protocol="Venus", chain="Bsc", version=1)
+    redeem = compound.get_data_from_date_range(
+        '28/07/2021 00:00:01', '30/07/2021 18:01:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Venus")
+    assert(redeem[0]['chain'] == "Bsc")
+    assert(redeem[0]['version'] == 1)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(float(redeem[0]['amount']) > 0)
+    assert(redeem[0]['timestamp'] > 0)
+
+
+def test_redeem_scream_1_fantom():
+    compound = Lending(protocol="Scream", chain="fantom", version=1)
+    redeem = compound.get_data_from_date_range(
+        '01/05/2022 00:00:01', '02/05/2022 18:01:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Scream")
+    assert(redeem[0]['chain'] == "fantom")
+    assert(redeem[0]['version'] == 1)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(float(redeem[0]['amount']) > 0)
+    assert(redeem[0]['timestamp'] > 0)
+
+
+def test_redeem_aave_3_arbitrum():
+    aave = Lending(protocol="Aave", chain="Arbitrum", version=3)
+    redeem = aave.get_data_from_date_range(
+        '01/05/2022 00:00:01', '02/05/2022 18:01:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Aave")
+    assert(redeem[0]['chain'] == "Arbitrum")
+    assert(redeem[0]['version'] == 3)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(redeem[0]['amount'] > 0)
+    assert(redeem[0]['timestamp'] > 0)
+
+
+def test_redeem_aave_3_optimism():
+    aave = Lending(protocol="Aave", chain="Optimism", version=3)
+    redeem = aave.get_data_from_date_range(
+        '01/05/2022 00:00:01', '02/05/2022 18:01:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Aave")
+    assert(redeem[0]['chain'] == "Optimism")
+    assert(redeem[0]['version'] == 3)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(redeem[0]['amount'] > 0)
+    assert(redeem[0]['timestamp'] > 0)
+
+
+def test_redeem_aave_3_fantom():
+    aave = Lending(protocol="Aave", chain="fantom", version=3)
+    redeem = aave.get_data_from_date_range(
+        '01/05/2022 00:00:01', '02/05/2022 18:01:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Aave")
+    assert(redeem[0]['chain'] == "fantom")
+    assert(redeem[0]['version'] == 3)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(redeem[0]['amount'] > 0)
+    assert(redeem[0]['timestamp'] > 0)
+
+
+def test_redeem_aave_3_polygon():
+    aave = Lending(protocol="Aave", chain="Polygon", version=3)
+    redeem = aave.get_data_from_date_range(
+        '01/05/2022 00:00:01', '02/05/2022 18:01:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Aave")
+    assert(redeem[0]['chain'] == "Polygon")
+    assert(redeem[0]['version'] == 3)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(redeem[0]['amount'] > 0)
+    assert(redeem[0]['timestamp'] > 0)
+
+
+def test_redeem_aave_3_avalanche():
+    aave = Lending(protocol="Aave", chain="Avalanche", version=3)
+    redeem = aave.get_data_from_date_range(
+        '01/05/2022 00:00:01', '02/05/2022 18:01:00', "redeem")
+
+    assert(redeem[0]['tx_id'] != "")
+    assert(redeem[0]['protocol'] == "Aave")
+    assert(redeem[0]['chain'] == "Avalanche")
+    assert(redeem[0]['version'] == 3)
+    assert(redeem[0]['user'] != "")
+    assert(redeem[0]['token'] != "")
+    assert(redeem[0]['amount'] > 0)
+    assert(redeem[0]['timestamp'] > 0)

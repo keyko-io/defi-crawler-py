@@ -194,3 +194,101 @@ def test_deposit_kashi_1_eth():
     assert(deposits[0]['timestamp'] > 0)
 
 
+def test_deposit_venus_1_bsc():
+    compound = Lending(protocol="Venus", chain="Bsc", version=1)
+    deposits = compound.get_data_from_date_range(
+        '11/05/2021 00:00:01', '11/05/2021 01:01:10', "deposit")
+
+    assert(deposits[0]['tx_id'] != "")
+    assert(deposits[0]['protocol'] == "Venus")
+    assert(deposits[0]['chain'] == "Bsc")
+    assert(deposits[0]['version'] == 1)
+    assert(deposits[0]['user'] != "")
+    assert(deposits[0]['token'] != "")
+    assert(float(deposits[0]['amount']) > 0)
+    assert(deposits[0]['timestamp'] > 0)
+
+
+def test_deposit_scream_1_fantom():
+    compound = Lending(protocol="Scream", chain="fantom", version=1)
+    deposits = compound.get_data_from_date_range(
+        '01/05/2022 00:00:01', '11/05/2022 01:01:10', "deposit")
+
+    assert(deposits[0]['tx_id'] != "")
+    assert(deposits[0]['protocol'] == "Scream")
+    assert(deposits[0]['chain'] == "fantom")
+    assert(deposits[0]['version'] == 1)
+    assert(deposits[0]['user'] != "")
+    assert(deposits[0]['token'] != "")
+    assert(float(deposits[0]['amount']) > 0)
+    assert(deposits[0]['timestamp'] > 0)
+
+
+def test_deposit_aave_3_arbitrum():
+    aave = Lending(protocol="Aave", chain="Arbitrum", version=3)
+    deposits = aave.get_data_from_date_range(
+        '10/05/2022 00:00:01', '11/05/2022 00:01:00', "deposit")
+    assert(deposits[0]['tx_id'] != "")
+    assert(deposits[0]['protocol'] == "Aave")
+    assert(deposits[0]['chain'] == "Arbitrum")
+    assert(deposits[0]['version'] == 3)
+    assert(deposits[0]['user'] != "")
+    assert(deposits[0]['token'] != "")
+    assert(deposits[0]['amount'] > 0)
+    assert(deposits[0]['timestamp'] > 0)
+
+
+def test_deposit_aave_3_optimism():
+    aave = Lending(protocol="Aave", chain="Optimism", version=3)
+    deposits = aave.get_data_from_date_range(
+        '10/05/2022 00:00:01', '11/05/2022 00:01:00', "deposit")
+    assert(deposits[0]['tx_id'] != "")
+    assert(deposits[0]['protocol'] == "Aave")
+    assert(deposits[0]['chain'] == "Optimism")
+    assert(deposits[0]['version'] == 3)
+    assert(deposits[0]['user'] != "")
+    assert(deposits[0]['token'] != "")
+    assert(deposits[0]['amount'] > 0)
+    assert(deposits[0]['timestamp'] > 0)
+
+
+def test_deposit_aave_3_fantom():
+    aave = Lending(protocol="Aave", chain="fantom", version=3)
+    deposits = aave.get_data_from_date_range(
+        '10/05/2022 00:00:01', '11/05/2022 00:01:00', "deposit")
+    assert(deposits[0]['tx_id'] != "")
+    assert(deposits[0]['protocol'] == "Aave")
+    assert(deposits[0]['chain'] == "fantom")
+    assert(deposits[0]['version'] == 3)
+    assert(deposits[0]['user'] != "")
+    assert(deposits[0]['token'] != "")
+    assert(deposits[0]['amount'] > 0)
+    assert(deposits[0]['timestamp'] > 0)
+
+
+def test_deposit_aave_3_polygon():
+    aave = Lending(protocol="Aave", chain="polygon", version=3)
+    deposits = aave.get_data_from_date_range(
+        '10/05/2022 00:00:01', '11/05/2022 00:01:00', "deposit")
+    assert(deposits[0]['tx_id'] != "")
+    assert(deposits[0]['protocol'] == "Aave")
+    assert(deposits[0]['chain'] == "polygon")
+    assert(deposits[0]['version'] == 3)
+    assert(deposits[0]['user'] != "")
+    assert(deposits[0]['token'] != "")
+    assert(deposits[0]['amount'] > 0)
+    assert(deposits[0]['timestamp'] > 0)
+
+
+def test_deposit_aave_3_avalanche():
+    aave = Lending(protocol="Aave", chain="avalanche", version=3)
+    deposits = aave.get_data_from_date_range(
+        '10/05/2022 00:00:01', '11/05/2022 00:01:00', "deposit")
+    assert(deposits[0]['tx_id'] != "")
+    assert(deposits[0]['protocol'] == "Aave")
+    assert(deposits[0]['chain'] == "avalanche")
+    assert(deposits[0]['version'] == 3)
+    assert(deposits[0]['user'] != "")
+    assert(deposits[0]['token'] != "")
+    assert(deposits[0]['amount'] > 0)
+    assert(deposits[0]['timestamp'] > 0)

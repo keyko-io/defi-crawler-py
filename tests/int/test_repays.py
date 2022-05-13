@@ -195,3 +195,101 @@ def test_repay_kashi_1_eth():
     assert(repays[0]['timestamp'] > 0)
 
 
+def test_repay_venus_1_bsc():
+    compound = Lending(protocol="Venus", chain="Bsc", version=1)
+    repays = compound.get_data_from_date_range(
+        '11/05/2021 00:00:01', '11/05/2021 00:31:10', "repay")
+
+    assert(repays[0]['tx_id'] != "")
+    assert(repays[0]['protocol'] == "Venus")
+    assert(repays[0]['chain'] == "Bsc")
+    assert(repays[0]['version'] == 1)
+    assert(repays[0]['user'] != "")
+    assert(repays[0]['token'] != "")
+    assert(float(repays[0]['amount']) > 0)
+    assert(repays[0]['timestamp'] > 0)
+
+
+def test_repay_scream_1_fantom():
+    compound = Lending(protocol="Scream", chain="fantom", version=1)
+    repays = compound.get_data_from_date_range(
+        '10/05/2022 00:00:01', '11/05/2022 00:31:10', "repay")
+
+    assert(repays[0]['tx_id'] != "")
+    assert(repays[0]['protocol'] == "Scream")
+    assert(repays[0]['chain'] == "fantom")
+    assert(repays[0]['version'] == 1)
+    assert(repays[0]['user'] != "")
+    assert(repays[0]['token'] != "")
+    assert(float(repays[0]['amount']) > 0)
+    assert(repays[0]['timestamp'] > 0)
+
+
+def test_repay_aave_3_arbitrum():
+    aave = Lending(protocol="Aave", chain="Arbitrum", version=3)
+    repays = aave.get_data_from_date_range(
+        '11/05/2022 00:00:01', '11/05/2022 22:31:00', "repay")
+    assert(repays[0]['tx_id'] != "")
+    assert(repays[0]['protocol'] == "Aave")
+    assert(repays[0]['chain'] == "Arbitrum")
+    assert(repays[0]['version'] == 3)
+    assert(repays[0]['user'] != "")
+    assert(repays[0]['token'] != "")
+    assert(repays[0]['amount'] > 0)
+    assert(repays[0]['timestamp'] > 0)
+
+
+def test_repay_aave_3_optimism():
+    aave = Lending(protocol="Aave", chain="Optimism", version=3)
+    repays = aave.get_data_from_date_range(
+        '11/05/2022 00:00:01', '11/05/2022 22:31:00', "repay")
+    assert(repays[0]['tx_id'] != "")
+    assert(repays[0]['protocol'] == "Aave")
+    assert(repays[0]['chain'] == "Optimism")
+    assert(repays[0]['version'] == 3)
+    assert(repays[0]['user'] != "")
+    assert(repays[0]['token'] != "")
+    assert(repays[0]['amount'] > 0)
+    assert(repays[0]['timestamp'] > 0)
+
+
+def test_repay_aave_3_polygon():
+    aave = Lending(protocol="Aave", chain="Polygon", version=3)
+    repays = aave.get_data_from_date_range(
+        '11/05/2022 00:00:01', '11/05/2022 22:31:00', "repay")
+    assert(repays[0]['tx_id'] != "")
+    assert(repays[0]['protocol'] == "Aave")
+    assert(repays[0]['chain'] == "Polygon")
+    assert(repays[0]['version'] == 3)
+    assert(repays[0]['user'] != "")
+    assert(repays[0]['token'] != "")
+    assert(repays[0]['amount'] > 0)
+    assert(repays[0]['timestamp'] > 0)
+
+
+def test_repay_aave_3_fantom():
+    aave = Lending(protocol="Aave", chain="Fantom", version=3)
+    repays = aave.get_data_from_date_range(
+        '11/05/2022 00:00:01', '11/05/2022 22:31:00', "repay")
+    assert(repays[0]['tx_id'] != "")
+    assert(repays[0]['protocol'] == "Aave")
+    assert(repays[0]['chain'] == "Fantom")
+    assert(repays[0]['version'] == 3)
+    assert(repays[0]['user'] != "")
+    assert(repays[0]['token'] != "")
+    assert(repays[0]['amount'] > 0)
+    assert(repays[0]['timestamp'] > 0)
+
+
+def test_repay_aave_3_avalanche():
+    aave = Lending(protocol="Aave", chain="Avalanche", version=3)
+    repays = aave.get_data_from_date_range(
+        '11/05/2022 00:00:01', '11/05/2022 22:31:00', "repay")
+    assert(repays[0]['tx_id'] != "")
+    assert(repays[0]['protocol'] == "Aave")
+    assert(repays[0]['chain'] == "Avalanche")
+    assert(repays[0]['version'] == 3)
+    assert(repays[0]['user'] != "")
+    assert(repays[0]['token'] != "")
+    assert(repays[0]['amount'] > 0)
+    assert(repays[0]['timestamp'] > 0)

@@ -138,7 +138,7 @@ def get_first_element(query_input, entity, mappings_file, endpoint, timestamp, a
         list_data = json_data['data'][entity_name]
 
         json_records = [*list_data]
-
+        
     return json_records
 
 @retry(Exception, tries=3, delay=2)

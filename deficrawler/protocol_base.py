@@ -17,6 +17,7 @@ class ProtocolBase:
         self.query_all_elements = Querys.QUERY_ALL_ELEMENTS
         self.query_filter = Querys.QUERY_ELEMENT_FILTER
         self.query_first = Querys.QUERY_FIRST_ELEMENT
+        self.query_block = Querys.QUERY_ELEMENTS_BLOCK
         self.mappings_file = self.__get_protocol_file(protocol, version, chain)
         self.chain = chain
         self.version = version
@@ -62,6 +63,18 @@ class ProtocolBase:
         Gets the first existing element for the given entity with the specified filters
         """
         return get_first_element(query_input=self.query_first,
+                                 entity=entity,
+                                 mappings_file=self.mappings_file,
+                                 endpoint=self.endpoint,
+                                 timestamp=timestamp,
+                                 aditional_filters=aditional_filters,
+                                 block=block)
+
+    def query_elements_by_block(self, entity, timestamp, aditional_filters, block=None):
+        """
+        Gets the elements for the given entity with the specified filters and block number
+        """
+        return get_first_element(query_input=self.query_block,
                                  entity=entity,
                                  mappings_file=self.mappings_file,
                                  endpoint=self.endpoint,
