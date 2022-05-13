@@ -176,3 +176,124 @@ def test_liquidation_cream_2_bsc_user():
     for liquidation in liquidations:
         assert(liquidation['user'] ==
                "0x0825602e9d177b51af7d79acbdc68a746bc41ce4")
+
+
+def test_liquidation_venus_1_bsc():
+    compound = Lending(protocol="Venus", chain="Bsc", version=1)
+    liquidations = compound.get_data_from_date_range(
+        '09/05/2021 00:00:01', '11/05/2021 00:01:10', "liquidation")
+
+    assert(liquidations[0]['tx_id'] != "")
+    assert(liquidations[0]['protocol'] == "Venus")
+    assert(liquidations[0]['chain'] == "Bsc")
+    assert(liquidations[0]['version'] == 1)
+    assert(liquidations[0]['user'] != "")
+    assert(liquidations[0]['token_principal'] != "")
+    assert(liquidations[0]['token_collateral'] != "")
+    assert(float(liquidations[0]['amount_principal']) > 0)
+    assert(float(liquidations[0]['amount_collateral']) > 0)
+    assert(liquidations[0]['liquidator'] != "")
+    assert(liquidations[0]['timestamp'] > 0)
+
+
+def test_liquidation_scream_1_fantom():
+    compound = Lending(protocol="Scream", chain="Fantom", version=1)
+    liquidations = compound.get_data_from_date_range(
+        '10/05/2022 00:00:01', '11/05/2022 00:01:10', "liquidation")
+
+    assert(liquidations[0]['tx_id'] != "")
+    assert(liquidations[0]['protocol'] == "Scream")
+    assert(liquidations[0]['chain'] == "Fantom")
+    assert(liquidations[0]['version'] == 1)
+    assert(liquidations[0]['user'] != "")
+    assert(liquidations[0]['token_principal'] != "")
+    assert(liquidations[0]['token_collateral'] != "")
+    assert(float(liquidations[0]['amount_principal']) > 0)
+    assert(float(liquidations[0]['amount_collateral']) > 0)
+    assert(liquidations[0]['liquidator'] != "")
+    assert(liquidations[0]['timestamp'] > 0)
+
+
+
+def test_liquidation_aave_3_arbitrum():
+    aave = Lending(protocol="Aave", chain="Arbitrum", version=3)
+    liquidations = aave.get_data_from_date_range(
+        '01/05/2022 05:20:01', '04/05/2022 06:22:01', "liquidation")
+    assert(liquidations[0]['tx_id'] != "")
+    assert(liquidations[0]['protocol'] == "Aave")
+    assert(liquidations[0]['chain'] == "Arbitrum")
+    assert(liquidations[0]['version'] == 3)
+    assert(liquidations[0]['user'] != "")
+    assert(liquidations[0]['token_principal'] != "")
+    assert(liquidations[0]['token_collateral'] != "")
+    assert(liquidations[0]['amount_principal'] > 0)
+    assert(liquidations[0]['amount_collateral'] > 0)
+    assert(liquidations[0]['liquidator'] != "")
+    assert(liquidations[0]['timestamp'] > 0)
+
+
+def test_liquidation_aave_3_optimism():
+    aave = Lending(protocol="Aave", chain="Optimism", version=3)
+    liquidations = aave.get_data_from_date_range(
+        '01/05/2022 05:20:01', '09/05/2022 06:22:01', "liquidation")
+    assert(liquidations[0]['tx_id'] != "")
+    assert(liquidations[0]['protocol'] == "Aave")
+    assert(liquidations[0]['chain'] == "Optimism")
+    assert(liquidations[0]['version'] == 3)
+    assert(liquidations[0]['user'] != "")
+    assert(liquidations[0]['token_principal'] != "")
+    assert(liquidations[0]['token_collateral'] != "")
+    assert(liquidations[0]['amount_principal'] > 0)
+    assert(liquidations[0]['amount_collateral'] > 0)
+    assert(liquidations[0]['liquidator'] != "")
+    assert(liquidations[0]['timestamp'] > 0)
+
+
+def test_liquidation_aave_3_polygon():
+    aave = Lending(protocol="Aave", chain="Polygon", version=3)
+    liquidations = aave.get_data_from_date_range(
+        '01/05/2022 05:20:01', '02/05/2022 06:22:01', "liquidation")
+    assert(liquidations[0]['tx_id'] != "")
+    assert(liquidations[0]['protocol'] == "Aave")
+    assert(liquidations[0]['chain'] == "Polygon")
+    assert(liquidations[0]['version'] == 3)
+    assert(liquidations[0]['user'] != "")
+    assert(liquidations[0]['token_principal'] != "")
+    assert(liquidations[0]['token_collateral'] != "")
+    assert(liquidations[0]['amount_principal'] > 0)
+    assert(liquidations[0]['amount_collateral'] > 0)
+    assert(liquidations[0]['liquidator'] != "")
+    assert(liquidations[0]['timestamp'] > 0)
+
+def test_liquidation_aave_3_fantom():
+    aave = Lending(protocol="Aave", chain="Fantom", version=3)
+    liquidations = aave.get_data_from_date_range(
+        '01/05/2022 05:20:01', '02/05/2022 06:22:01', "liquidation")
+    assert(liquidations[0]['tx_id'] != "")
+    assert(liquidations[0]['protocol'] == "Aave")
+    assert(liquidations[0]['chain'] == "Fantom")
+    assert(liquidations[0]['version'] == 3)
+    assert(liquidations[0]['user'] != "")
+    assert(liquidations[0]['token_principal'] != "")
+    assert(liquidations[0]['token_collateral'] != "")
+    assert(liquidations[0]['amount_principal'] > 0)
+    assert(liquidations[0]['amount_collateral'] > 0)
+    assert(liquidations[0]['liquidator'] != "")
+    assert(liquidations[0]['timestamp'] > 0)
+
+
+def test_liquidation_aave_3_avalanche():
+    aave = Lending(protocol="Aave", chain="Avalanche", version=3)
+    liquidations = aave.get_data_from_date_range(
+        '01/05/2022 05:20:01', '02/05/2022 06:22:01', "liquidation")
+    assert(liquidations[0]['tx_id'] != "")
+    assert(liquidations[0]['protocol'] == "Aave")
+    assert(liquidations[0]['chain'] == "Avalanche")
+    assert(liquidations[0]['version'] == 3)
+    assert(liquidations[0]['user'] != "")
+    assert(liquidations[0]['token_principal'] != "")
+    assert(liquidations[0]['token_collateral'] != "")
+    assert(liquidations[0]['amount_principal'] > 0)
+    assert(liquidations[0]['amount_collateral'] > 0)
+    assert(liquidations[0]['liquidator'] != "")
+    assert(liquidations[0]['timestamp'] > 0)

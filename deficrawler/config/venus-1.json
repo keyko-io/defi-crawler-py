@@ -1,0 +1,311 @@
+{
+  "protocol": {
+    "name": "Venus",
+    "type": "Lending",
+    "version": 1,
+    "chain": "BSC",
+    "endpoint": {
+      "bsc": "https://api.thegraph.com/subgraphs/name/venusprotocol/venus-subgraph"
+    }
+  },
+  "entities": {
+    "borrow": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "borrower"
+        ],
+        "token": [
+          "underlyingSymbol"
+        ],
+        "amount": [
+          "amount"
+        ],
+        "timestamp": [
+          "blockTime"
+        ]
+      },
+      "query": {
+        "extra_fields": {},
+        "name": "borrowEvents",
+        "params": {
+          "orderBy": "blockTime",
+          "user":"borrower"
+        }
+      },
+      "transformations": {
+        "tx_id": "tx_id_hyphen"
+      }
+    },
+    "deposit": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "to"
+        ],
+        "token": [
+          "vTokenSymbol"
+        ],
+        "amount": [
+          "underlyingAmount"
+        ],
+        "timestamp": [
+          "blockTime"
+        ]
+      },
+      "query": {
+        "name": "mintEvents",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "blockTime",
+          "user":"to"
+        }
+      },
+      "transformations": {
+        "token": "remove_token_prefix",
+        "tx_id": "tx_id_hyphen"
+      }
+    },
+    "liquidation": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "from"
+        ],
+        "token_principal": [
+          "underlyingSymbol"
+        ],
+        "token_collateral": [
+          "vTokenSymbol"
+        ],
+        "amount_principal": [
+          "underlyingRepayAmount"
+        ],
+        "amount_collateral": [
+          "amount"
+        ],
+        "liquidator": [
+          "to"
+        ],
+        "timestamp": [
+          "blockTime"
+        ]
+      },
+      "query": {
+        "extra_fields": {},
+        "name": "liquidationEvents",
+        "params": {
+          "orderBy": "blockTime",
+          "user":"from"
+        }
+      },
+      "transformations": {
+        "tx_id": "tx_id_hyphen"
+      }
+    },
+    "repay": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "payer"
+        ],
+        "token": [
+          "underlyingSymbol"
+        ],
+        "amount": [
+          "amount"
+        ],
+        "timestamp": [
+          "blockTime"
+        ]
+      },
+      "query": {
+        "name": "repayEvents",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "blockTime",
+          "user":"payer"
+        }
+      },
+      "transformations": {
+        "tx_id": "tx_id_hyphen"
+      }
+    },
+    "redeem": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "to"
+        ],
+        "token": [
+          "vTokenSymbol"
+        ],
+        "amount": [
+          "underlyingAmount"
+        ],
+        "timestamp": [
+          "blockTime"
+        ]
+      },
+      "query": {
+        "name": "redeemEvents",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "blockTime",
+          "user":"to"
+        }
+      },
+      "transformations": {
+        "tx_id": "tx_id_hyphen"
+      }
+    },
+    "token": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "symbol": [
+          "underlyingSymbol"
+        ]
+      },
+      "query": {
+        "name": "markets",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "id",
+          "initial_value": "0"
+        }
+      },
+      "transformations": {}
+    },
+    "user": {
+      "attributes": {
+        "user_id": [
+          "id"
+        ],
+        "active_loans": [
+          "tokens",
+          "totalUnderlyingBorrowed"
+        ],
+        "liquidations_count": [
+          "countLiquidated"
+        ]
+      },
+      "query": {
+        "name": "accounts",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "id",
+          "initial_value": "0"
+        }
+      },
+      "transformations": {
+        "active_loans": "array_length"
+      }
+    },
+    "user_position": {
+      "attributes": {
+        "user_id": [
+          "account",
+          "id"
+        ],
+        "symbol": [
+          "symbol"
+        ],
+        "debt_amount": [
+          "totalUnderlyingBorrowed"
+        ],
+        "collateral_amount": [
+          "totalUnderlyingSupplied"
+        ]
+      },
+      "query": {
+        "name": "accountCTokens",
+        "extra_fields": {},
+        "params": {
+          "user": "account"
+        }
+      },
+      "transformations": {}
+    },
+    "rates": {
+      "attributes": {
+        "token": [
+          "underlyingSymbol"
+        ],
+        "variable_borrow_rate": [
+          "borrowRate"
+        ],
+        "stable_borrow_rate": [
+          "borrowRate"
+        ],
+        "supply_rate": [
+          "supplyRate"
+        ],
+        "timestamp": [
+          "blockTimestamp"
+        ]
+      },
+      "query": {
+        "name": "markets",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "blockTimestamp",
+          "asset": "id",
+          "block": true
+        }
+      },
+      "transformations": {
+        "variable_borrow_rate": "rates_units_comp",
+        "stable_borrow_rate": "rates_na",
+        "supply_rate": "rates_units_comp"
+      }
+    },
+    "prices": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "symbol": [
+          "symbol"
+        ],
+        "underlyingAsset": [
+          "underlyingSymbol"
+        ],
+        "priceInETH": [
+          "underlyingPrice"
+        ],
+        "priceInUsd": [
+          "underlyingPriceUSD"
+        ],
+        "exchangeRate": [
+          "exchangeRate"
+        ],
+        "timestamp": [
+          "blockTimestamp"
+        ]
+      },
+      "query": {
+        "name": "markets",
+        "extra_fields": {
+        },
+        "params": {
+          "orderBy": "blockTimestamp",
+          "block": "block"
+        }
+      },
+      "transformations": {
+      }
+    }
+  }
+}

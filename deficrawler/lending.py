@@ -160,16 +160,16 @@ class Lending(ProtocolBase):
 
         data = []
         while(block_start < block_end):
-            respose = super().query_first_element(entity=entity,
-                                                  timestamp=from_timestamp,
-                                                  aditional_filters=aditional_filters,
-                                                  block=block_end)
+            respose = super().query_elements_by_block(entity=entity,
+                                                      timestamp=from_timestamp,
+                                                      aditional_filters=aditional_filters,
+                                                      block=block_end)
 
             data = [*data,  *respose]
             if(len(respose) == 0 or int(respose[0]['blockTimestamp']) == 0):
                 block_end = block_start
             else:
-                updated_timestamp = respose[0]['blockTimestamp']
+                updated_timestamp = respose[0]['blockTimestamp'] - 1
                 block_end = int(blocks.get_block_at_timestamp(updated_timestamp)[
                     0]['number']) - 1
 

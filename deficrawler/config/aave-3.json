@@ -1,0 +1,415 @@
+{
+  "protocol": {
+    "name": "AAVE",
+    "type": "Lending",
+    "version": 2,
+    "chain": "Ethereum",
+    "endpoint": {
+      "arbitrum": "https://api.thegraph.com/subgraphs/name/aave/protocol-v3-arbitrum",
+      "polygon": "https://api.thegraph.com/subgraphs/name/aave/protocol-v3-polygon",
+      "fantom": "https://api.thegraph.com/subgraphs/name/aave/protocol-v3-fantom",
+      "avalanche": "https://api.thegraph.com/subgraphs/name/aave/protocol-v3-avalanche",
+      "optimism": "https://api.thegraph.com/subgraphs/name/aave/protocol-v3-optimism"
+    }
+  },
+  "entities": {
+    "borrow": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "user",
+          "id"
+        ],
+        "token": [
+          "reserve",
+          "symbol"
+        ],
+        "amount": [
+          "amount"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "name": "borrows",
+        "params": {
+          "orderBy": "timestamp",
+          "user": "user"
+        }
+      },
+      "transformations": {
+        "amount": "decimals",
+        "tx_id": "tx_id_colon"
+      }
+    },
+    "deposit": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "user",
+          "id"
+        ],
+        "token": [
+          "reserve",
+          "symbol"
+        ],
+        "amount": [
+          "amount"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "name": "supplies",
+        "params": {
+          "orderBy": "timestamp",
+          "user": "user"
+        }
+      },
+      "transformations": {
+        "amount": "decimals",
+        "tx_id": "tx_id_colon"
+      }
+    },
+    "liquidation": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "user",
+          "id"
+        ],
+        "token_principal": [
+          "principalReserve",
+          "symbol"
+        ],
+        "token_collateral": [
+          "collateralReserve",
+          "symbol"
+        ],
+        "amount_principal": [
+          "principalAmount"
+        ],
+        "amount_collateral": [
+          "collateralAmount"
+        ],
+        "liquidator": [
+          "liquidator"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "principal_decimals": [
+            "principalReserve",
+            "decimals"
+          ],
+          "collateral_decimals": [
+            "collateralReserve",
+            "decimals"
+          ]
+        },
+        "name": "liquidationCalls",
+        "params": {
+          "orderBy": "timestamp",
+          "user": "user"
+        }
+      },
+      "transformations": {
+        "amount_principal": "principal_decimals",
+        "amount_collateral": "collateral_decimals",
+        "tx_id": "tx_id_colon"
+      }
+    },
+    "repay": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "user",
+          "id"
+        ],
+        "token": [
+          "reserve",
+          "symbol"
+        ],
+        "amount": [
+          "amount"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "name": "repays",
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "params": {
+          "orderBy": "timestamp",
+          "user": "user"
+        }
+      },
+      "transformations": {
+        "amount": "decimals",
+        "tx_id": "tx_id_colon"
+      }
+    },
+    "redeem": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "user",
+          "id"
+        ],
+        "token": [
+          "reserve",
+          "symbol"
+        ],
+        "amount": [
+          "amount"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "name": "redeemUnderlyings",
+        "params": {
+          "orderBy": "timestamp",
+          "user": "user"
+        }
+      },
+      "transformations": {
+        "amount": "decimals",
+        "tx_id": "tx_id_colon"
+      }
+    },
+    "flashloans": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "initiator",
+          "id"
+        ],
+        "token": [
+          "reserve",
+          "symbol"
+        ],
+        "amount": [
+          "amount"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "name": "flashLoans",
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "params": {
+          "orderBy": "timestamp",
+          "user": "initiator"
+        }
+      },
+      "transformations": {
+        "amount": "decimals",
+        "tx_id": "tx_id_colon"
+      }
+    },
+    "rates": {
+      "attributes": {
+        "token": [
+          "reserve",
+          "symbol"
+        ],
+        "variable_borrow_rate": [
+          "variableBorrowRate"
+        ],
+        "stable_borrow_rate": [
+          "stableBorrowRate"
+        ],
+        "supply_rate": [
+          "liquidityRate"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "name": "reserveParamsHistoryItems",
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "params": {
+          "orderBy": "timestamp",
+          "asset": "reserve"
+        }
+      },
+      "transformations": {
+        "variable_borrow_rate": "rates_units_aave",
+        "stable_borrow_rate": "rates_units_aave",
+        "supply_rate": "rates_units_aave"
+      }
+    },
+    "token": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "symbol": [
+          "symbol"
+        ]
+      },
+      "query": {
+        "name": "reserves",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "id",
+          "initial_value": "0"
+        }
+      },
+      "transformations": {}
+    },
+    "user": {
+      "attributes": {
+        "user_id": [
+          "id"
+        ],
+        "active_loans": [
+          "borrowedReservesCount"
+        ],
+        "liquidations_count": [
+          "liquidationCallHistory",
+          "id"
+        ]
+      },
+      "query": {
+        "name": "users",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "id",
+          "initial_value": "0"
+        }
+      },
+      "transformations": {
+        "liquidations_count": "array_length"
+      }
+    },
+    "user_position": {
+      "attributes": {
+        "user_id": [
+          "user",
+          "id"
+        ],
+        "symbol": [
+          "reserve",
+          "symbol"
+        ],
+        "debt_amount": [
+          "currentTotalDebt"
+        ],
+        "collateral_amount": [
+          "currentATokenBalance"
+        ]
+      },
+      "query": {
+        "name": "userReserves",
+        "extra_fields": {
+          "decimals": [
+            "reserve",
+            "decimals"
+          ]
+        },
+        "params": {
+          "user": "user"
+        }
+      },
+      "transformations": {
+        "collateral_amount": "decimals",
+        "debt_amount": "decimals"
+      }
+    },
+    "prices": {
+      "attributes": {
+        "id": [
+          "reserve",
+          "underlyingAsset"
+        ],
+        "symbol": [
+          "reserve",
+          "symbol"
+        ],
+        "underlyingAsset": [
+          "reserve",
+          "symbol"
+        ],
+        "priceInETH": [
+          "priceInEth"
+        ],
+        "priceInUsd": [
+          "priceInUsd"
+        ],
+        "exchangeRate": [
+          "priceInUsd"
+        ],
+        "timestamp": [
+          "timestamp"
+        ]
+      },
+      "query": {
+        "name": "reserveParamsHistoryItems",
+        "extra_fields": {
+        },
+        "params": {
+          "orderBy": "timestamp"
+        }
+      },
+      "transformations": {
+        "exchangeRate": "exchange_rate_one"
+      }
+    }
+  }
+}
