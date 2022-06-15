@@ -1,11 +1,11 @@
 {
   "protocol": {
-    "name": "Compound",
+    "name": "Scream",
     "type": "Lending",
     "version": 2,
-    "chain": "Ethereum",
+    "chain": "Fantom",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/graphprotocol/compound-v2"
+      "fantom": "https://api.thegraph.com/subgraphs/name/screamsh/scream-v1"
     }
   },
   "entities": {
@@ -163,35 +163,6 @@
         "params": {
           "orderBy": "blockTime",
           "user":"to"
-        }
-      },
-      "transformations": {
-        "tx_id": "tx_id_hyphen"
-      }
-    },
-    "redeem": {
-      "attributes": {
-        "tx_id": [
-          "id"
-        ],
-        "user": [
-          "from"
-        ],
-        "token": [
-          "cTokenSymbol"
-        ],
-        "amount": [
-          "underlyingAmount"
-        ],
-        "timestamp": [
-          "blockTime"
-        ]
-      },
-      "query": {
-        "name": "redeemEvents",
-        "extra_fields": {},
-        "params": {
-          "orderBy": "blockTime"
         }
       },
       "transformations": {

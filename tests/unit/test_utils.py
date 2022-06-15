@@ -68,5 +68,5 @@ def test_get_attributes():
 
     map_file = json.loads(config_file.decode())
     swap_attr = get_attributes('swap', map_file)
-    assert(swap_attr =="sender transaction{id} pair{token0{symbol}} pair{token1{symbol}}  pair{token0{symbol}} pair{token1{symbol}}  amount0In amount1In  amount0Out amount1Out  timestamp ")
+    assert(swap_attr =="sender transaction{id} pair{token0{symbol}} pair{token1{symbol}}  pair{token0{symbol}} pair{token1{symbol}}  amount0In amount1In  amount0Out amount1Out  pair{id} amountUSD timestamp ")
 

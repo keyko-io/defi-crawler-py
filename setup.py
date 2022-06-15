@@ -20,7 +20,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     include_package_data=True,
-    version='0.2.7',
+    version='0.3.9',
     author='keyko.io',
     author_email='root@keyko.io',
     url='https://github.com/keyko-io/defi-crawler-py',
@@ -28,6 +28,7 @@ setup(
     install_requires=[
         'dict_digger',
         'requests',
+        'retry'
     ],
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],

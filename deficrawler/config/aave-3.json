@@ -5,9 +5,11 @@
     "version": 2,
     "chain": "Ethereum",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/aave/protocol-v2",
-      "polygon": "https://api.thegraph.com/subgraphs/name/aave/aave-v2-matic",
-      "avalanche": "https://api.thegraph.com/subgraphs/name/aave/protocol-v2-avalanche"
+      "arbitrum": "https://api.thegraph.com/subgraphs/name/aave/protocol-v3-arbitrum",
+      "polygon": "https://api.thegraph.com/subgraphs/name/aave/protocol-v3-polygon",
+      "fantom": "https://api.thegraph.com/subgraphs/name/aave/protocol-v3-fantom",
+      "avalanche": "https://api.thegraph.com/subgraphs/name/aave/protocol-v3-avalanche",
+      "optimism": "https://api.thegraph.com/subgraphs/name/aave/protocol-v3-optimism"
     }
   },
   "entities": {
@@ -76,47 +78,10 @@
             "decimals"
           ]
         },
-        "name": "deposits",
+        "name": "supplies",
         "params": {
           "orderBy": "timestamp",
           "user": "user"
-        }
-      },
-      "transformations": {
-        "amount": "decimals",
-        "tx_id": "tx_id_colon"
-      }
-    },
-    "redeem": {
-      "attributes": {
-        "tx_id": [
-          "id"
-        ],
-        "user": [
-          "user",
-          "id"
-        ],
-        "token": [
-          "reserve",
-          "symbol"
-        ],
-        "amount": [
-          "amount"
-        ],
-        "timestamp": [
-          "timestamp"
-        ]
-      },
-      "query": {
-        "extra_fields": {
-          "decimals": [
-            "reserve",
-            "decimals"
-          ]
-        },
-        "name": "redeemUnderlyings",
-        "params": {
-          "orderBy": "timestamp"
         }
       },
       "transformations": {

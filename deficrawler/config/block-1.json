@@ -4,7 +4,11 @@
       "endpoint": {
         "ethereum": "https://api.thegraph.com/subgraphs/name/elkfinance/eth-blocks",
         "bsc":"https://api.thegraph.com/subgraphs/name/matthewlilley/bsc-blocks",
-        "polygon":"https://api.thegraph.com/subgraphs/name/ord786/matic-blocks"
+        "polygon":"https://api.thegraph.com/subgraphs/name/ord786/matic-blocks",
+        "avalanche": "https://api.thegraph.com/subgraphs/name/radioshackcreator/blocks-avalanche",
+        "arbitrum": "https://api.thegraph.com/subgraphs/name/elkfinance/arbitrum-blocks",
+        "optimism": "https://api.thegraph.com/subgraphs/name/beethovenxfi/optimism-blocks",
+        "fantom": "https://api.thegraph.com/subgraphs/name/beethovenxfi/fantom-blocks"
       }
     },
     "entities": {

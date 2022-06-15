@@ -2,10 +2,12 @@
   "protocol": {
     "name": "Balancer",
     "type": "Balancer",
-    "version": 1,
+    "version": 2,
     "chain": "Ethereum",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer"
+      "ethereum": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-v2",
+      "polygon": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-polygon-v2",
+      "arbitrum": "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-arbitrum-v2"
     }
   },
   "entities": {
@@ -30,8 +32,11 @@
         "to_token_amount": [
           "tokenAmountOut"
         ],
-        "pool":[
-          "poolAddress",
+        "pool": [
+          "poolId",
+          "address"
+        ],
+        "amount_usd": [
           "id"
         ],
         "timestamp": [
@@ -46,28 +51,8 @@
           "pool": "poolAddress"
         }
       },
-      "transformations": {}
-    },
-    "pool": {
-      "attributes": {
-        "id": [
-          "id"
-        ],
-        "pool_tokens": [
-          "tokens",
-          "symbol"
-        ]
-      },
-      "query": {
-        "name": "pools",
-        "extra_fields": {},
-        "params": {
-          "orderBy": "id",
-          "initial_value": "0"
-        }
-      },
       "transformations": {
-        "pool_tokens": "concat_list_symbols"
+        "amount_usd": "na"
       }
     }
   }

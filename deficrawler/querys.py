@@ -56,3 +56,19 @@ class Querys:
                 }}
             }}
         """
+
+    QUERY_ELEMENTS_BLOCK = """ {{
+            {entity_name}(
+                    orderBy: {order_by}
+                    orderDirection: desc
+                    first: 1000
+                    {block}
+                    where: {{
+                        {order_by_filter}{lte} {timestamp}
+                        {aditional_filters}
+                    }}
+                ){{
+                    {attributes}
+                }}
+            }}
+        """

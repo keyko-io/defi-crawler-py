@@ -109,16 +109,40 @@ Name | Type | Version | Chain
 --------|-------|---------|-------
 Aave | Lending | 2 | Ethereum
 Aave | Lending | 2 | Polygon
+Aave | Lending | 2 | Avalanche
 Compound | Lending | 2 | Ethereum
 Cream | Lending | 2 | Ethereum
 Cream | Lending | 2 | BSC
+Cream | Lending | 2 | Polygon
+Cream | Lending | 2 | Arbitrum
+Cream | Lending | 2 | Avalance
+Cream | Lending | 2 | Fantom
+Kashi | Lending | 1 | Ethereum
+Kashi | Lending | 1 | Polygon
+Kashi | Lending | 1 | xDai
+Kashi | Lending | 1 | fantom
 Uniswap | Dexes | 2 | Ethereum
+Uniswap | Dexes | 3 | Ethereum
+Uniswap | Dexes | 3 | Optimism
 Balancer | Dexes | 2 | Ethereum
+Balancer | Dexes | 2 | Arbitrum
+Balancer | Dexes | 2 | Polygon
 Bancor | Dexes | 1 | Ethereum
 SushiSwap | Dexes | 1 | Ethereum
 SushiSwap | Dexes | 1 | BSC
 SushiSwap | Dexes | 1 | Polygon
+SushiSwap | Dexes | 1 | Fantom
+SushiSwap | Dexes | 1 | Celo
+Dodoex | Dexes | 2 | Ethereum
+Dodoex | Dexes | 2 | Polygon
+Dodoex | Dexes | 2 | BSC
+Dodoex | Dexes | 2 | Arbitrum
 Ubeswap | Dexes | 1 | Celo
+Pancakeswap | Dexes | 2 | BSC
+Pangolin | Dexes | 1 | Avalanche
+Traderjoe | Dexes | 1 | Avalanche
+
+
 
 
 #### Oracles

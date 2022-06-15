@@ -1,11 +1,10 @@
 {
   "protocol": {
-    "name": "Uniswap",
+    "name": "Trader Joe",
     "type": "Descentralized Exchange",
     "version": 2,
-    "chain": "Ethereum",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2"
+      "avalanche": "https://api.thegraph.com/subgraphs/name/token-terminal/trader-joe-v1-avalanche"
     }
   },
   "entities": {
@@ -99,8 +98,8 @@
             "symbol"
           ]
         ],
-        "created_at":[
-          "createdAtTimestamp"
+        "created_at": [
+          "timestamp"
         ],
         "liquidity_usd": [
           "reserveUSD"
@@ -201,48 +200,6 @@
         }
       },
       "transformations": {}
-    },
-    "pool_volume_hourly": {
-      "attributes": {
-        "id": [
-          "pair",
-          "id"
-        ],
-        "token0":[
-          "reserve0"
-        ],
-        "token1":[
-          "reserve1"
-        ],
-        "liquidity":[
-          "reserveUSD"
-        ],
-        "hourlyVolumeUSD":[
-          "hourlyVolumeUSD"
-        ],
-        "hourlyVolumeToken0":[
-          "hourlyVolumeToken0"
-        ],
-        "hourlyVolumeToken1":[
-          "hourlyVolumeToken1"
-        ],
-        "hourlyTxns":[
-          "hourlyTxns"
-        ],
-        "hourStartUnix": [
-          "hourStartUnix"
-        ]
-      },
-      "query": {
-        "name": "pairHourDatas",
-        "extra_fields": {},
-        "params": {
-          "orderBy": "hourStartUnix",
-          "pool": "pair"
-        }
-      },
-      "transformations": {
-      }
     }
   }
 }

@@ -1,11 +1,11 @@
 {
   "protocol": {
-    "name": "Uniswap",
+    "name": "Pancakeswap",
     "type": "Descentralized Exchange",
     "version": 2,
-    "chain": "Ethereum",
+    "chain": "Bsc",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2"
+      "bsc": "https://api.thegraph.com/subgraphs/name/henry0717/pancakeswapv2"
     }
   },
   "entities": {
@@ -99,7 +99,7 @@
             "symbol"
           ]
         ],
-        "created_at":[
+        "created_at": [
           "createdAtTimestamp"
         ],
         "liquidity_usd": [

@@ -6,7 +6,9 @@
     "chain": "Ethereum",
     "endpoint": {
       "ethereum": "https://api.thegraph.com/subgraphs/name/creamfinancedev/cream-lending",
-      "bsc": "https://api.thegraph.com/subgraphs/name/akshaysrivastav/cream-finance-bsc"
+      "bsc": "https://api.thegraph.com/subgraphs/name/akshaysrivastav/cream-finance-bsc",
+      "polygon":"https://api.thegraph.com/subgraphs/name/creamfinancedev/cream-polygon",
+      "arbitrum": "https://api.thegraph.com/subgraphs/name/creamfinancedev/cream-arbitrum"
     }
   },
   "entities": {
@@ -32,7 +34,8 @@
         "extra_fields": {},
         "name": "borrowEvents",
         "params": {
-          "orderBy": "blockTime"
+          "orderBy": "blockTime",
+          "user":"borrower"
         }
       },
       "transformations": {
@@ -61,7 +64,8 @@
         "name": "mintEvents",
         "extra_fields": {},
         "params": {
-          "orderBy": "blockTime"
+          "orderBy": "blockTime",
+          "user":"to"
         }
       },
       "transformations": {
@@ -128,7 +132,8 @@
         "extra_fields": {},
         "name": "liquidationEvents",
         "params": {
-          "orderBy": "blockTime"
+          "orderBy": "blockTime",
+          "user":"from"
         }
       },
       "transformations": {
@@ -157,7 +162,8 @@
         "name": "repayEvents",
         "extra_fields": {},
         "params": {
-          "orderBy": "blockTime"
+          "orderBy": "blockTime",
+          "user":"payer"
         }
       },
       "transformations": {
@@ -214,6 +220,36 @@
       },
       "transformations": {}
     },
+    "redeem": {
+      "attributes": {
+        "tx_id": [
+          "id"
+        ],
+        "user": [
+          "to"
+        ],
+        "token": [
+          "cTokenSymbol"
+        ],
+        "amount": [
+          "underlyingAmount"
+        ],
+        "timestamp": [
+          "blockTime"
+        ]
+      },
+      "query": {
+        "name": "redeemEvents",
+        "extra_fields": {},
+        "params": {
+          "orderBy": "blockTime",
+          "user":"to"
+        }
+      },
+      "transformations": {
+        "tx_id": "tx_id_hyphen"
+      }
+    },
     "rates": {
       "attributes": {
         "token": [
@@ -265,6 +301,42 @@
         }
       },
       "transformations": {}
+    },
+    "prices": {
+      "attributes": {
+        "id": [
+          "id"
+        ],
+        "symbol": [
+          "symbol"
+        ],
+        "underlyingAsset": [
+          "underlyingSymbol"
+        ],
+        "priceInETH": [
+          "underlyingPrice"
+        ],
+        "priceInUsd": [
+          "underlyingPriceUSD"
+        ],
+        "exchangeRate": [
+          "exchangeRate"
+        ],
+        "timestamp": [
+          "blockTimestamp"
+        ]
+      },
+      "query": {
+        "name": "markets",
+        "extra_fields": {
+        },
+        "params": {
+          "orderBy": "blockTimestamp",
+          "block": "block"
+        }
+      },
+      "transformations": {
+      }
     }
   }
 }

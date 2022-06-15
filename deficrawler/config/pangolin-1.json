@@ -1,11 +1,10 @@
 {
   "protocol": {
-    "name": "Uniswap",
+    "name": "Pangolin",
     "type": "Descentralized Exchange",
-    "version": 2,
-    "chain": "Ethereum",
+    "version": 1,
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2"
+      "avalanche": "https://api.thegraph.com/subgraphs/name/token-terminal/pangolin-v1-avalanche"
     }
   },
   "entities": {
@@ -99,7 +98,7 @@
             "symbol"
           ]
         ],
-        "created_at":[
+        "created_at": [
           "createdAtTimestamp"
         ],
         "liquidity_usd": [
@@ -208,25 +207,25 @@
           "pair",
           "id"
         ],
-        "token0":[
+        "token0": [
           "reserve0"
         ],
-        "token1":[
+        "token1": [
           "reserve1"
         ],
-        "liquidity":[
+        "liquidity": [
           "reserveUSD"
         ],
-        "hourlyVolumeUSD":[
+        "hourlyVolumeUSD": [
           "hourlyVolumeUSD"
         ],
-        "hourlyVolumeToken0":[
+        "hourlyVolumeToken0": [
           "hourlyVolumeToken0"
         ],
-        "hourlyVolumeToken1":[
+        "hourlyVolumeToken1": [
           "hourlyVolumeToken1"
         ],
-        "hourlyTxns":[
+        "hourlyTxns": [
           "hourlyTxns"
         ],
         "hourStartUnix": [
@@ -241,8 +240,7 @@
           "pool": "pair"
         }
       },
-      "transformations": {
-      }
+      "transformations": {}
     }
   }
 }

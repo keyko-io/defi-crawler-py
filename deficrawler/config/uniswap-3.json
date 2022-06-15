@@ -2,10 +2,12 @@
   "protocol": {
     "name": "Uniswap",
     "type": "Descentralized Exchange",
-    "version": 2,
+    "version": 3,
     "chain": "Ethereum",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2"
+      "ethereum": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3",
+      "optimism": "https://api.thegraph.com/subgraphs/name/storres93/uniswap-v3-optimism",
+      "polygon": "https://api.thegraph.com/subgraphs/name/kalinbas/uniswap-v3-polygon"
     }
   },
   "entities": {
@@ -20,46 +22,42 @@
         ],
         "from_token": [
           [
-            "pair",
             "token0",
             "symbol"
           ],
           [
-            "pair",
             "token1",
             "symbol"
           ]
         ],
         "to_token": [
           [
-            "pair",
             "token0",
             "symbol"
           ],
           [
-            "pair",
             "token1",
             "symbol"
           ]
         ],
         "from_token_amount": [
           [
-            "amount0In"
+            "amount0"
           ],
           [
-            "amount1In"
+            "amount1"
           ]
         ],
         "to_token_amount": [
           [
-            "amount0Out"
+            "amount0"
           ],
           [
-            "amount1Out"
+            "amount1"
           ]
         ],
         "pool": [
-          "pair",
+          "pool",
           "id"
         ],
         "amount_usd": [
@@ -78,44 +76,10 @@
         }
       },
       "transformations": {
-        "from_token": "from_token",
-        "to_token": "to_token",
-        "from_token_amount": "from_token_amount",
-        "to_token_amount": "to_token_amount"
-      }
-    },
-    "pool": {
-      "attributes": {
-        "id": [
-          "id"
-        ],
-        "pool_tokens": [
-          [
-            "token0",
-            "symbol"
-          ],
-          [
-            "token1",
-            "symbol"
-          ]
-        ],
-        "created_at":[
-          "createdAtTimestamp"
-        ],
-        "liquidity_usd": [
-          "reserveUSD"
-        ]
-      },
-      "query": {
-        "name": "pairs",
-        "extra_fields": {},
-        "params": {
-          "orderBy": "id",
-          "initial_value": "0"
-        }
-      },
-      "transformations": {
-        "pool_tokens": "concat_symbols"
+        "from_token": "from_token_v3",
+        "to_token": "to_token_v3",
+        "from_token_amount": "from_token_amount_v3",
+        "to_token_amount": "to_token_amount_v3"
       }
     },
     "mint": {
@@ -125,12 +89,10 @@
           "id"
         ],
         "token0": [
-          "pair",
           "token0",
           "symbol"
         ],
         "token1": [
-          "pair",
           "token1",
           "symbol"
         ],
@@ -141,10 +103,10 @@
           "amount1"
         ],
         "user": [
-          "to"
+          "owner"
         ],
         "pool": [
-          "pair",
+          "pool",
           "id"
         ],
         "timestamp": [
@@ -167,12 +129,10 @@
           "id"
         ],
         "token0": [
-          "pair",
           "token0",
           "symbol"
         ],
         "token1": [
-          "pair",
           "token1",
           "symbol"
         ],
@@ -183,10 +143,10 @@
           "amount1"
         ],
         "user": [
-          "sender"
+          "owner"
         ],
         "pool": [
-          "pair",
+          "pool",
           "id"
         ],
         "timestamp": [
@@ -202,46 +162,38 @@
       },
       "transformations": {}
     },
-    "pool_volume_hourly": {
+    "pool": {
       "attributes": {
         "id": [
-          "pair",
           "id"
         ],
-        "token0":[
-          "reserve0"
+        "pool_tokens": [
+          [
+            "token0",
+            "symbol"
+          ],
+          [
+            "token1",
+            "symbol"
+          ]
         ],
-        "token1":[
-          "reserve1"
+        "created_at": [
+          "createdAtTimestamp"
         ],
-        "liquidity":[
-          "reserveUSD"
-        ],
-        "hourlyVolumeUSD":[
-          "hourlyVolumeUSD"
-        ],
-        "hourlyVolumeToken0":[
-          "hourlyVolumeToken0"
-        ],
-        "hourlyVolumeToken1":[
-          "hourlyVolumeToken1"
-        ],
-        "hourlyTxns":[
-          "hourlyTxns"
-        ],
-        "hourStartUnix": [
-          "hourStartUnix"
+        "liquidity_usd": [
+          "totalValueLockedUSD"
         ]
       },
       "query": {
-        "name": "pairHourDatas",
+        "name": "pools",
         "extra_fields": {},
         "params": {
-          "orderBy": "hourStartUnix",
-          "pool": "pair"
+          "orderBy": "id",
+          "initial_value": "0"
         }
       },
       "transformations": {
+        "pool_tokens": "concat_symbols"
       }
     }
   }

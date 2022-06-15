@@ -17,7 +17,8 @@ class ProtocolBase:
         self.query_all_elements = Querys.QUERY_ALL_ELEMENTS
         self.query_filter = Querys.QUERY_ELEMENT_FILTER
         self.query_first = Querys.QUERY_FIRST_ELEMENT
-        self.mappings_file = self.__get_protocol_file(protocol, version)
+        self.query_block = Querys.QUERY_ELEMENTS_BLOCK
+        self.mappings_file = self.__get_protocol_file(protocol, version, chain)
         self.chain = chain
         self.version = version
         self.endpoint = self.__get_protocol_endpoint(chain)
@@ -69,6 +70,18 @@ class ProtocolBase:
                                  aditional_filters=aditional_filters,
                                  block=block)
 
+    def query_elements_by_block(self, entity, timestamp, aditional_filters, block=None):
+        """
+        Gets the elements for the given entity with the specified filters and block number
+        """
+        return get_first_element(query_input=self.query_block,
+                                 entity=entity,
+                                 mappings_file=self.mappings_file,
+                                 endpoint=self.endpoint,
+                                 timestamp=timestamp,
+                                 aditional_filters=aditional_filters,
+                                 block=block)
+
     def map_data(self, response_data, config):
         """
         Maps the data from the subgraph data to the defined commom model in
@@ -112,7 +125,7 @@ class ProtocolBase:
 
         return supported
 
-    def __get_protocol_file(self, protocol, version):
+    def __get_protocol_file(self, protocol, version, chain):
         """
         Gets the json file for the specified protocol and the specified version.
         If the protocol does not exits at this version will raise an error.
@@ -120,12 +133,18 @@ class ProtocolBase:
         try:
             config_file = pkgutil.get_data(
                 'deficrawler.config',
-                protocol.lower() + "-" + str(version) + ".json"
+                protocol.lower() + "-" + str(version) + "-" + chain.lower() + ".json"
             )
 
         except FileNotFoundError:
-            raise Exception('Protocol ' + protocol +
-                            ' version ' + str(version) + ' not supported')
+            try:
+                config_file = pkgutil.get_data(
+                    'deficrawler.config',
+                    protocol.lower() + "-" + str(version) + ".json"
+                )
+            except:
+                raise Exception('Protocol ' + protocol +
+                                ' version ' + str(version) + ' not supported')
         except:
             raise
 

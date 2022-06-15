@@ -58,6 +58,10 @@
             "amount1Out"
           ]
         ],
+        "pool": [
+          "pair",
+          "id"
+        ],
         "timestamp": [
           "timestamp"
         ]
@@ -91,6 +95,12 @@
             "token1",
             "symbol"
           ]
+        ],
+        "created_at": [
+          "createdAtTimestamp"
+        ],
+        "liquidity_usd": [
+          "reserveUSD"
         ]
       },
       "query": {

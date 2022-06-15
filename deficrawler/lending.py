@@ -17,7 +17,7 @@ class Lending(ProtocolBase):
         )
         self.protocol_type = "lending"
 
-    def get_data_from_date_range(self, from_date, to_date, entity):
+    def get_data_from_date_range(self, from_date, to_date, entity, user=''):
         """
         Gets data for the specified entity in the from_data to to_date period.
         The entities are defined in the configuration of each protocol.
@@ -31,10 +31,22 @@ class Lending(ProtocolBase):
 
         config = super().get_protocol_config(entity)
 
-        response_data = super().query_data_from_date_range(
+        aditional_filters = self.__get_aditional_filters__(
+            user=user, entity=entity
+        )
+
+        filter_by_block = 'block' in self.mappings_file['entities'][entity]['query']['params']
+
+        response_data = self.__get_data_from_blocks__(
             from_timestamp=from_timestamp,
             to_timestamp=to_timestamp,
-            entity=entity
+            entity=entity,
+            aditional_filters={}
+        ) if filter_by_block else super().query_data_from_date_range(
+            from_timestamp=from_timestamp,
+            to_timestamp=to_timestamp,
+            entity=entity,
+            aditional_filters=aditional_filters
         )
 
         return super().map_data(
@@ -148,17 +160,36 @@ class Lending(ProtocolBase):
 
         data = []
         while(block_start < block_end):
-            respose = super().query_first_element(entity=entity,
-                                                  timestamp=from_timestamp,
-                                                  aditional_filters=aditional_filters,
-                                                  block=block_end)
+            respose = super().query_elements_by_block(entity=entity,
+                                                      timestamp=from_timestamp,
+                                                      aditional_filters=aditional_filters,
+                                                      block=block_end)
 
             data = [*data,  *respose]
             if(len(respose) == 0 or int(respose[0]['blockTimestamp']) == 0):
                 block_end = block_start
             else:
-                updated_timestamp = respose[0]['blockTimestamp']
+                updated_timestamp = respose[0]['blockTimestamp'] - 1
                 block_end = int(blocks.get_block_at_timestamp(updated_timestamp)[
                     0]['number']) - 1
 
         return data
+
+    def __get_aditional_filters__(self, user, entity):
+        user_filter = {}
+
+        if(user != ''):
+            user_filter = {
+                self.mappings_file['entities'][entity]['query']['params']['user']: user
+            }
+
+        type = {}
+        if('type' in self.mappings_file['entities'][entity]['query']['params']):
+            type = {
+                'type': self.mappings_file['entities'][entity]['query']['params']['type']
+            }
+
+        if (len(user_filter.items()) > 0 or len(type.items()) > 0):
+            return {**user_filter, **type}
+
+        return ''
