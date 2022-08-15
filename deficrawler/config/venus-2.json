@@ -1,11 +1,11 @@
 {
   "protocol": {
-    "name": "Compound",
+    "name": "Venus",
     "type": "Lending",
     "version": 2,
     "chain": "Ethereum",
     "endpoint": {
-      "ethereum": "https://api.thegraph.com/subgraphs/name/graphprotocol/compound-v2"
+      "bsc": "https://api.thegraph.com/subgraphs/name/venusprotocol/venus-subgraph"
     }
   },
   "entities": {
@@ -31,8 +31,7 @@
         "extra_fields": {},
         "name": "borrowEvents",
         "params": {
-          "orderBy": "blockTime",
-          "user":"borrower"
+          "orderBy": "blockTime"
         }
       },
       "transformations": {
@@ -48,7 +47,7 @@
           "to"
         ],
         "token": [
-          "cTokenSymbol"
+          "vTokenSymbol"
         ],
         "amount": [
           "underlyingAmount"
@@ -61,8 +60,7 @@
         "name": "mintEvents",
         "extra_fields": {},
         "params": {
-          "orderBy": "blockTime",
-          "user":"to"
+          "orderBy": "blockTime"
         }
       },
       "transformations": {
@@ -82,7 +80,7 @@
           "underlyingSymbol"
         ],
         "token_collateral": [
-          "cTokenSymbol"
+          "vTokenSymbol"
         ],
         "amount_principal": [
           "underlyingRepayAmount"
@@ -101,8 +99,7 @@
         "extra_fields": {},
         "name": "liquidationEvents",
         "params": {
-          "orderBy": "blockTime",
-          "user":"from"
+          "orderBy": "blockTime"
         }
       },
       "transformations": {
@@ -131,38 +128,7 @@
         "name": "repayEvents",
         "extra_fields": {},
         "params": {
-          "orderBy": "blockTime",
-          "user":"payer"
-        }
-      },
-      "transformations": {
-        "tx_id": "tx_id_hyphen"
-      }
-    },
-    "redeem": {
-      "attributes": {
-        "tx_id": [
-          "id"
-        ],
-        "user": [
-          "to"
-        ],
-        "token": [
-          "cTokenSymbol"
-        ],
-        "amount": [
-          "underlyingAmount"
-        ],
-        "timestamp": [
-          "blockTime"
-        ]
-      },
-      "query": {
-        "name": "redeemEvents",
-        "extra_fields": {},
-        "params": {
-          "orderBy": "blockTime",
-          "user":"to"
+          "orderBy": "blockTime"
         }
       },
       "transformations": {
@@ -178,7 +144,7 @@
           "from"
         ],
         "token": [
-          "cTokenSymbol"
+          "vTokenSymbol"
         ],
         "amount": [
           "underlyingAmount"
@@ -259,7 +225,7 @@
         ]
       },
       "query": {
-        "name": "accountCTokens",
+        "name": "accountVTokens",
         "extra_fields": {},
         "params": {
           "user": "account"
@@ -298,42 +264,6 @@
         "variable_borrow_rate": "rates_units_comp",
         "stable_borrow_rate": "rates_na",
         "supply_rate": "rates_units_comp"
-      }
-    },
-    "prices": {
-      "attributes": {
-        "id": [
-          "id"
-        ],
-        "symbol": [
-          "symbol"
-        ],
-        "underlyingAsset": [
-          "underlyingSymbol"
-        ],
-        "priceInETH": [
-          "underlyingPrice"
-        ],
-        "priceInUsd": [
-          "underlyingPriceUSD"
-        ],
-        "exchangeRate": [
-          "exchangeRate"
-        ],
-        "timestamp": [
-          "blockTimestamp"
-        ]
-      },
-      "query": {
-        "name": "markets",
-        "extra_fields": {
-        },
-        "params": {
-          "orderBy": "blockTimestamp",
-          "block": "block"
-        }
-      },
-      "transformations": {
       }
     }
   }
