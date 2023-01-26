@@ -152,7 +152,7 @@ Chainlink | Oracle | 1 | Ethereum
 
 #### Testing
 
-Tests are creatd using Pytest library. To run the tests
+Tests are created using Pytest library. To run the tests
     
     pytest -v 
 
@@ -165,16 +165,16 @@ To run the examples run
 
 
 ### Contributions
-If you want to add a new protocol to be supported or a new entity to retrive data, create a PR with the new configuration of the protocol and the unit/integration tests of this new feature.
+If you want to add a new protocol to be supported or a new entity to retrieve data, create a PR with the new configuration of the protocol and the unit/integration tests of this new feature.
 
-To add a new protocol, create a new json config file in the config folder, with the struture `protocolname-version.json`.
+To add a new protocol, create a new json config file in the config folder, with the structure `protocolname-version.json`.
 Inside this configuration file must be the following sections:
 ##### Protocol
 This section specifies the global configuration of the protocol. The required fields are 
   - **Name:** Protocol name.
   - **Type:** Protocol type (Borrowing lending)
-  - **Version:** Version of the protcol
-  - **Enpoint:** Subgrapn endpoint to send the http request to get the data. If the protocols exists on more than one chain, several enpoints can be provided
+  - **Version:** Version of the protocol
+  - **Endpoint:** Subgraph endpoint to send the http request to get the data. If the protocols exists on more than one chain, several endpoints can be provided
  
 **Example**
 ````json
@@ -191,7 +191,7 @@ This section specifies the global configuration of the protocol. The required fi
 
   
 After this section the supported entities should be specified. Each entity has three different sections inside of them.
-  - **Entity:** The entity contains the fields to create a common entity from a shared type of event of different protocols (borrow, swap, deposit...). The entity starts with the name that will be applied to this specific event across all the protocols. Then should be a field for each attribute that will be contained in the entity, and each field shoud have an array, with the path to find this element in the corresponding subpgraph, these fields will be used to create the query. As example for borrow entity in Aave:
+  - **Entity:** The entity contains the fields to create a common entity from a shared type of event of different protocols (borrow, swap, deposit...). The entity starts with the name that will be applied to this specific event across all the protocols. Then should be a field for each attribute that will be contained in the entity, and each field should have an array, with the path to find this element in the corresponding subgraph, these fields will be used to create the query. As example for borrow entity in Aave:
     ````
     "borrow": {
       "attributes": {
@@ -213,7 +213,7 @@ After this section the supported entities should be specified. Each entity has t
           "timestamp"
         ]
       }
-  - **Query:**: Each query in each protocol can be named different, to allow create the query dynamically, the query name should be specified and the field to order by if will be more that one batch to retrive. In this section also can be specified, additional fields to get data from the subgraph that will be needed to apply transformations, but will not be part of the output itself. As example for Aave we need to get the decimals for the token to divide the amount, but the decimals are not part of the entity. As example
+  - **Query:**: Each query in each protocol can be named different, to allow create the query dynamically, the query name should be specified and the field to order by if will be more than one batch to retrieve. In this section also can be specified, additional fields to get data from the subgraph that will be needed to apply transformations, but will not be part of the output itself. As example for Aave we need to get the decimals for the token to divide the amount, but the decimals are not part of the entity. As example
       ````
           "query": {
             "extra_fields": {
@@ -227,7 +227,7 @@ After this section the supported entities should be specified. Each entity has t
               "orderBy": "timestamp"
             }
           }
-  - **Tranformations:** This section specified the transformations that should be applied to the fields (if any transformation should be applied). Here we can specify the field of the common entity (the output) that needs to be transform, and the function that will be applied. This funtion will be call dinamically in the transformation phase. As example:
+  - **Tranformations:** This section specified the transformations that should be applied to the fields (if any transformation should be applied). Here we can specify the field of the common entity (the output) that needs to be transform, and the function that will be applied. This function will be called dynamically in the transformation phase. As example:
       ````
           "transformations": {
             "amount": "decimals",
